@@ -56,6 +56,37 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', animateCounters, { passive: true });
   animateCounters();
 
+  // Animated counters — "The Numbers That Define Us" stat cards (independent
+  // of the generic .num counter above, since these need per-card suffixes
+  // like "K+" and some entries with no suffix at all).
+  var bigStats = document.querySelectorAll('.stat-big-num[data-count]');
+  var bigStatsAnimated = false;
+  function animateBigStats() {
+    if (bigStatsAnimated) return;
+    var triggerEl = bigStats[0];
+    if (!triggerEl) return;
+    var rect = triggerEl.getBoundingClientRect();
+    if (rect.top > window.innerHeight) return;
+    bigStatsAnimated = true;
+    bigStats.forEach(function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+      var suffix = el.getAttribute('data-suffix') || '';
+      var duration = 1400;
+      var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target).toLocaleString('en-IN') + (progress >= 1 ? suffix : '');
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString('en-IN') + suffix;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  window.addEventListener('scroll', animateBigStats, { passive: true });
+  animateBigStats();
+
   // Brand directory filter (brands.html only)
   var grid = document.getElementById('brandsGrid');
   if (grid) {

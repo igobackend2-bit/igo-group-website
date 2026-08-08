@@ -31,8 +31,8 @@ const MIME = {
 };
 
 const server = http.createServer(function(req, res) {
-  // Strip query strings
-  let urlPath = req.url.split('?')[0];
+  // Strip query strings, then decode %20 etc. so filenames with spaces/special characters resolve correctly
+  let urlPath = decodeURIComponent(req.url.split('?')[0]);
 
   // Default to index.html
   if (urlPath === '/' || urlPath === '') {

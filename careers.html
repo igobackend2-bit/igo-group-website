@@ -443,7 +443,6 @@
           <a href="org-chart.html">Org Chart</a>
             <a href="teams.html">Teams</a>
           <a href="facilities.html">Office Facilities</a>
-          <a href="csr.html">CSR & Sustainability</a>
           </div>
         </div>
 
@@ -577,8 +576,9 @@ html.dark .process-step h4 { color: var(--green-light); }
 </style>
 
 <!-- ══════════════════ HERO ══════════════════ -->
-<section class="page-hero dept-hero-photo careers-hero" style="background-image:url('assets/img/office/office-igo-uniforms.jpg');">
-  <div class="container">
+<section class="page-hero dept-hero-photo careers-hero" style="background-image:url('assets/img/office/ChatGPT%20Image%20Jul%2022%2C%202026%2C%2004_50_44%20PM.png'); overflow:hidden;">
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,61,19,0.88) 0%,rgba(11,61,19,0.5) 40%,rgba(11,61,19,0.15) 62%,transparent 82%);"></div>
+  <div class="container" style="position:relative; z-index:1;">
     <div class="careers-hero-inner">
       <div data-reveal="left">
         <span class="eyebrow">WE&rsquo;RE HIRING &middot; 13 DEPARTMENTS OPEN</span>
@@ -1079,6 +1079,21 @@ html.dark .process-step h4 { color: var(--green-light); }
 
 <!-- ══════════════════ APPLICATION FORM ══════════════════ -->
 <section class="content-section" id="apply-section">
+  <style>
+    #apply-section .contact-form input,
+    #apply-section .contact-form select,
+    #apply-section .contact-form textarea {
+      background: #fff;
+      border: 1px solid var(--border, #d7ddd3);
+      box-shadow: none;
+    }
+    #apply-section .contact-form input:focus,
+    #apply-section .contact-form select:focus,
+    #apply-section .contact-form textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(71,132,39,0.15);
+    }
+  </style>
   <div class="container" style="max-width: 720px;">
     <div class="section-header text-center" data-reveal>
       <span class="eyebrow">APPLY TODAY</span>
@@ -1086,7 +1101,7 @@ html.dark .process-step h4 { color: var(--green-light); }
       <p style="color: var(--muted);">Fill the form below &mdash; our HR team responds within 48 hours.</p>
     </div>
 
-    <form id="applyForm" class="contact-form" onsubmit="submitApplyForm(event)" style="margin-top: 2.5rem;">
+    <form id="applyForm" class="contact-form" onsubmit="submitApplyForm(event)" style="margin-top: 2.5rem; background:#fff; border:1px solid var(--border, #d7ddd3); border-radius:16px; padding:2rem; box-shadow:0 8px 30px rgba(11,61,19,0.08);">
       <input type="text" id="apply-name" placeholder="Full Name *" required>
       <input type="email" id="apply-email" placeholder="Email *" required>
       <input type="tel" id="apply-phone" placeholder="Phone">

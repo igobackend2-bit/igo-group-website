@@ -70,10 +70,6 @@ Summary: Latest news including campus drives, product launches, industry events,
 URL: https://igogroups.in/careers.html
 Summary: Job openings at IGO Groups — agronomists, engineers, supply chain, HR. Apply via careers page or hr.admin@igogroups.com.
 
-> CSR & Sustainability
-URL: https://igogroups.in/csr.html
-Summary: CSR initiatives — zero-chemical farming, rural employment, farmer empowerment, 10,000+ farmers served across Tamil Nadu.
-
 > Media Gallery
 URL: https://igogroups.in/gallery.html
 Summary: Photo gallery of IGO farm operations, polyhouses, team events, and agritech demonstrations.

@@ -888,6 +888,23 @@ a.hero-stat-chip { cursor: pointer; }
   line-height: 1.45;
 }
 
+.stat-big-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(71,132,39,0.1);
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 14px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.stat-big-card:hover .stat-big-arrow { opacity: 1; transform: translateY(0); }
+
 /* ── DEPARTMENTS ──────────────────────────────────────────────── */
 .depts-strip {
   padding: 80px 0;
@@ -1799,7 +1816,6 @@ a.qc-value:hover { color: var(--green); }
           <a href="org-chart.html">Org Chart</a>
           <a href="teams.html">Teams</a>
           <a href="facilities.html">Office Facilities</a>
-          <a href="csr.html">CSR & Sustainability</a>
         </div>
       </div>
       <div class="dropdown" tabindex="0">
@@ -1971,26 +1987,89 @@ a.qc-value:hover { color: var(--green); }
 @media (max-width: 860px) {
   .hq-photo-card.lead { min-height: 320px; }
 }
+.hq-slide { position: absolute; inset: 0; opacity: 0; z-index: 0; transition: opacity 1s ease; background: #0b1f10; }
+.hq-slide.active { opacity: 1; z-index: 1; }
+.hq-slide img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; background: #0b1f10; }
+.hq-slide-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); color: rgba(255,255,255,0.55); text-align: center; }
+.hq-slide-placeholder span { font-size: 2.4rem; margin-bottom: 0.6rem; opacity: 0.6; }
+.hq-slide-placeholder p { font-size: 0.85rem; margin: 0; }
+.hq-carousel-dots { position: absolute; bottom: 16px; right: 22px; z-index: 2; display: flex; gap: 8px; }
+.hq-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.35); border: none; cursor: pointer; padding: 0; transition: background 0.25s, transform 0.25s; }
+.hq-dot.active { background: #fff; transform: scale(1.3); }
 </style>
 <section class="hq-section">
   <div class="container">
     <div class="section-header text-center" data-reveal>
       <span class="eyebrow" style="background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.22); color: var(--gold-light);">WHERE IT ALL RUNS FROM</span>
-      <h2 style="color: #fff;">Our Headquarters</h2>
-      <p style="color: rgba(255,255,255,0.6); max-width: 560px; margin: 0 auto;">A single Chennai campus coordinating 27 brands, 18 departments, and 2000+ professionals across India.</p>
+      <h2 id="hqHeading" style="color: #fff;">Head Office</h2>
+      <p style="color: rgba(255,255,255,0.6); max-width: 560px; margin: 0 auto;">Our head office, back office, and branch office — coordinating 27 brands, 18 departments, and 2000+ professionals across India.</p>
     </div>
     <div class="hq-gallery">
       <div class="hq-photo-card lead">
-        <img src="assets/img/office/hq-front-hero.jpg" alt="IGO Group Headquarters, Chennai — front and rooftop view">
-        <div class="hq-photo-caption">
-          <span class="hq-eyebrow">Front &amp; Rooftop View</span>
-          <h3>IGO Group Headquarters</h3>
-          <p>No. 17, Kovalan Street, Uthandi Kanathur, Chennai</p>
+
+        <div class="hq-slide active" data-hq-slide="0">
+          <img src="assets/img/office/hq-front-hero.jpg" alt="IGO Group Headquarters, Chennai — front and rooftop view">
+          <div class="hq-photo-caption">
+            <span class="hq-eyebrow">Front &amp; Rooftop View</span>
+            <h3>Head Office</h3>
+            <p>No. 17, Kovalan Street, Uthandi Kanathur, Chennai</p>
+          </div>
         </div>
+
+        <div class="hq-slide" data-hq-slide="1">
+          <img src="assets/img/office/Back%20office.png.png" alt="IGO Group Back Office">
+          <div class="hq-photo-caption">
+            <span class="hq-eyebrow">Office Entrance</span>
+            <h3>Back Office</h3>
+          </div>
+        </div>
+
+        <div class="hq-slide" data-hq-slide="2">
+          <img src="assets/img/office/branch-office-madipakkam.jpg.png" alt="IGO Group Branch Office, Madipakkam">
+          <div class="hq-photo-caption">
+            <span class="hq-eyebrow">IGO Agritech Farms</span>
+            <h3>Branch Office</h3>
+            <p>Madipakkam, Chennai</p>
+          </div>
+        </div>
+
+        <div class="hq-carousel-dots">
+          <button class="hq-dot active" onclick="hqGoToSlide(0)" aria-label="Head Office"></button>
+          <button class="hq-dot" onclick="hqGoToSlide(1)" aria-label="Back Office"></button>
+          <button class="hq-dot" onclick="hqGoToSlide(2)" aria-label="Branch Office"></button>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var hqSlides = document.querySelectorAll('.hq-slide');
+  var hqDots = document.querySelectorAll('.hq-dot');
+  var hqHeading = document.getElementById('hqHeading');
+  var hqTitles = ['Head Office', 'Back Office', 'Branch Office'];
+  var hqIndex = 0;
+  var hqTimer;
+  function hqShow(i){
+    hqSlides.forEach(function(s,idx){ s.classList.toggle('active', idx===i); });
+    hqDots.forEach(function(d,idx){ d.classList.toggle('active', idx===i); });
+    if (hqHeading && hqTitles[i]) { hqHeading.textContent = hqTitles[i]; }
+    hqIndex = i;
+  }
+  function hqNext(){
+    hqShow((hqIndex+1) % hqSlides.length);
+  }
+  window.hqGoToSlide = function(i){
+    hqShow(i);
+    clearInterval(hqTimer);
+    hqTimer = setInterval(hqNext, 5000);
+  };
+  if (hqSlides.length) {
+    hqTimer = setInterval(hqNext, 5000);
+  }
+})();
+</script>
 
 <!-- ══════════════════ WHY IGO ══════════════════ -->
 <section class="why-igo">
@@ -2252,15 +2331,15 @@ a.qc-value:hover { color: var(--green); }
       <h2 class="section-title" style="color: var(--text);">The Numbers That Define Us</h2>
     </div>
     <div class="stats-main-grid">
-      <a href="about.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="10" data-suffix="+">10+</span><div class="stat-big-label">Years Experience</div><div class="stat-big-sub">Founded 2016, growing strong</div></a>
-      <a href="departments.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="18">18</span><div class="stat-big-label">Departments</div><div class="stat-big-sub">Powering the conglomerate</div></a>
-      <a href="brands.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="27">27</span><div class="stat-big-label">Active Brands</div><div class="stat-big-sub">Across 8 industry verticals</div></a>
-      <a href="teams.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="2000" data-suffix="+">2000+</span><div class="stat-big-label">Global Staff</div><div class="stat-big-sub">Across India and beyond</div></a>
-      <a href="projects.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="6000" data-suffix="+">6000+</span><div class="stat-big-label">Projects Delivered</div><div class="stat-big-sub">Farm engineering &amp; consulting</div></a>
-      <a href="about.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="50" data-suffix="K+">50K+</span><div class="stat-big-label">Farmers Served</div><div class="stat-big-sub">With premium products &amp; services</div></a>
-      <a href="brands/igo-academy.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="5200" data-suffix="+">5,200+</span><div class="stat-big-label">Students Trained &amp; Placed</div><div class="stat-big-sub">Via IGO Academy, with 45+ hiring partners</div></a>
-      <a href="brands/igo-academy.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="10" data-suffix="+">10+</span><div class="stat-big-label">Training Programs</div><div class="stat-big-sub">Hands-on courses via IGO Academy</div></a>
-      <a href="awards.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="45" data-suffix="+">45+</span><div class="stat-big-label">Business Partners</div><div class="stat-big-sub">Hiring &amp; trade partners across IGO Group</div></a>
+      <a href="about.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="10" data-suffix="+">10+</span><div class="stat-big-label">Years Experience</div><div class="stat-big-sub">Founded 2016, growing strong</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="departments.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="18">18</span><div class="stat-big-label">Departments</div><div class="stat-big-sub">Powering the conglomerate</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="brands.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="27">27</span><div class="stat-big-label">Active Brands</div><div class="stat-big-sub">Across 8 industry verticals</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="teams.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="2000" data-suffix="+">2000+</span><div class="stat-big-label">Global Staff</div><div class="stat-big-sub">Across India and beyond</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="projects.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="6000" data-suffix="+">6000+</span><div class="stat-big-label">Projects Delivered</div><div class="stat-big-sub">Farm engineering &amp; consulting</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="about.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="50" data-suffix="K+">50K+</span><div class="stat-big-label">Farmers Served</div><div class="stat-big-sub">With premium products &amp; services</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="brands/igo-academy.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="5200" data-suffix="+">5,200+</span><div class="stat-big-label">Students Trained &amp; Placed</div><div class="stat-big-sub">Via IGO Academy, with 45+ hiring partners</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="brands/igo-academy.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="10" data-suffix="+">10+</span><div class="stat-big-label">Training Programs</div><div class="stat-big-sub">Hands-on courses via IGO Academy</div><span class="stat-big-arrow">&rarr;</span></a>
+      <a href="awards.html" class="stat-big-card" data-reveal style="text-decoration:none;display:block;"><span class="stat-big-num" data-count="45" data-suffix="+">45+</span><div class="stat-big-label">Business Partners</div><div class="stat-big-sub">Hiring &amp; trade partners across IGO Group</div><span class="stat-big-arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2469,7 +2548,7 @@ a.qc-value:hover { color: var(--green); }
 
     </div>
     <div style="text-align: center; margin-top: 44px;" data-reveal>
-      <a href="testimonials.html" class="btn btn-outline-dark">Read All Testimonials &rarr;</a>
+      <a href="testimonials.html" class="btn btn-outline">Read All Testimonials &rarr;</a>
     </div>
   </div>
 </section>
@@ -2491,7 +2570,7 @@ a.qc-value:hover { color: var(--green); }
       </div>
     </div>
     <div style="text-align: center; margin-top: 40px;" data-reveal>
-      <a href="leadership.html" class="btn btn-outline-dark">Meet the Full Team &rarr;</a>
+      <a href="leadership.html" class="btn btn-outline">Meet the Full Team &rarr;</a>
     </div>
     <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:26px; flex-wrap:wrap;" data-reveal>
       <a href="departments.html" style="font-size:0.82rem; font-weight:600; color:var(--muted); border:1px solid var(--border); border-radius:20px; padding:0.45rem 1rem; text-decoration:none;">18 Departments</a>
@@ -2519,7 +2598,7 @@ a.qc-value:hover { color: var(--green); }
         <span style="font-size:0.8rem; color:var(--muted); font-weight:600;">MSME &amp; ISO 9001:2015 Certified</span>
       </div>
       <div style="margin-top: 32px;">
-        <a href="brands/igo-academy.html" class="btn btn-outline-dark">Explore IGO Academy &rarr;</a>
+        <a href="brands/igo-academy.html" class="btn btn-outline">Explore IGO Academy &rarr;</a>
       </div>
     </div>
     <div class="grid three-grid" style="margin-top:40px; max-width:960px; margin-left:auto; margin-right:auto;" data-reveal>
@@ -2583,7 +2662,7 @@ a.qc-value:hover { color: var(--green); }
           </div>
         </a>
         <div style="margin-top: 16px;">
-          <a href="news.html" class="btn btn-outline-dark" style="font-size: 0.82rem;">View All News &rarr;</a>
+          <a href="news.html" class="btn btn-outline" style="font-size: 0.82rem;">View All News &rarr;</a>
         </div>
       </div>
       <div data-reveal>
@@ -2617,29 +2696,12 @@ a.qc-value:hover { color: var(--green); }
           </div>
         </div>
         <div style="margin-top: 20px;">
-          <a href="awards.html" class="btn btn-outline-dark" style="font-size: 0.82rem;">View All Awards &rarr;</a>
+          <a href="awards.html" class="btn btn-outline" style="font-size: 0.82rem;">View All Awards &rarr;</a>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-<!-- ══════════════════ CSR BAR ══════════════════ -->
-<div class="csr-bar">
-  <div class="container">
-    <div class="csr-bar-inner">
-      <div class="csr-bar-text">
-        <span class="csr-bar-icon">&#127807;</span>
-        <div class="csr-bar-copy">
-          <h4>Committed to Sustainable Agribusiness</h4>
-          <p>From zero-chemical farming to rural employment &mdash; our CSR initiatives touch 10,000+ farmers across Tamil Nadu.</p>
-        </div>
-      </div>
-      <a href="csr.html" class="btn btn-outline-dark" style="white-space: nowrap;">Our CSR Initiatives &rarr;</a>
-    </div>
-  </div>
-</div>
 
 
 <!-- ══════════════════ QUICK CONTACT STRIP ══════════════════ -->
@@ -2674,17 +2736,20 @@ a.qc-value:hover { color: var(--green); }
 <!-- ══════════════════ FUTURE VISION 2035 ══════════════════ -->
 <style>
 .vision-section { position: relative; overflow: hidden; background: var(--forest); padding: 110px 0; }
-.vision-section .cinematic-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; z-index: 0; filter: saturate(1.35) brightness(1.15); }
+.vision-section .cinematic-bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; z-index: 0; filter: saturate(0.85) brightness(0.55) blur(2px); }
 .vision-section::after {
   content: ''; position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(180deg, rgba(11,61,19,0.78) 0%, rgba(11,61,19,0.05) 18%, rgba(11,61,19,0.05) 82%, rgba(11,61,19,0.78) 100%);
+  background: linear-gradient(180deg, rgba(11,61,19,0.88) 0%, rgba(11,61,19,0.62) 18%, rgba(11,61,19,0.62) 82%, rgba(11,61,19,0.88) 100%);
 }
 .vision-section .container { position: relative; z-index: 1; }
+.vision-section .eyebrow { background: rgba(11,61,19,0.55) !important; border-color: rgba(255,255,255,0.35) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+.vision-section h2 { text-shadow: 0 2px 12px rgba(0,0,0,0.55); }
+.vision-section .section-header p { text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
 .vision-timeline { margin-top: 4rem; max-width: 920px; margin-left: auto; margin-right: auto; }
 .vision-timeline-track { position: relative; height: 3px; background: rgba(255,255,255,0.14); border-radius: 3px; margin: 0 4%; }
-.vision-timeline-fill { position: absolute; inset: 0; background: linear-gradient(90deg, var(--green), var(--gold-light)); border-radius: 3px; transform: scaleX(0); }
+.vision-timeline-fill { position: absolute; inset: 0; background: linear-gradient(90deg, var(--green), var(--gold-light)); border-radius: 3px; transform: scaleX(1); transform-origin: left; }
 .vision-timeline-nodes { display: flex; justify-content: space-between; margin-top: -11px; }
-.vt-node { text-align: center; flex: 1 1 0; padding: 20px 14px; background: rgba(6,20,12,0.72); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid rgba(255,255,255,0.1); border-top: 2px solid rgba(105,168,59,0.5); border-radius: var(--radius-lg); margin: 0 6px; transition: transform 0.4s var(--spring), background 0.35s, border-color 0.35s, box-shadow 0.4s var(--spring); }
+.vt-node { text-align: center; flex: 1 1 0; padding: 20px 14px; background: rgba(6,20,12,0.82); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid rgba(255,255,255,0.1); border-top: 2px solid rgba(105,168,59,0.5); border-radius: var(--radius-lg); margin: 0 6px; box-shadow: 0 10px 26px rgba(0,0,0,0.3); transition: transform 0.4s var(--spring), background 0.35s, border-color 0.35s, box-shadow 0.4s var(--spring); }
 .vt-node:hover { transform: translateY(-6px); background: rgba(6,20,12,0.88); border-color: rgba(105,168,59,0.5); border-top-color: var(--gold-light); box-shadow: 0 16px 32px rgba(0,0,0,0.35); }
 .vt-dot { position: relative; width: 22px; height: 22px; border-radius: 50%; background: var(--forest); border: 3px solid var(--gold-light); margin: 0 auto 22px; box-shadow: 0 0 0 6px rgba(105,168,59,0.14); }
 .vt-dot::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--gold-light); opacity: 0.7; animation: vtPulse 2.4s ease-out infinite; }

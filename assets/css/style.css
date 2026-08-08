@@ -200,6 +200,7 @@ html.dark .theme-toggle .icon-moon { display: block; }
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
+  vertical-align: middle;
   padding: 14px 28px;
   border-radius: var(--radius-sm);
   font-weight: 600;
@@ -216,7 +217,7 @@ html.dark .theme-toggle .icon-moon { display: block; }
 .btn-outline { border: 2px solid var(--green); color: var(--forest); background: transparent; }
 html.dark .btn-outline { color: var(--green-light); }
 .btn-outline:hover { background: var(--green); color: #fff; transform: translateY(-2px); }
-.btn-dark { background: var(--forest); color: #fff; }
+.btn-dark { background: var(--forest); color: #fff; border: 2px solid transparent; }
 .btn-dark:hover { background: #000; transform: translateY(-2px); }
 
 /* Liquid glass button — pill, frosted, for use over photographic/dark hero surfaces */
@@ -245,6 +246,7 @@ html.dark .hero {
 }
 .hero-inner { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; position: relative; z-index: 2; }
 .hero-text { flex: 1 1 420px; }
+.text-center { text-align: center; }
 .eyebrow {
   display: inline-block; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px;
   color: var(--gold); background: rgba(71,132,39,0.12);
@@ -501,9 +503,11 @@ html.dark .trust-badge { color: var(--green-light); }
   border-radius: 18px;
   overflow: hidden;
   padding: 20px 20px 22px;
-  text-align: left;
+  text-align: center;
   transition: 0.3s cubic-bezier(.21,.8,.32,1);
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
 }
 .brand-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--green); }
 .brand-card-img {
@@ -514,6 +518,9 @@ html.dark .trust-badge { color: var(--green-light); }
 .brand-card h4 { color: var(--forest); margin-bottom: 6px; font-size: 1.08rem; }
 html.dark .brand-card h4 { color: var(--green-light); }
 .brand-card p { color: var(--muted); font-size: 0.88rem; margin-bottom: 14px; min-height: 40px; }
+/* Anchor the button(s) to the same baseline across every card in a row,
+   regardless of description length or whether 1 or 2 buttons are present. */
+.brand-card .btn-primary { margin-top: auto !important; }
 .card-link {
   font-weight: 700; color: var(--green); font-size: 0.88rem;
   display: inline-block; position: relative; opacity: 1;
@@ -586,6 +593,8 @@ html.dark .eco-item h4 { color: var(--green-light); }
 .cta-band-inner .btn-dark:hover { background: var(--gold-light); }
 
 /* ---------- Timeline ---------- */
+.milestone-card { transition: transform 0.25s var(--spring, ease), box-shadow 0.25s var(--spring, ease); }
+.milestone-card:hover { transform: translateX(5px); box-shadow: 0 8px 22px rgba(11,61,19,0.14); }
 .timeline { margin-top: 24px; border-left: 3px solid var(--green); padding-left: 28px; display: flex; flex-direction: column; gap: 28px; }
 .timeline-item { position: relative; }
 .timeline-item::before {

@@ -75,15 +75,20 @@
   .org-root .org-name { font-size: 1.1rem; }
   .org-root .org-role { font-size: 0.78rem; }
   .org-connector { width: 3px; height: 36px; background: var(--brand-green, #478427); margin: 0 auto; opacity: 0.55; }
-  .org-tier { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.9rem; position: relative; padding-top: 28px; }
-  .org-tier::before {
+  .org-tier { display: flex; flex-direction: column; gap: 2.2rem; }
+  .org-tier-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.9rem; position: relative; padding-top: 28px; }
+  .org-tier-row::before {
     content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 3px;
     background: var(--brand-green, #478427); opacity: 0.35; border-radius: 2px;
   }
-  .org-tier .org-node { position: relative; }
-  .org-tier .org-node::before {
+  .org-tier-row .org-node { position: relative; }
+  .org-tier-row .org-node::before {
     content: ""; position: absolute; width: 3px; height: 28px; background: var(--brand-green, #478427);
     opacity: 0.55; top: -28px; left: 50%; transform: translateX(-1.5px);
+  }
+  .org-tier-row + .org-tier-row::after {
+    content: ""; position: absolute; top: -2.2rem; left: 50%; width: 3px; height: 2.2rem;
+    background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px);
   }
   .org-expand-toggle {
     display: flex; align-items: center; gap: 8px; justify-content: center;
@@ -93,7 +98,24 @@
   }
   .org-expand-toggle::-webkit-details-marker { display: none; }
   details[open] .org-expand-toggle { border-radius: 30px 30px 0 0; }
-  .org-dept-groups { margin-top: 0; border: 1px dashed rgba(71,132,39,0.3); border-top: none; padding-top: 1.6rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; }
+  .org-dept-groups { margin-top: 0; border: 1px dashed rgba(71,132,39,0.3); border-top: none; padding: 2rem 0 0.4rem; display: flex; flex-direction: column; gap: 1.8rem; }
+  .org-dept-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; position: relative; padding-top: 22px; }
+  .org-dept-row::before {
+    content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
+    background: var(--brand-green, #478427); opacity: 0.3; border-radius: 2px;
+  }
+  .org-dept-row .org-dept-group { position: relative; }
+  .org-dept-row .org-dept-group::before {
+    content: ""; position: absolute; width: 2px; height: 22px; background: var(--brand-green, #478427);
+    opacity: 0.45; top: -22px; left: 50%; transform: translateX(-1px);
+  }
+  .org-dept-row:first-child { padding-top: 0; }
+  .org-dept-row:first-child::before,
+  .org-dept-row:first-child .org-dept-group::before { display: none; }
+  .org-dept-row + .org-dept-row::after {
+    content: ""; position: absolute; top: -1.8rem; left: 50%; width: 2px; height: 1.8rem;
+    background: var(--brand-green, #478427); opacity: 0.45; transform: translateX(-1px);
+  }
   .org-dept-group { background: rgba(71,132,39,0.04); border-radius: 10px; padding: 1rem 1.2rem; border: 1px solid rgba(71,132,39,0.12); }
   html.dark .org-dept-group { background: rgba(255,255,255,0.03); }
   .org-dept-group h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--brand-green, #478427); margin: 0 0 0.5rem; }
@@ -144,7 +166,6 @@
           <a href="org-chart.html">Org Chart</a>
           <a href="teams.html">Teams</a>
           <a href="facilities.html">Office Facilities</a>
-          <a href="csr.html">CSR &amp; Sustainability</a>
         </div>
       </div>
 
@@ -181,8 +202,9 @@
   </div>
 </header>
 
-<section class="page-hero dept-hero-photo" style="background-image:url('assets/img/office/office-meeting-brick.jpg');">
-  <div class="container">
+<section class="page-hero dept-hero-photo" style="background-image:url('assets/img/office/ChatGPT%20Image%20Jul%2022%2C%202026%2C%2004_51_06%20PM.png'); overflow:hidden;">
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,61,19,0.88) 0%,rgba(11,61,19,0.55) 32%,rgba(11,61,19,0.12) 58%,transparent 78%);"></div>
+  <div style="position:relative; z-index:1; text-align:left; max-width:460px; padding-left:5%; box-sizing:border-box;">
     <span class="eyebrow">HOW IGO IS STRUCTURED</span>
     <h1>Organizational Chart</h1>
     <p>From Founder &amp; Group CEO Dr. John Yesudhas through senior leadership to the department heads running all 18 departments.</p>
@@ -203,40 +225,50 @@
     <p class="org-tier-label">Tier 2 &mdash; Directors &amp; Senior Leadership</p>
 
     <div class="org-tier" data-reveal>
-      <div class="org-node"><p class="org-name">Mr. Jagan</p><p class="org-role">Chief Financial Officer</p></div>
-      <div class="org-node"><p class="org-name">Mr. Renga Merlin</p><p class="org-role">Director</p></div>
-      <div class="org-node"><p class="org-name">Mr. Newton Varhesu</p><p class="org-role">Director</p></div>
-      <div class="org-node"><p class="org-name">Mr. Vignesh Sridharan</p><p class="org-role">General Manager — Management Ops &amp; BD</p></div>
-      <div class="org-node"><p class="org-name">Mr. Venkat</p><p class="org-role">Head — Business Development (NSM)</p></div>
-      <div class="org-node"><p class="org-name">Mr. Deepak Adithiya</p><p class="org-role">L1 Manager — CEO Office</p></div>
-      <div class="org-node"><p class="org-name">Mr. Mohammed Ali I</p><p class="org-role">L1 Manager — CEO Office</p></div>
-      <div class="org-node"><p class="org-name">Mr. Mowlii R</p><p class="org-role">L1 Manager — CEO Office</p></div>
+      <div class="org-tier-row">
+        <div class="org-node"><p class="org-name">Mr. Jagan</p><p class="org-role">Chief Financial Officer</p></div>
+        <div class="org-node"><p class="org-name">Mr. Renga Merlin</p><p class="org-role">Director</p></div>
+        <div class="org-node"><p class="org-name">Mr. Newton Varhesu</p><p class="org-role">Director</p></div>
+        <div class="org-node"><p class="org-name">Mr. Vignesh Sridharan</p><p class="org-role">General Manager — Management Ops &amp; BD</p></div>
+      </div>
+      <div class="org-tier-row">
+        <div class="org-node"><p class="org-name">Mr. Venkat</p><p class="org-role">Head — Business Development (NSM)</p></div>
+        <div class="org-node"><p class="org-name">Mr. Deepak Adithiya</p><p class="org-role">L1 Manager — CEO Office</p></div>
+        <div class="org-node"><p class="org-name">Mr. Mohammed Ali I</p><p class="org-role">L1 Manager — CEO Office</p></div>
+      </div>
     </div>
 
     <p class="org-tier-label" style="margin-top:2.5rem;">Tier 3 &mdash; Department Heads &amp; Core Managers</p>
     <details class="org-details">
-      <summary class="org-expand-toggle">&#9662; Expand All 23 Department Heads &amp; Core Managers</summary>
+      <summary class="org-expand-toggle">&#9662; Expand All 18 Department Heads &amp; Core Managers</summary>
       <div style="background:#fff;border-radius:0 0 14px 14px;padding:1.6rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
         <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-bottom:0.5rem;">Core Managers and Department Heads across IGO Group's 18 departments &mdash; full bios on the <a href="leadership.html">Leadership page</a>.</p>
         <div class="org-dept-groups">
-          <div class="org-dept-group"><h4>Administration</h4><p>Mr. Tharun Kumar A <span>Head — Admin</span></p></div>
-          <div class="org-dept-group"><h4>Agri Estate &amp; Vendor Sourcing</h4><p>Mr. Am Basha <span>Head — Agri Estate &amp; Vendor Sourcing (NSM)</span></p></div>
-          <div class="org-dept-group"><h4>Agri Operations</h4><p>Mr. Karthikeyan <span>Core Manager</span></p><p>Mr. Lokesh <span>Core Manager</span></p><p>Mr. Ram Prasath <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Business Development</h4><p>Mr. Udaykiran <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Buy-Back</h4><p>Mr. Karun Karthik <span>Core Manager</span></p><p>Mr. Shiva <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Data Analytics &amp; Legal</h4><p>Mr. Velladurai <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Engineering</h4><p>Mr. Prasath Rajeswaran <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Farmers Factory</h4><p>Mr. Amirthalingam S <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Human Resources</h4><p>Mr. Sanjay Karan Ravi <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>IGO Academy</h4><p>Ms. Shanmathi Sekar <span>Head</span></p></div>
-          <div class="org-dept-group"><h4>IT &amp; AI</h4><p>Mr. Vignesh A <span>Head</span></p></div>
-          <div class="org-dept-group"><h4>JV Engineering</h4><p>Mr. Raagul Raj R <span>Head</span></p></div>
-          <div class="org-dept-group"><h4>Marketing</h4><p>Ms. Aarthi <span>Head</span></p><p>Mr. Sharuk <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Purchase</h4><p>Mr. Saravanan <span>Head</span></p></div>
-          <div class="org-dept-group"><h4>Research &amp; Development</h4><p>Mr. Yuthish Priyan <span>Head</span></p></div>
-          <div class="org-dept-group"><h4>Rental Sourcing</h4><p>Mrs. Blessy Lekha SJ <span>Core Manager</span></p></div>
-          <div class="org-dept-group"><h4>Site Visit</h4><p>Mr. Keerthivasan <span>Head</span></p></div>
-          <div class="org-dept-group"><h4>Valluvam</h4><p>Ms. Aarthe Sethu Ponnambalam <span>Head</span></p></div>
+          <div class="org-dept-row">
+            <div class="org-dept-group"><h4>Administration</h4><p>Mr. Tharun Kumar A <span>Head — Admin</span></p></div>
+            <div class="org-dept-group"><h4>Agri Estate &amp; Vendor Sourcing</h4><p>Mr. Am Basha <span>Head — Agri Estate &amp; Vendor Sourcing (NSM)</span></p></div>
+            <div class="org-dept-group"><h4>Agri Operations</h4><p>Mr. Karthikeyan <span>Core Manager</span></p><p>Mr. Lokesh <span>Core Manager</span></p><p>Mr. Ram Prasath <span>Core Manager</span></p></div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-dept-group"><h4>Business Development</h4><p>Mr. Udaykiran <span>Core Manager</span></p></div>
+            <div class="org-dept-group"><h4>Buy-Back</h4><p>Mr. Shiva <span>Core Manager</span></p></div>
+            <div class="org-dept-group"><h4>Data Analytics &amp; Legal</h4><p>Mr. Velladurai <span>Core Manager</span></p></div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-dept-group"><h4>Engineering</h4><p>Mr. Prasath Rajeswaran <span>Core Manager</span></p></div>
+            <div class="org-dept-group"><h4>Farmers Factory</h4><p>Mr. Amirthalingam S <span>Core Manager</span></p></div>
+            <div class="org-dept-group"><h4>Human Resources</h4><p>Mr. Sanjay Karan Ravi <span>Core Manager</span></p></div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-dept-group"><h4>IGO Academy</h4><p>Ms. Shanmathi Sekar <span>Head</span></p></div>
+            <div class="org-dept-group"><h4>IT &amp; AI</h4><p>Mr. Vignesh A <span>Head</span></p></div>
+            <div class="org-dept-group"><h4>JV Engineering</h4><p>Mr. Raagul Raj R <span>Head</span></p></div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-dept-group"><h4>Marketing</h4><p>Ms. Aarthi <span>Head</span></p><p>Mr. Sharuk <span>Core Manager</span></p></div>
+            <div class="org-dept-group"><h4>Purchase</h4><p>Mr. Saravanan <span>Head</span></p></div>
+            <div class="org-dept-group"><h4>Research &amp; Development</h4><p>Mr. Yuthish Priyan <span>Head</span></p></div>
+          </div>
         </div>
       </div>
     </details>
@@ -253,7 +285,7 @@
     <h2>Meet the People Behind IGO Group</h2>
     <p>Read full profiles for every leader and department head.</p>
     <a href="leadership.html" class="btn btn-dark">View Leadership</a>
-    <a href="departments.html" class="btn btn-outline" style="margin-left:12px;">Explore Departments</a>
+    <a href="departments.html" class="btn btn-glass" style="margin-left:12px;">Explore Departments</a>
   </div>
 </section>
 

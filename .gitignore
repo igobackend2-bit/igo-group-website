@@ -11,3 +11,8 @@ assets/images/office culture/IGO profile video.mp4
 
 # Oversized clip not used on any page (141MB, exceeds GitHub's 100MB limit)
 assets/video/ceo-chronicles-interview.mp4
+
+# Oversized clips embedded on farmers-factory.html / valluvam.html — exceed GitHub's size limits
+# (207MB and 86MB). Site references them locally; upload separately to hosting if needed.
+assets/img/office/videos/Farmer Factory AV Video.mp4
+assets/img/office/videos/valluvam video.mp4
