@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="assets/css/style.min.css" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
@@ -64,9 +64,9 @@
   }
   html.dark .org-node { background: var(--card-bg, #16221a); }
   .org-node:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(71,132,39,0.18); }
-  .org-node .org-name { font-weight: 700; font-size: 0.88rem; color: var(--dark, #111827); margin: 0 0 0.15rem; }
+  .org-node .org-name { font-weight: 700; font-size: 0.88rem; color: var(--dark, #111827); margin: 0 0 0.15rem; position: relative; z-index: 1; }
   html.dark .org-node .org-name { color: #fff; }
-  .org-node .org-role { font-size: 0.72rem; color: var(--muted, #6b7280); margin: 0; line-height: 1.4; }
+  .org-node .org-role { font-size: 0.72rem; color: var(--muted, #6b7280); margin: 0; line-height: 1.4; position: relative; z-index: 1; }
   .org-root { max-width: 300px; margin: 0 auto 0; }
   .org-root .org-node {
     border: 2px solid var(--brand-green, #478427); border-left: 2px solid var(--brand-green, #478427);
@@ -98,23 +98,27 @@
   }
   .org-expand-toggle::-webkit-details-marker { display: none; }
   details[open] .org-expand-toggle { border-radius: 30px 30px 0 0; }
-  .org-dept-groups { margin-top: 0; border: 1px dashed rgba(71,132,39,0.3); border-top: none; padding: 2rem 0 0.4rem; display: flex; flex-direction: column; gap: 1.8rem; }
+  .org-dept-groups { margin-top: 0; border: 1px dashed rgba(71,132,39,0.35); border-top: none; padding: 2.2rem 0 0.4rem; display: flex; flex-direction: column; gap: 1.9rem; position: relative; }
+  .org-dept-groups::before {
+    content: ""; position: absolute; top: -22px; left: 50%; width: 3px; height: 22px;
+    background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px);
+  }
   .org-dept-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; position: relative; padding-top: 22px; }
   .org-dept-row::before {
-    content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
-    background: var(--brand-green, #478427); opacity: 0.3; border-radius: 2px;
+    content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 3px;
+    background: var(--brand-green, #478427); opacity: 0.4; border-radius: 2px;
   }
   .org-dept-row .org-dept-group { position: relative; }
   .org-dept-row .org-dept-group::before {
-    content: ""; position: absolute; width: 2px; height: 22px; background: var(--brand-green, #478427);
-    opacity: 0.45; top: -22px; left: 50%; transform: translateX(-1px);
+    content: ""; position: absolute; width: 3px; height: 22px; background: var(--brand-green, #478427);
+    opacity: 0.55; top: -22px; left: 50%; transform: translateX(-1.5px);
   }
   .org-dept-row:first-child { padding-top: 0; }
   .org-dept-row:first-child::before,
   .org-dept-row:first-child .org-dept-group::before { display: none; }
   .org-dept-row + .org-dept-row::after {
-    content: ""; position: absolute; top: -1.8rem; left: 50%; width: 2px; height: 1.8rem;
-    background: var(--brand-green, #478427); opacity: 0.45; transform: translateX(-1px);
+    content: ""; position: absolute; top: -1.9rem; left: 50%; width: 3px; height: 1.9rem;
+    background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px);
   }
   .org-dept-group { background: rgba(71,132,39,0.04); border-radius: 10px; padding: 1rem 1.2rem; border: 1px solid rgba(71,132,39,0.12); }
   html.dark .org-dept-group { background: rgba(255,255,255,0.03); }
@@ -122,6 +126,53 @@
   .org-dept-group p { font-size: 0.82rem; color: var(--dark, #111827); margin: 0 0 0.2rem; }
   html.dark .org-dept-group p { color: #eee; }
   .org-dept-group p span { color: var(--muted, #6b7280); font-size: 0.72rem; display: block; }
+  .org-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: center 20%; image-orientation: from-image; display: block; margin: 0 auto 0.5rem; border: 2px solid #fff; position: relative; z-index: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .org-avatar-initials { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; background: linear-gradient(135deg, #478427, #69a83b); color: #fff; font-weight: 700; font-size: 0.9rem; border: 2px solid #fff; position: relative; z-index: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .org-root .org-avatar, .org-root .org-avatar-initials { width: 72px; height: 72px; font-size: 1.1rem; }
+
+  /* Green corner-bracket accent behind each avatar, matching reference chart card style */
+  .org-node { position: relative; overflow: visible; padding-top: 1.1rem; }
+  .org-node::after {
+    content: ""; position: absolute; top: 0.55rem; left: 50%; transform: translateX(-26px);
+    width: 40px; height: 40px; background: linear-gradient(135deg, #478427, #69a83b);
+    border-radius: 10px 10px 10px 0; z-index: 0;
+  }
+  .org-root .org-node::after { width: 52px; height: 52px; transform: translateX(-33px); border-radius: 14px 14px 14px 0; }
+
+  /* Chart title block, matching reference poster heading */
+  .org-hierarchy-title { text-align: center; margin-bottom: 3rem; }
+  .org-hierarchy-title h2 {
+    color: var(--brand-green, #478427); font-size: 2.1rem; font-weight: 800;
+    letter-spacing: -0.01em; margin: 0 0 0.5rem; text-transform: uppercase;
+  }
+  .org-hierarchy-title .org-hierarchy-sub {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    color: var(--dark, #111827); font-weight: 700; letter-spacing: 0.3em; font-size: 0.9rem;
+  }
+  html.dark .org-hierarchy-title .org-hierarchy-sub { color: #fff; }
+  .org-hierarchy-title .org-hierarchy-sub::before,
+  .org-hierarchy-title .org-hierarchy-sub::after { content: ""; width: 44px; height: 2px; background: var(--brand-green, #478427); }
+
+  /* Connector dots at each branch junction */
+  .org-connector { position: relative; }
+  .org-dot {
+    position: absolute; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--brand-green, #478427); left: 50%; transform: translateX(-4.5px);
+    box-shadow: 0 0 0 3px #fff;
+  }
+
+  /* Stat bar (bottom) matching reference */
+  .org-stat-bar {
+    margin-top: 3rem; background: linear-gradient(135deg, var(--forest, #0b3d13), #146338);
+    border-radius: 16px; padding: 1.4rem 1rem; display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: center; gap: 2.2rem;
+  }
+  .org-stat-item { display: flex; align-items: center; gap: 10px; color: #fff; }
+  .org-stat-item svg { width: 26px; height: 26px; stroke: #a8d98d; fill: none; stroke-width: 1.7; flex-shrink: 0; }
+  .org-stat-item .org-stat-num { font-size: 1.15rem; font-weight: 800; line-height: 1.1; display: block; }
+  .org-stat-item .org-stat-label { font-size: 0.68rem; color: #cfe8bd; text-transform: uppercase; letter-spacing: 0.05em; }
+  .org-stat-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.2); }
+  @media (max-width: 640px) { .org-stat-divider { display: none; } }
 </style>
 </head>
 <body>
@@ -151,7 +202,7 @@
 <header class="navbar">
   <div class="container nav-inner">
     <a href="index.html" class="logo">
-    <img src="assets/img/igo-logo.jpg" alt="IGO Group" class="logo-img" style="height:52px; width:auto; object-fit:contain; display:block;">
+    <img src="assets/img/igo-logo.webp" alt="IGO Group" class="logo-img" style="height:52px; width:auto; object-fit:contain; display:block;">
   </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
 
@@ -202,7 +253,7 @@
   </div>
 </header>
 
-<section class="page-hero dept-hero-photo" style="background-image:url('assets/img/office/ChatGPT%20Image%20Jul%2022%2C%202026%2C%2004_51_06%20PM.png'); overflow:hidden;">
+<section class="page-hero dept-hero-photo" style="background-image:url('assets/img/office/office-interior-corridor.webp'); overflow:hidden;">
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,61,19,0.88) 0%,rgba(11,61,19,0.55) 32%,rgba(11,61,19,0.12) 58%,transparent 78%);"></div>
   <div style="position:relative; z-index:1; text-align:left; max-width:460px; padding-left:5%; box-sizing:border-box;">
     <span class="eyebrow">HOW IGO IS STRUCTURED</span>
@@ -214,67 +265,117 @@
 <section class="content-section">
   <div class="container org-wrap">
 
+    <div class="org-hierarchy-title" data-reveal>
+      <h2>IGO Group of Companies</h2>
+      <div class="org-hierarchy-sub">Hierarchy Chart</div>
+    </div>
+
     <p class="org-tier-label">Tier 1 &mdash; Founder &amp; Group CEO</p>
     <div class="org-root" data-reveal>
       <div class="org-node">
+        <img class="org-avatar" src="assets/img/ceo-john-yesudhas.webp" alt="Dr. John Yesudhas">
         <p class="org-name">Dr. John Yesudhas</p>
-        <p class="org-role">Founder &amp; Group CEO</p>
+        <p class="org-role">CEO</p>
       </div>
     </div>
-    <div class="org-connector"></div>
-    <p class="org-tier-label">Tier 2 &mdash; Directors &amp; Senior Leadership</p>
+    <div class="org-connector"><span class="org-dot" style="bottom:-4px;"></span></div>
+    <p class="org-tier-label">Tier 2 &mdash; Directors</p>
 
     <div class="org-tier" data-reveal>
-      <div class="org-tier-row">
-        <div class="org-node"><p class="org-name">Mr. Jagan</p><p class="org-role">Chief Financial Officer</p></div>
-        <div class="org-node"><p class="org-name">Mr. Renga Merlin</p><p class="org-role">Director</p></div>
-        <div class="org-node"><p class="org-name">Mr. Newton Varhesu</p><p class="org-role">Director</p></div>
-        <div class="org-node"><p class="org-name">Mr. Vignesh Sridharan</p><p class="org-role">General Manager — Management Ops &amp; BD</p></div>
-      </div>
-      <div class="org-tier-row">
-        <div class="org-node"><p class="org-name">Mr. Venkat</p><p class="org-role">Head — Business Development (NSM)</p></div>
-        <div class="org-node"><p class="org-name">Mr. Deepak Adithiya</p><p class="org-role">L1 Manager — CEO Office</p></div>
-        <div class="org-node"><p class="org-name">Mr. Mohammed Ali I</p><p class="org-role">L1 Manager — CEO Office</p></div>
+      <div class="org-tier-row" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <span class="org-dot" style="top:-1px;"></span>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6841.JPG" alt="Mrs. Reega Merlin Esther Newton"><p class="org-name">Mrs. Reega Merlin Esther Newton</p><p class="org-role">Director, IGO Group</p></div>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/newton.jpeg" alt="Mr. Newton Varghese"><p class="org-name">Mr. Newton Varghese</p><p class="org-role">Director, IGO Group</p></div>
       </div>
     </div>
 
-    <p class="org-tier-label" style="margin-top:2.5rem;">Tier 3 &mdash; Department Heads &amp; Core Managers</p>
-    <details class="org-details">
-      <summary class="org-expand-toggle">&#9662; Expand All 18 Department Heads &amp; Core Managers</summary>
-      <div style="background:#fff;border-radius:0 0 14px 14px;padding:1.6rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-        <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-bottom:0.5rem;">Core Managers and Department Heads across IGO Group's 18 departments &mdash; full bios on the <a href="leadership.html">Leadership page</a>.</p>
+    <div class="org-connector" style="margin-top:1.5rem;"><span class="org-dot" style="bottom:-4px;"></span></div>
+    <p class="org-tier-label">Tier 3 &mdash; General Manager, National Sales Head &amp; National Heads</p>
+
+    <div class="org-tier" data-reveal>
+      <div class="org-tier-row" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <span class="org-dot" style="top:-1px;"></span>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/Vignesh srithatran.jpeg" alt="Mr. Vignesh Sridharan"><p class="org-name">Mr. Vignesh Sridharan</p><p class="org-role">General Manager, IGO Group</p></div>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6783.JPG" alt="Mr. Venkatnarayanan"><p class="org-name">Mr. Venkatnarayanan</p><p class="org-role">National Sales Head, IGO Group</p></div>
+      </div>
+      <div class="org-tier-row">
+        <span class="org-dot" style="top:-1px;"></span>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6814.JPG" alt="Mr. Basha"><p class="org-name">Mr. Basha</p><p class="org-role">National Head, L1 Officer — IGO Agri Estate &amp; Vendor Dpt</p></div>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6806.JPG" alt="Mr. Shiva"><p class="org-name">Mr. Shiva</p><p class="org-role">National Head, L1 Officer — IGO Buyback, Farmers Factory, Valluvam, Farm Gate Mandi</p></div>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/deepak.jpeg" alt="Mr. Deepak"><p class="org-name">Mr. Deepak</p><p class="org-role">National Head, L1 Officer — IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental, Polyhouse</p></div>
+        <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6775.JPG" alt="Mr. Saravanan"><p class="org-name">Mr. Saravanan</p><p class="org-role">National Head, L1 Officer — IGO Purchase, Agri Mart</p></div>
+      </div>
+    </div>
+
+    <p class="org-tier-label" style="margin-top:2.5rem;">Tier 4 &mdash; Core Managers &amp; Department Heads</p>
+    <div class="org-connector" style="margin-bottom:1.5rem;"><span class="org-dot" style="bottom:-4px;"></span></div>
+      <div style="background:#fff;border-radius:14px;padding:1.6rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
         <div class="org-dept-groups">
-          <div class="org-dept-row">
-            <div class="org-dept-group"><h4>Administration</h4><p>Mr. Tharun Kumar A <span>Head — Admin</span></p></div>
-            <div class="org-dept-group"><h4>Agri Estate &amp; Vendor Sourcing</h4><p>Mr. Am Basha <span>Head — Agri Estate &amp; Vendor Sourcing (NSM)</span></p></div>
-            <div class="org-dept-group"><h4>Agri Operations</h4><p>Mr. Karthikeyan <span>Core Manager</span></p><p>Mr. Lokesh <span>Core Manager</span></p><p>Mr. Ram Prasath <span>Core Manager</span></p></div>
+          <div class="org-dept-row" style="grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));">
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6815.JPG" alt="Mr. Amirthalingam"><p class="org-name">Mr. Amirthalingam</p><p class="org-role">Head, Farmers Factory</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/velladhurai.jpeg" alt="Mr. Velladurai"><p class="org-name">Mr. Velladurai</p><p class="org-role">Head, Legal and Data Management</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6805.JPG" alt="Mr. Ramprasath"><p class="org-name">Mr. Ramprasath</p><p class="org-role">SMO, Agri Dpt</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6794.JPG" alt="Mr. Karthikeyan"><p class="org-name">Mr. Karthikeyan</p><p class="org-role">SMO, Agri Dpt</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6842.JPG" alt="Mr. Lokesh"><p class="org-name">Mr. Lokesh</p><p class="org-role">SMO, Agri Dpt</p></div>
           </div>
-          <div class="org-dept-row">
-            <div class="org-dept-group"><h4>Business Development</h4><p>Mr. Udaykiran <span>Core Manager</span></p></div>
-            <div class="org-dept-group"><h4>Buy-Back</h4><p>Mr. Shiva <span>Core Manager</span></p></div>
-            <div class="org-dept-group"><h4>Data Analytics &amp; Legal</h4><p>Mr. Velladurai <span>Core Manager</span></p></div>
+          <div class="org-dept-row" style="grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));">
+            <span class="org-dot" style="top:-1px;"></span>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/mohammed.jpeg" alt="Mr. Mohammed Ali"><p class="org-name">Mr. Mohammed Ali</p><p class="org-role">Head, Palm Cafe</p></div>
+            <div class="org-node"><div class="org-avatar-initials">RA</div><p class="org-name">Mr. Rahul</p><p class="org-role">SMO, Engineering Dpt</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6779.JPG" alt="Mr. Prasath"><p class="org-name">Mr. Prasath</p><p class="org-role">SMO, Engineering Dpt</p></div>
+            <div class="org-node"><div class="org-avatar-initials">MO</div><p class="org-name">Mr. Mowli</p><p class="org-role">SMO, FF Field Business Development</p></div>
           </div>
-          <div class="org-dept-row">
-            <div class="org-dept-group"><h4>Engineering</h4><p>Mr. Prasath Rajeswaran <span>Core Manager</span></p></div>
-            <div class="org-dept-group"><h4>Farmers Factory</h4><p>Mr. Amirthalingam S <span>Core Manager</span></p></div>
-            <div class="org-dept-group"><h4>Human Resources</h4><p>Mr. Sanjay Karan Ravi <span>Core Manager</span></p></div>
+          <div class="org-dept-row" style="grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));">
+            <span class="org-dot" style="top:-1px;"></span>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6796.JPG" alt="Mr. Vignesh"><p class="org-name">Mr. Vignesh</p><p class="org-role">Head, IT &amp; CEO Office Admin</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/WhatsApp Image 2026-08-15 at 5.26.38 PM.jpeg" alt="Mr. Tharun"><p class="org-name">Mr. Tharun</p><p class="org-role">Head, CEO Office Admin</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6791.JPG" alt="Mr. Yuthish"><p class="org-name">Mr. Yuthish</p><p class="org-role">Head, IGO R&amp;D &amp; New Projects</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6777.JPG" alt="Mr. Rajesh"><p class="org-name">Mr. Rajesh</p><p class="org-role">SMO, IGO Engineering Dpt</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6787.JPG" alt="Mr. Udaykiran"><p class="org-name">Mr. Udaykiran</p><p class="org-role">SMO, IGO Business Development</p></div>
           </div>
-          <div class="org-dept-row">
-            <div class="org-dept-group"><h4>IGO Academy</h4><p>Ms. Shanmathi Sekar <span>Head</span></p></div>
-            <div class="org-dept-group"><h4>IT &amp; AI</h4><p>Mr. Vignesh A <span>Head</span></p></div>
-            <div class="org-dept-group"><h4>JV Engineering</h4><p>Mr. Raagul Raj R <span>Head</span></p></div>
+          <div class="org-dept-row" style="grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));">
+            <span class="org-dot" style="top:-1px;"></span>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6823.JPG" alt="Ms. Aarthi"><p class="org-name">Ms. Aarthi</p><p class="org-role">Head, IGO Marketing</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6861.JPG" alt="Mr. Sharu"><p class="org-name">Mr. Sharu</p><p class="org-role">Head, IGO Marketing</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6809.JPG" alt="Ms. Shanmathi"><p class="org-name">Ms. Shanmathi</p><p class="org-role">Head, IGO Academy</p></div>
+            <div class="org-node"><div class="org-avatar-initials">MH</div><p class="org-name">Ms. Maheshwari</p><p class="org-role">Head, IGO Accounts</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6820.JPG" alt="Mr. Hariharan"><p class="org-name">Mr. Hariharan</p><p class="org-role">SMO, IGO R&amp;D &amp; New Projects</p></div>
           </div>
-          <div class="org-dept-row">
-            <div class="org-dept-group"><h4>Marketing</h4><p>Ms. Aarthi <span>Head</span></p><p>Mr. Sharuk <span>Core Manager</span></p></div>
-            <div class="org-dept-group"><h4>Purchase</h4><p>Mr. Saravanan <span>Head</span></p></div>
-            <div class="org-dept-group"><h4>Research &amp; Development</h4><p>Mr. Yuthish Priyan <span>Head</span></p></div>
+          <div class="org-dept-row" style="grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));">
+            <span class="org-dot" style="top:-1px;"></span>
+            <div class="org-node"><div class="org-avatar-initials">SU</div><p class="org-name">Mr. Surya</p><p class="org-role">SMO, IGO Cocopeat Factory</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/IMG_6827.JPG" alt="Mr. Punith"><p class="org-name">Mr. Punith</p><p class="org-role">SMO, IGO Site Visits</p></div>
+            <div class="org-node"><div class="org-avatar-initials">AM</div><p class="org-name">Ms. Amritha</p><p class="org-role">Head, Valluvam Products</p></div>
+            <div class="org-node"><div class="org-avatar-initials">DO</div><p class="org-name">Mr. Douglas</p><p class="org-role">SMO, Legal &amp; IGO Hostel</p></div>
+            <div class="org-node"><img class="org-avatar" src="assets/img/leadership/sathish.jpeg" alt="Mr. Sathish"><p class="org-name">Mr. Sathish</p><p class="org-role">HR, IGO Group</p></div>
           </div>
         </div>
       </div>
-    </details>
 
-    <div style="text-align:center;margin-top:2.5rem;color:var(--muted);font-size:0.85rem;">
-      This chart reflects organizational bands rather than exact individual reporting lines. For full bios, focus areas, and contact details, visit the <a href="leadership.html">Leadership page</a>.
+    <div class="org-connector"><span class="org-dot" style="bottom:-4px;"></span></div>
+    <p class="org-tier-label">Tier 5 &mdash; Area Managers, Agri Dpt</p>
+    <div class="org-tier-row" data-reveal>
+      <span class="org-dot" style="top:-1px;"></span>
+      <div class="org-node"><div class="org-avatar-initials">SV</div><p class="org-name">Mr. Sanjay Vasanthakumar</p><p class="org-role">Area Manager, Agri Dpt</p></div>
+      <div class="org-node"><div class="org-avatar-initials">RK</div><p class="org-name">Mr. Ranjeet Kumar</p><p class="org-role">Area Manager, Agri Dpt</p></div>
+      <div class="org-node"><div class="org-avatar-initials">JK</div><p class="org-name">Mr. Jitendra Kumar</p><p class="org-role">Area Manager, Agri Dpt</p></div>
+      <div class="org-node"><div class="org-avatar-initials">KE</div><p class="org-name">Mr. Keerthieeswaran</p><p class="org-role">Area Manager, Agri Dpt</p></div>
+    </div>
+
+    <div class="org-stat-bar" data-reveal>
+      <div class="org-stat-item"><svg><use href="#icon-leaf2"/></svg><span><span class="org-stat-num">26+</span><span class="org-stat-label">Brands</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-grad"/></svg><span><span class="org-stat-num">18+</span><span class="org-stat-label">Divisions</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-handshake"/></svg><span><span class="org-stat-num">2000+</span><span class="org-stat-label">Team Strength</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-globe"/></svg><span><span class="org-stat-num">28</span><span class="org-stat-label">States</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-compass"/></svg><span><span class="org-stat-num">700+</span><span class="org-stat-label">Districts</span></span></div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;color:var(--muted);font-size:0.85rem;">
+      For full bios, focus areas, and contact details, visit the <a href="leadership.html">Leadership page</a>.
     </div>
 
   </div>
@@ -294,7 +395,7 @@
 
       <div class="footer-col">
         <div class="footer-logo">
-    <img src="assets/img/igo-logo.jpg" alt="IGO Group" class="logo-img" style="height:44px; width:auto; object-fit:contain; display:block; margin-bottom: 12px;">
+    <img src="assets/img/igo-logo.webp" alt="IGO Group" class="logo-img" style="height:44px; width:auto; object-fit:contain; display:block; margin-bottom: 12px;" loading="lazy">
   </div>
         <p>A diversified farming-tech conglomerate connecting farms, food, fintech and technology across India.</p>
         <div class="footer-social">
@@ -343,7 +444,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/cinematic.js"></script>
+<script src="assets/js/main.min.js"></script>
+<script src="assets/js/cinematic.min.js"></script>
 </body>
 </html>

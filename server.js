@@ -31,6 +31,33 @@ const MIME = {
 };
 
 const server = http.createServer(function(req, res) {
+  // Canonicalize host (www -> non-www) and strip trailing slashes (except root) with a 301,
+  // so search engines consolidate signals onto a single canonical URL per page.
+  const hostHeader = (req.headers.host || '').toLowerCase();
+  const hostNoPort = hostHeader.split(':')[0];
+  const rawUrl = req.url || '/';
+  const queryIndex = rawUrl.indexOf('?');
+  const rawPath = queryIndex === -1 ? rawUrl : rawUrl.slice(0, queryIndex);
+  const rawQuery = queryIndex === -1 ? '' : rawUrl.slice(queryIndex);
+
+  let redirectHost = null;
+  if (hostNoPort.indexOf('www.') === 0) {
+    redirectHost = hostHeader.slice(4); // drop leading "www."
+  }
+
+  let redirectPath = null;
+  if (rawPath.length > 1 && rawPath.charAt(rawPath.length - 1) === '/') {
+    redirectPath = rawPath.replace(/\/+$/, '') || '/';
+  }
+
+  if (redirectHost || redirectPath) {
+    const finalHost = redirectHost || hostHeader;
+    const finalPath = redirectPath || rawPath;
+    res.writeHead(301, { Location: 'https://' + finalHost + finalPath + rawQuery });
+    res.end();
+    return;
+  }
+
   // Strip query strings, then decode %20 etc. so filenames with spaces/special characters resolve correctly
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
 

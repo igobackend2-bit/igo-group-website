@@ -265,7 +265,7 @@ function initParticleNetwork(canvas) {
   tick();
 }
 /* ---------- Global Modal Logic ---------- */
-function openModal(title, subtitle, description, featuresArray, ctaText, ctaLink) {
+function openModal(title, subtitle, description, featuresArray, ctaText, ctaLink, imageSrc) {
   let overlay = document.getElementById('igo-global-modal');
   if (!overlay) {
     overlay = document.createElement('div');
@@ -274,6 +274,7 @@ function openModal(title, subtitle, description, featuresArray, ctaText, ctaLink
     overlay.innerHTML = `
       <div class="modal-content">
         <div class="modal-header">
+          <img class="modal-avatar" id="modal-avatar-el" src="" alt="" style="display:none;" onclick="event.stopPropagation(); openImageLightbox(this.src, this.alt);">
           <div>
             <h2 class="modal-title" id="modal-title-el"></h2>
             <div class="modal-subtitle" id="modal-subtitle-el"></div>
@@ -302,6 +303,15 @@ function openModal(title, subtitle, description, featuresArray, ctaText, ctaLink
   document.getElementById('modal-title-el').textContent = title;
   document.getElementById('modal-subtitle-el').textContent = subtitle;
   document.getElementById('modal-desc-el').innerHTML = description;
+
+  const avatarEl = document.getElementById('modal-avatar-el');
+  if (imageSrc) {
+    avatarEl.src = imageSrc;
+    avatarEl.alt = title || '';
+    avatarEl.style.display = 'block';
+  } else {
+    avatarEl.style.display = 'none';
+  }
 
   const featsEl = document.getElementById('modal-features-el');
   featsEl.innerHTML = '';
