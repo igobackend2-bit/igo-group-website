@@ -1,0 +1,95 @@
+﻿D:\Igo-websites\IGO Groups\assets\img\leadership\deepak.jpeg: 419x406 34KB -> 400x388 20KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6775.JPG: 4000x6000 9226KB -> 267x400 17KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6777.JPG: 4000x6000 8411KB -> 267x400 15KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6779.JPG: 4000x6000 9754KB -> 267x400 15KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6783.JPG: 4000x6000 9469KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6787.JPG: 4000x6000 8896KB -> 267x400 14KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6791.JPG: 4000x6000 9157KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6794.JPG: 4000x6000 10155KB -> 267x400 18KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6796.JPG: 4000x6000 9397KB -> 267x400 17KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6805.JPG: 4000x6000 9302KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6806.JPG: 4000x6000 9731KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6809.JPG: 4000x6000 8816KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6814.JPG: 4000x6000 9612KB -> 267x400 17KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6815.JPG: 4000x6000 10014KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6820.JPG: 4000x6000 8783KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6823.JPG: 4000x6000 8738KB -> 267x400 16KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6827.JPG: 4000x6000 8694KB -> 267x400 17KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6831.JPG: 4000x6000 9695KB -> 267x400 18KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6841.JPG: 4000x6000 11140KB -> 267x400 21KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6842.JPG: 4000x6000 9128KB -> 267x400 18KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\IMG_6861.JPG: 4000x6000 10102KB -> 267x400 17KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\mohammed.jpeg: 1254x1254 202KB -> 400x400 20KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\newton.jpeg: 1122x1402 201KB -> 320x400 14KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\rahgul.jpeg: 1254x1254 203KB -> 400x400 21KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\sathish.jpeg: 1254x1254 137KB -> 400x400 22KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\velladhurai.jpeg: 1254x1254 204KB -> 400x400 19KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\Vignesh srithatran.jpeg: 1254x1254 212KB -> 400x400 21KB
+D:\Igo-websites\IGO Groups\assets\img\leadership\WhatsApp Image 2026-08-15 at 5.26.38 PM.jpeg: 1023x1537 139KB -> 266x400 19KB
+D:\Igo-websites\IGO Groups\assets\images\brands\igo-green-energy-logo.png: 1600x1600 357KB -> 1600x1600 357KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Cafeteria.png: 1024x1024 1955KB -> 1024x1024 1955KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Conference hall.png: 1024x1024 2162KB -> 1024x1024 2162KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Gemini_Generated_Image_bpa90gbpa90gbpa9.png: 1024x1024 2170KB -> 1024x1024 2170KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Lab.png: 1195x896 1749KB -> 1195x896 1746KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Meeting room.png: 1024x1024 2006KB -> 1024x1024 2006KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Pantry.png: 1024x1024 1933KB -> 1024x1024 1931KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Reception.png: 1024x1024 1817KB -> 1024x1024 1814KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Server room.png: 1195x896 1816KB -> 1195x896 1797KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Training hall.png: 1024x1024 2107KB -> 1024x1024 2107KB
+D:\Igo-websites\IGO Groups\assets\images\office culture\Work Station.png: 1195x896 1657KB -> 1195x896 1657KB
+D:\Igo-websites\IGO Groups\assets\images\agri-team.png: 1672x941 2151KB -> 1672x941 2151KB
+D:\Igo-websites\IGO Groups\assets\images\bd-team.png: 1672x940 1919KB -> 1672x940 1919KB
+D:\Igo-websites\IGO Groups\assets\images\crm-team.png: 1537x1023 1992KB -> 1537x1023 1992KB
+D:\Igo-websites\IGO Groups\assets\images\data-analyst-team.png: 1537x1023 2066KB -> 1537x1023 2066KB
+D:\Igo-websites\IGO Groups\assets\images\engineering-team.png: 1537x1023 2262KB -> 1537x1023 2262KB
+D:\Igo-websites\IGO Groups\assets\images\farmers-factory-team.png: 1537x1023 1938KB -> 1537x1023 1938KB
+D:\Igo-websites\IGO Groups\assets\images\hr-team.png: 1537x1023 1966KB -> 1537x1023 1966KB
+D:\Igo-websites\IGO Groups\assets\images\it-team.png: 1537x1023 1961KB -> 1537x1023 1961KB
+D:\Igo-websites\IGO Groups\assets\images\labour-vendor-team.png: 1537x1023 1902KB -> 1537x1023 1902KB
+D:\Igo-websites\IGO Groups\assets\images\lease-buy-team.png: 1537x1023 2006KB -> 1537x1023 2006KB
+D:\Igo-websites\IGO Groups\assets\images\marketing-team.png: 1537x1023 1862KB -> 1537x1023 1862KB
+D:\Igo-websites\IGO Groups\assets\images\purchase-team.png: 1537x1023 2001KB -> 1537x1023 2001KB
+D:\Igo-websites\IGO Groups\assets\images\rd-team.png: 1537x1023 1932KB -> 1537x1023 1932KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\agri-team\agri-team.png: 1672x941 2151KB -> 1672x941 2151KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\bd-team\bd-team.png: 1672x940 1919KB -> 1672x940 1919KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\crm-team\crm-team.png: 1537x1023 1992KB -> 1537x1023 1992KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\data-analyst-team\data-analyst-team.png: 1537x1023 2066KB -> 1537x1023 2066KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\engineering-team\engineering-team.png: 1537x1023 2262KB -> 1537x1023 2262KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\farmers-factory-team\farmers-factory-team.png: 1537x1023 1938KB -> 1537x1023 1938KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\hr-team\hr-team.png: 1537x1023 1966KB -> 1537x1023 1966KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\it-team\it-team.png: 1537x1023 1961KB -> 1537x1023 1961KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\labour-vendor-team\labour-vendor-team.png: 1537x1023 1902KB -> 1537x1023 1902KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\lease-buy-team\lease-buy-team.png: 1537x1023 2006KB -> 1537x1023 2006KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\marketing-team\marketing-team.png: 1537x1023 1862KB -> 1537x1023 1862KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\purchase-team\purchase-team.png: 1537x1023 2001KB -> 1537x1023 2001KB
+D:\Igo-websites\IGO Groups\assets\img\office\teams\rd-team\rd-team.png: 1537x1023 1932KB -> 1537x1023 1932KB
+D:\Igo-websites\IGO Groups\assets\img\office\awards-banner.png.png: 1774x887 1935KB -> 1774x887 1935KB
+D:\Igo-websites\IGO Groups\assets\img\office\Back office.png.png: 1536x1024 2751KB -> 1536x1024 2751KB
+D:\Igo-websites\IGO Groups\assets\img\office\branch-office-madipakkam.jpg.png: 1536x1024 2472KB -> 1536x1024 2472KB
+D:\Igo-websites\IGO Groups\assets\img\office\ChatGPT Image Jul 22, 2026, 04_50_37 PM.png: 1774x887 1820KB -> 1774x887 1820KB
+D:\Igo-websites\IGO Groups\assets\img\office\ChatGPT Image Jul 22, 2026, 04_50_44 PM.png: 1774x887 2022KB -> 1774x887 2022KB
+D:\Igo-websites\IGO Groups\assets\img\office\ChatGPT Image Jul 22, 2026, 04_50_50 PM.png: 1796x876 1965KB -> 1796x876 1965KB
+D:\Igo-websites\IGO Groups\assets\img\office\ChatGPT Image Jul 22, 2026, 04_50_58 PM.png: 1774x887 2029KB -> 1774x887 2029KB
+D:\Igo-websites\IGO Groups\assets\img\office\ChatGPT Image Jul 22, 2026, 04_51_06 PM.png: 1717x916 1789KB -> 1717x916 1789KB
+D:\Igo-websites\IGO Groups\assets\img\office\ChatGPT Image Jul 22, 2026, 04_51_13 PM.png: 1717x916 2200KB -> 1717x916 2200KB
+D:\Igo-websites\IGO Groups\assets\img\office\ChatGPT Image Jul 22, 2026, 04_51_19 PM.png: 1717x916 2323KB -> 1717x916 2323KB
+D:\Igo-websites\IGO Groups\assets\img\office\csr-banner.png.png: 1512x688 1747KB -> 1512x688 1747KB
+D:\Igo-websites\IGO Groups\assets\img\office\Department banner.png: 1604x656 1868KB -> 1604x656 1842KB
+D:\Igo-websites\IGO Groups\assets\img\office\gallery-banner.png.png: 1821x864 2290KB -> 1821x864 2290KB
+D:\Igo-websites\IGO Groups\assets\img\office\hero-bg.jpg: 1672x941 2351KB -> 1672x941 289KB
+D:\Igo-websites\IGO Groups\assets\img\office\hq-front-hero.jpg: 1535x1024 548KB -> 1535x1024 324KB
+D:\Igo-websites\IGO Groups\assets\img\office\hq-front-straight.jpg: 1535x1024 451KB -> 1535x1024 274KB
+D:\Igo-websites\IGO Groups\assets\img\office\hq-grid-composite.jpg: 1535x1024 636KB -> 1535x1024 382KB
+D:\Igo-websites\IGO Groups\assets\img\office\leadership-team-awards.jpeg: 1600x1064 979KB -> 1600x1064 320KB
+D:\Igo-websites\IGO Groups\assets\img\office\news-banner.png.png: 2048x768 2256KB -> 1920x720 2256KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-02.jpg: 1600x1066 306KB -> 1600x1066 189KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-16.jpg: 1600x1066 403KB -> 1600x1066 239KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-22.jpg: 1600x1066 322KB -> 1600x1066 202KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-24.jpg: 1600x1066 447KB -> 1600x1066 271KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-25.jpg: 1600x1066 415KB -> 1600x1066 253KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-26.jpg: 1600x1066 372KB -> 1600x1066 226KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-31.jpg: 1600x1066 344KB -> 1600x1066 214KB
+D:\Igo-websites\IGO Groups\assets\img\office\team-head-office.jpg.jpeg: 1600x719 352KB -> 1600x719 226KB
+D:\Igo-websites\IGO Groups\assets\img\office\testimonials-banner.png.png: 1774x887 1856KB -> 1774x887 1856KB
+
+Processed 93 files. Before: 293.4 MB  After: 104.31 MB  Saved: 189.09 MB
