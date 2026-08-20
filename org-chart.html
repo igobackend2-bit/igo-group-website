@@ -61,6 +61,7 @@
     box-shadow: 0 1px 6px rgba(0,0,0,0.06); text-align: center;
     border: 1px solid rgba(71,132,39,0.18); border-left: 3px solid var(--brand-green, #478427);
     transition: border-color .2s, transform .2s, box-shadow .2s;
+    cursor: pointer;
   }
   html.dark .org-node { background: var(--card-bg, #16221a); }
   .org-node:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(71,132,39,0.18); }
@@ -173,6 +174,13 @@
   .org-stat-item .org-stat-label { font-size: 0.68rem; color: #cfe8bd; text-transform: uppercase; letter-spacing: 0.05em; }
   .org-stat-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.2); }
   @media (max-width: 640px) { .org-stat-divider { display: none; } }
+
+  /* Modal person photo (Highlights popup) — matches leadership.html modal-avatar styling */
+  .modal-avatar {
+    width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center 22%;
+    flex-shrink: 0; cursor: zoom-in; box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    border: 2px solid var(--border, #e5e7eb); image-orientation: from-image;
+  }
 </style>
 </head>
 <body>
@@ -443,6 +451,349 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="assets/js/main.min.js"></script>
+<script>
+(function(){
+  // Photo + lightbox support for openModal (same pattern as leadership.html)
+  var _origOpenModal = window.openModal;
+  window.openModal = function(title, subtitle, description, featuresArray, ctaText, ctaLink, imageSrc){
+    _origOpenModal(title, subtitle, description, featuresArray, ctaText, ctaLink);
+    var overlay = document.getElementById('igo-global-modal');
+    if (!overlay) return;
+    var header = overlay.querySelector('.modal-header');
+    var avatarEl = document.getElementById('modal-avatar-el');
+    if (!avatarEl && header) {
+      avatarEl = document.createElement('img');
+      avatarEl.className = 'modal-avatar';
+      avatarEl.id = 'modal-avatar-el';
+      avatarEl.onclick = function(e){ e.stopPropagation(); if (window.openImageLightbox) openImageLightbox(this.src, this.alt); };
+      header.insertBefore(avatarEl, header.firstChild);
+    }
+    if (avatarEl) {
+      if (imageSrc) {
+        avatarEl.src = imageSrc;
+        avatarEl.alt = title || '';
+        avatarEl.style.display = 'block';
+      } else {
+        avatarEl.style.display = 'none';
+      }
+    }
+  };
+
+  // Role & responsibilities content for each org-chart card, matched by avatar photo (most reliable id),
+  // falling back to name for cards without a photo. Reuses the same bios shown on the Leadership page
+  // wherever the same person appears there, for consistency.
+  var BY_SRC = {
+    "assets/img/ceo-john-yesudhas.webp": {
+      subtitle: "Founder & Group CEO",
+      description: "Visionary leader who founded IGO Group in 2016 with a mission to build a world-class sustainable farming conglomerate. Drives group strategy, investor relations, and long-term vision across all 27 brands and 18 departments — transforming Indian farming through innovation, investment, and enterprise.",
+      features: [
+        "Experience: 10+ years in agri-enterprise, technology-driven farming, and sustainable development across India.",
+        "Education: Electronics & Communication Engineer; CEO Masters Program — IIM Visakhapatnam",
+        "Recognition: TEDx Speaker; Author of 'Polyhouse Farming'; Best CEO Award, MSME Excellence Award, Governor's Award for Large-Scale Agri Projects — 100+ Awards & Recognitions overall across 50+ national & international platforms.",
+        "Flagship Initiative: Mission 2036 — building 1 Million Farmpreneurs across India, with the potential to create 1.5+ Crore direct & indirect employment opportunities."
+      ]
+    },
+    "assets/img/leadership/IMG_6841.JPG": {
+      subtitle: "Director, IGO Group",
+      description: "Director at IGO Group, overseeing group-level strategy and operations as part of the senior leadership team driving the organization's long-term direction.",
+      features: ["Role: Director, IGO Group", "Focus: Group-level strategy and operations."]
+    },
+    "assets/img/leadership/newton.jpeg": {
+      subtitle: "Director, IGO Group",
+      description: "Director at IGO Group, overseeing group-level strategy and operations as part of the senior leadership team driving the organization's long-term direction.",
+      features: ["Role: Director, IGO Group", "Focus: Group-level strategy and operations."]
+    },
+    "assets/img/leadership/Vignesh srithatran.jpeg": {
+      subtitle: "General Manager, IGO Group",
+      description: "General Manager on the Management Operations Team and the operational backbone of IGO Group's day-to-day management. Acts as the primary bridge between department heads and the CEO office, ensuring daily operations reviews, escalation resolution, and cross-functional performance discipline are maintained consistently across all 18 departments.",
+      features: [
+        "Role: General Manager, IGO Group",
+        "Focus: Operational governance, escalation management, and cross-functional coordination across all 18 departments.",
+        "Key Responsibilities: Daily operations review and performance reporting, multi-level escalation handling and resolution, inter-department coordination, performance monitoring and KPI tracking, and management reporting directly to the CEO."
+      ]
+    },
+    "assets/img/leadership/IMG_6783.JPG": {
+      subtitle: "National Sales Head, IGO Group",
+      description: "National Sales Head at IGO Group, leading growth strategy, client acquisition, and revenue expansion across IGO Group business verticals. Works directly with the CEO office on strategic partnerships, key accounts, and expansion into new markets and territories.",
+      features: [
+        "Role: National Sales Head, IGO Group",
+        "Focus: Growth strategy, partnerships, sales leadership, and new market expansion across the group.",
+        "Key Responsibilities: Sales target setting and review, key account management, partnership development, and market expansion planning."
+      ]
+    },
+    "assets/img/leadership/IMG_6814.JPG": {
+      subtitle: "National Head, L1 Officer — IGO Agri Estate & Vendor Dpt",
+      description: "National Sales Manager (NSM) and National Head of Agri Estate & Vendor Sourcing at IGO Group. Leads nationwide agri estate acquisition and vendor sourcing strategy — overseeing land identification, farmer onboarding, vendor onboarding, and procurement partnerships that expand IGO Group's agri footprint and supply chain.",
+      features: [
+        "Role: National Head, L1 Officer — Agri Estate & Vendor Dpt, IGO Group",
+        "Focus: National agri estate acquisition, vendor sourcing, and procurement partnership strategy.",
+        "Key Responsibilities: Agri estate identification and acquisition, landowner and vendor onboarding, sourcing and acquisition strategy execution, and procurement pipeline development."
+      ]
+    },
+    "assets/img/leadership/IMG_6806.JPG": {
+      subtitle: "National Head, L1 Officer — IGO Buyback, Farmers Factory, Valluvam, Farm Gate Mandi",
+      description: "National Head overseeing IGO Buyback, Farmers Factory, Valluvam, and Farm Gate Mandi operations. Manages buy-back operations, produce quality inspection, and farmer relationship management across these verticals, ensuring every collection meets IGO's quality standards.",
+      features: [
+        "Role: National Head, L1 Officer — Buyback, Farmers Factory, Valluvam, Farm Gate Mandi, IGO Group",
+        "Focus: Buy-back operations management, produce quality inspection, and farmer relationship development across multiple verticals.",
+        "Key Responsibilities: Buy-back and collection operations oversight, produce quality inspection and grading, farmer relationship management, and collection logistics coordination."
+      ]
+    },
+    "assets/img/leadership/deepak.jpeg": {
+      subtitle: "National Head, L1 Officer — IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental, Polyhouse",
+      description: "National Head overseeing IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental and Polyhouse verticals, while also providing executive support and strategic tracking directly for the Group CEO. Works at the intersection of strategy and execution across this wide portfolio of departments.",
+      features: [
+        "Role: National Head, L1 Officer — IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental, Polyhouse, IGO Group",
+        "Focus: Executive support, strategic tracking, and cross-department performance across eight departments.",
+        "Key Responsibilities: Cross-department coordination and performance oversight, strategic priority tracking and reporting, CEO office special project support, and accountability follow-up across all assigned verticals."
+      ]
+    },
+    "assets/img/leadership/IMG_6775.JPG": {
+      subtitle: "National Head, L1 Officer — IGO Purchase, Agri Mart",
+      description: "Head of Purchase and National Head for Agri Mart at IGO Group, responsible for end-to-end procurement strategy, vendor management, and cost optimization across all group operations and departments.",
+      features: [
+        "Role: National Head, L1 Officer — Purchase, Agri Mart, IGO Group",
+        "Focus: Procurement strategy, vendor management, contract negotiations, and purchase cost control across all operations.",
+        "Key Responsibilities: Group-wide procurement planning, vendor identification and relationship management, contract negotiation, and purchase cost optimization."
+      ]
+    },
+    "assets/img/leadership/IMG_6815.JPG": {
+      subtitle: "Head, Farmers Factory",
+      description: "Core Manager in the Farmers Factory unit at IGO Group, supporting the fresh-produce supply chain from farm-level procurement through collection hub operations and last-mile delivery.",
+      features: [
+        "Role: Head, Farmers Factory, IGO Group",
+        "Focus: Farm produce procurement, collection hub operations, and fresh-produce supply chain execution.",
+        "Key Responsibilities: Produce procurement and farmer sourcing, collection hub management, and supply chain logistics coordination."
+      ]
+    },
+    "assets/img/leadership/velladhurai.jpeg": {
+      subtitle: "Head, Legal and Data Management",
+      description: "Data Team Core Manager responsible for managing group-wide data systems, MIS analytics reporting, and legal documentation support. Maintains the data infrastructure that drives informed decision-making across all departments.",
+      features: [
+        "Role: Head, Legal and Data Management, IGO Group",
+        "Focus: Data system management, MIS and analytics reporting, and legal documentation support.",
+        "Key Responsibilities: Data system management and integrity oversight, MIS and performance analytics reporting, and legal document management."
+      ]
+    },
+    "assets/img/leadership/IMG_6805.JPG": {
+      subtitle: "SMO, Agri Dpt",
+      description: "Senior Management Officer (SMO) in Agri Operations at IGO Group, coordinating agri project execution, field teams, and harvest operations across assigned farm projects.",
+      features: [
+        "Role: SMO, Agri Dpt, IGO Group",
+        "Focus: Agri project execution, field team coordination, harvest planning, and produce quality monitoring.",
+        "Key Responsibilities: Agri project execution planning, field team deployment, and harvest scheduling and logistics."
+      ]
+    },
+    "assets/img/leadership/IMG_6794.JPG": {
+      subtitle: "SMO, Agri Dpt",
+      description: "Senior Management Officer (SMO) in Agri Operations at IGO Group, responsible for managing field operations, crop planning, and farm execution across assigned IGO agri projects.",
+      features: [
+        "Role: SMO, Agri Dpt, IGO Group",
+        "Focus: Field operations management, crop scheduling, farm team supervision, and yield performance tracking.",
+        "Key Responsibilities: Daily field operation scheduling, crop planning and agronomic input management, and farm team supervision."
+      ]
+    },
+    "assets/img/leadership/IMG_6842.JPG": {
+      subtitle: "SMO, Agri Dpt",
+      description: "Senior Management Officer (SMO) in Agri Operations at IGO Group, managing assigned farm sites end-to-end to deliver consistent farming outcomes.",
+      features: [
+        "Role: SMO, Agri Dpt, IGO Group",
+        "Focus: End-to-end farm site management, input planning, field data collection, and operational compliance.",
+        "Key Responsibilities: Farm site management, input procurement planning, and field data collection."
+      ]
+    },
+    "assets/img/leadership/mohammed.jpeg": {
+      subtitle: "Head, Palm Cafe",
+      description: "Head of Palm Cafe at IGO Group, overseeing day-to-day operations, quality standards, and customer experience at IGO's Palm Cafe outlet, while also supporting cross-department coordination within the CEO office ecosystem.",
+      features: [
+        "Role: Head, Palm Cafe, IGO Group",
+        "Focus: Palm Cafe operations, quality and service standards, and outlet performance.",
+        "Key Responsibilities: Day-to-day outlet operations management, quality and hygiene standards oversight, and staff coordination."
+      ]
+    },
+    "assets/img/leadership/IMG_6779.JPG": {
+      subtitle: "SMO, Engineering Dpt",
+      description: "General Management Officer (GMO) in the Engineering department at IGO Group, overseeing engineering projects, site execution, and technical operations across IGO's construction and infrastructure verticals.",
+      features: [
+        "Role: SMO, Engineering Dpt, IGO Group",
+        "Focus: Project engineering, site execution management, quality and safety control, and vendor coordination.",
+        "Key Responsibilities: Engineering project planning and scheduling, on-site execution monitoring, and quality and safety compliance."
+      ]
+    },
+    "assets/img/leadership/IMG_6796.JPG": {
+      subtitle: "Head, IT & CEO Office Admin",
+      description: "Head of IT & AI at IGO Group, leading all technology systems, AI initiatives, ERP development, and digital infrastructure across the organization, while also supporting CEO office administration.",
+      features: [
+        "Role: Head, IT & CEO Office Admin, IGO Group",
+        "Focus: ERP platforms, web and app systems, AI and automation initiatives, and group IT infrastructure management.",
+        "Key Responsibilities: ERP system development and management, web and digital platform development, and AI and automation system implementation."
+      ]
+    },
+    "assets/img/leadership/WhatsApp Image 2026-08-15 at 5.26.38 PM.jpeg": {
+      subtitle: "Head, CEO Office Admin",
+      description: "Head of Administration in the CEO Office at IGO Group, managing all administrative functions, documentation control, facilities coordination, and internal compliance support across the group.",
+      features: [
+        "Role: Head, CEO Office Admin, IGO Group",
+        "Focus: Administrative operations, documentation control, facilities management, and internal compliance support.",
+        "Key Responsibilities: Day-to-day administrative operations management, documentation and records control, and facilities coordination."
+      ]
+    },
+    "assets/img/leadership/IMG_6791.JPG": {
+      subtitle: "Head, IGO R&D & New Projects",
+      description: "Head of Research & Development at IGO Group, driving the research agenda, product innovation, and new project development that keeps IGO at the forefront of farming-tech.",
+      features: [
+        "Role: Head, IGO R&D & New Projects, IGO Group",
+        "Focus: Research initiatives, product innovation, prototype development, and new project ideation.",
+        "Key Responsibilities: R&D program planning, farming and product technology research, and prototype development and field pilots."
+      ]
+    },
+    "assets/img/leadership/IMG_6777.JPG": {
+      subtitle: "SMO, IGO Engineering Dpt",
+      description: "Core Manager supporting the Engineering department at IGO Group, contributing to civil and engineering project execution, site infrastructure, and building works across IGO's project sites.",
+      features: [
+        "Role: SMO, IGO Engineering Dpt, IGO Group",
+        "Focus: Engineering and civil project support, site infrastructure, and construction quality monitoring.",
+        "Key Responsibilities: Project planning and execution support, contractor and site coordination, and construction quality monitoring."
+      ]
+    },
+    "assets/img/leadership/IMG_6787.JPG": {
+      subtitle: "SMO, IGO Business Development",
+      description: "Business Development Manager driving lead generation, client relationships, and deal closures for IGO Group business verticals.",
+      features: [
+        "Role: SMO, IGO Business Development, IGO Group",
+        "Focus: Lead generation, client engagement, proposal management, and revenue pipeline growth.",
+        "Key Responsibilities: Lead generation and qualification, client meetings and presentations, and negotiation and deal closure."
+      ]
+    },
+    "assets/img/leadership/IMG_6823.JPG": {
+      subtitle: "Head, IGO Marketing",
+      description: "Head of Marketing at IGO Group, responsible for building and sustaining the group's brand identity, digital presence, and market visibility across all 27 brands.",
+      features: [
+        "Role: Head, IGO Marketing, IGO Group",
+        "Focus: Brand strategy, digital campaigns, content leadership, and market visibility across all 27 IGO Group brands.",
+        "Key Responsibilities: Marketing strategy and budget ownership, campaign planning and execution, and brand identity management."
+      ]
+    },
+    "assets/img/leadership/IMG_6861.JPG": {
+      subtitle: "Head, IGO Marketing",
+      description: "Core Manager in IGO Group's Marketing department, responsible for the day-to-day execution of campaigns, creatives, and promotional activities across brands.",
+      features: [
+        "Role: Head, IGO Marketing, IGO Group",
+        "Focus: Campaign execution, creative production, social media management, and on-ground promotional activities.",
+        "Key Responsibilities: Campaign planning and rollout, creative and content production, and social media content calendar management."
+      ]
+    },
+    "assets/img/leadership/IMG_6809.JPG": {
+      subtitle: "Head, IGO Academy",
+      description: "Head of IGO Academy at IGO Group, responsible for leading the Academy's overall strategy, training operations, course development, skill development initiatives, and learning ecosystem. Drives the development and delivery of practical, industry-oriented training programs for students, farmers, professionals, entrepreneurs, institutions, and the IGO Group workforce — combining practical agricultural training, technology-driven farming, certification, internships, placement support, and agri-entrepreneurship to prepare learners for the future of agriculture.",
+      features: [
+        "Role: Head, IGO Academy, IGO Group",
+        "Core Focus: Agricultural skill development, practical and farm-based training, technology-driven farming training, course and curriculum development, certification and assessments, career and placement support, agri-entrepreneurship and Farmpreneur development, and academic, government and industry partnerships.",
+        "Key Responsibilities: Strategic planning and overall management of IGO Academy; design, development and delivery of agriculture and skill-development programs; management of online, offline, hybrid and farm-based training programs; internship, placement and career-development initiatives; certification, assessment and learning-outcome management; agri-entrepreneurship and Farmpreneur development programs; academic, institutional and industry partnerships; and continuous improvement of training quality and learner experience.",
+        "Career & Placement: 25,000+ career and job opportunities — connecting skilled learners with career pathways and employment across Agriculture, Agri-Tech, Horticulture, Food, Agri-Business and Allied Sectors through placement assistance, industry connections, internships, resume and interview preparation, and entrepreneurship pathways for aspiring Farmpreneurs.",
+        "Technology-Driven Farming Training: Precision farming, IoT and smart agriculture, AI and automation, sensors and data-driven farming, hydroponics, vertical farming, polyhouse and protected cultivation, drone and remote-sensing applications, smart irrigation and fertigation, and sustainable, climate-smart agriculture.",
+        "Partnerships & Collaborations: Academic institutions, government bodies, industry partners, FPOs and farmer groups, agri-tech companies, and skill development missions.",
+        "Strategic Objective: Learn → Practice → Certify → Earn → Build — creating job-ready and business-ready professionals through structured education, practical farm exposure, technology-based learning, certification, career support, and entrepreneurship development.",
+        "Four Strategic Pillars: (1) Technology — preparing learners for technology-driven agriculture; (2) Practical Skills — hands-on capability through live-farm and industry exposure; (3) Career & Placement — internships, employment and career pathways; (4) Entrepreneurship — building, managing and scaling sustainable agri-businesses.",
+        "Key Outcome: Building skilled professionals, job-ready talent, successful Farmpreneurs, and a future-ready agricultural workforce."
+      ]
+    },
+    "assets/img/leadership/IMG_6820.JPG": {
+      subtitle: "SMO, IGO R&D & New Projects",
+      description: "Core Manager for New Projects & R&D at IGO Group, supporting the planning and execution of new projects from concept through delivery, including technical and engineering coordination, material selection, and vendor coordination.",
+      features: [
+        "Role: SMO, IGO R&D & New Projects, IGO Group",
+        "Focus: New project development and strategy, engineering support, project cost management, and execution excellence.",
+        "Key Responsibilities: Support new project planning and execution, technical and engineering coordination, and material selection and vendor coordination."
+      ]
+    },
+    "assets/img/leadership/IMG_6827.JPG": {
+      subtitle: "SMO, IGO Site Visits",
+      description: "Core Manager in the Site Visit team at IGO Group, coordinating on-ground site visits, inspections, and field verification across IGO's agri estates and project locations.",
+      features: [
+        "Role: SMO, IGO Site Visits, IGO Group",
+        "Focus: On-ground site visits, inspections, and field verification across IGO locations.",
+        "Key Responsibilities: Site visit scheduling and coordination, on-ground inspection and documentation, and field verification reporting."
+      ]
+    },
+    "assets/img/leadership/sathish.jpeg": {
+      subtitle: "HR, IGO Group",
+      description: "Human Resources Manager at IGO Group, supporting the full employee lifecycle across the organization — from recruitment and onboarding through attendance management, payroll coordination, and employee engagement.",
+      features: [
+        "Role: HR, IGO Group",
+        "Focus: Recruitment, onboarding, attendance and LOP management, payroll coordination, and employee engagement.",
+        "Key Responsibilities: Talent acquisition support, employee onboarding and documentation, and attendance and leave management."
+      ]
+    }
+  };
+
+  var AREA_MANAGER = {
+    subtitle: "Area Manager, Agri Dpt",
+    description: "Area Manager for the Agri department at IGO Group, overseeing regional farm operations, field team coordination, and agri project execution within the assigned area.",
+    features: ["Role: Area Manager, Agri Dpt, IGO Group", "Focus: Regional farm operations, field team coordination, and agri project execution."]
+  };
+
+  var BY_NAME = {
+    "Mr. Rahul": {
+      subtitle: "SMO, Engineering Dpt",
+      description: "Senior Management Officer (SMO) in the Engineering department at IGO Group, supporting project engineering, site execution, and technical operations across IGO's construction and infrastructure projects.",
+      features: ["Role: SMO, Engineering Dpt, IGO Group", "Focus: Engineering project support, site execution, and technical coordination."]
+    },
+    "Mr. Mowli": {
+      subtitle: "SMO, FF Field Business Development",
+      description: "Senior Management Officer (SMO) supporting Farmers Factory field business development at IGO Group, coordinating on-ground farmer engagement and business growth initiatives for the Farmers Factory vertical.",
+      features: ["Role: SMO, FF Field Business Development, IGO Group", "Focus: On-ground farmer engagement and field business development for Farmers Factory."]
+    },
+    "Ms. Maheshwari": {
+      subtitle: "Head, IGO Accounts",
+      description: "Head of Accounts at IGO Group, overseeing financial record-keeping, accounts management, and fiscal reporting to support the group's financial governance.",
+      features: ["Role: Head, IGO Accounts, IGO Group", "Focus: Accounts management, financial record-keeping, and fiscal reporting."]
+    },
+    "Mr. Surya": {
+      subtitle: "SMO, IGO Cocopeat Factory",
+      description: "Senior Management Officer (SMO) at IGO Cocopeat Factory, overseeing production operations, quality control, and day-to-day plant management for IGO's cocopeat manufacturing unit.",
+      features: ["Role: SMO, IGO Cocopeat Factory, IGO Group", "Focus: Production operations, quality control, and plant management for the cocopeat factory."]
+    },
+    "Ms. Amritha": {
+      subtitle: "Head, Valluvam Products",
+      description: "Head of Valluvam Products at IGO Group, overseeing product operations, quality standards, and business growth for the Valluvam product line.",
+      features: ["Role: Head, Valluvam Products, IGO Group", "Focus: Product operations, quality standards, and business growth for Valluvam."]
+    },
+    "Mr. Douglas": {
+      subtitle: "SMO, Legal & IGO Hostel",
+      description: "Senior Management Officer (SMO) supporting Legal and IGO Hostel operations, coordinating compliance documentation and hostel facility management for IGO Group.",
+      features: ["Role: SMO, Legal & IGO Hostel, IGO Group", "Focus: Legal documentation support and IGO Hostel facility operations."]
+    },
+    "Mr. Sanjay Vasanthakumar": AREA_MANAGER,
+    "Mr. Ranjeet Kumar": AREA_MANAGER,
+    "Mr. Jitendra Kumar": AREA_MANAGER,
+    "Mr. Keerthieeswaran": AREA_MANAGER
+  };
+
+  document.querySelectorAll('.org-node').forEach(function(node){
+    node.addEventListener('click', function(){
+      var nameEl = node.querySelector('.org-name');
+      var roleEl = node.querySelector('.org-role');
+      var imgEl = node.querySelector('img.org-avatar');
+      var name = nameEl ? nameEl.textContent.trim() : '';
+      var role = roleEl ? roleEl.textContent.trim() : '';
+      var src = imgEl ? imgEl.getAttribute('src') : null;
+      var bio = (src && BY_SRC[src]) || BY_NAME[name];
+      if (bio) {
+        window.openModal(name, bio.subtitle || role, bio.description, bio.features, null, null, src);
+      } else {
+        window.openModal(
+          name,
+          role,
+          name + ' serves as ' + role + ' at IGO Group, contributing to the department\'s day-to-day execution and supporting the team within IGO Group\'s wider organizational structure.',
+          ['Role: ' + role + ', IGO Group'],
+          null, null, src
+        );
+      }
+    });
+  });
+})();
+</script>
 <script src="assets/js/cinematic.min.js"></script>
 </body>
 </html>

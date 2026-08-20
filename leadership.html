@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#0b3d13" />
 <title>Leadership | IGO Groups</title>
-<meta name="description" content="Meet the 31 leaders driving India's fastest-growing farming ecosystem." />
+<meta name="description" content="Meet the 42 leaders driving India's fastest-growing farming ecosystem." />
 <link rel="canonical" href="https://igogroups.in/leadership.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,12 +17,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="IGO Groups" />
 <meta property="og:title" content="Leadership | IGO Groups" />
-<meta property="og:description" content="Meet the 31 leaders driving India's fastest-growing farming ecosystem." />
+<meta property="og:description" content="Meet the 42 leaders driving India's fastest-growing farming ecosystem." />
 <meta property="og:url" content="https://igogroups.in/leadership.html" />
 <meta property="og:image" content="https://igogroups.in/assets/img/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Leadership | IGO Groups" />
-<meta name="twitter:description" content="Meet the 31 leaders driving India's fastest-growing farming ecosystem." />
+<meta name="twitter:description" content="Meet the 42 leaders driving India's fastest-growing farming ecosystem." />
 <meta name="twitter:image" content="https://igogroups.in/assets/img/og-image.png" />
 
 
@@ -34,7 +34,7 @@
       "@type": "WebPage",
       "name": "Leadership | IGO Groups",
       "url": "https://igogroups.in/leadership.html",
-      "description": "Meet the 31 leaders driving India's fastest-growing farming ecosystem.",
+      "description": "Meet the 42 leaders driving India's fastest-growing farming ecosystem.",
       "isPartOf": {
         "@type": "WebSite",
         "name": "IGO Groups",
@@ -108,7 +108,6 @@
         <div class="dropdown-menu">
           <a href="about.html">About Us</a>
           <a href="leadership.html">Leadership</a>
-          <a href="org-chart.html">Org Chart</a>
           <a href="facilities.html">Office Facilities</a>
         </div>
       </div>
@@ -234,635 +233,348 @@
 
 /* Modal person photo (Highlights popup) */
 .modal-avatar {
-  width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center 22%;
-  flex-shrink: 0; cursor: zoom-in; box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-  border: 2px solid var(--border, #e5e7eb); image-orientation: from-image;
+  width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: center 22%;
+  flex-shrink: 0; cursor: zoom-in; box-shadow: 0 6px 22px rgba(0,0,0,0.22);
+  border: 3px solid var(--border, #e5e7eb); image-orientation: from-image;
 }
+@media (max-width: 640px) {
+  .modal-avatar { width: 120px; height: 120px; }
+}
+
+/* Full-page profile modal (this page only) */
+#igo-global-modal.modal-overlay { padding: 0; }
+#igo-global-modal .modal-content { max-width: 100vw; width: 100vw; max-height: 100vh; height: 100vh; border-radius: 0; }
+
+/* ── Hierarchy chart layout (matches org-chart.html) ── */
+.org-wrap { max-width: 1100px; margin: 0 auto; }
+.org-tier-label { text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-green, #478427); margin: 0 0 14px; opacity: 0.85; }
+.org-hierarchy-title { text-align: center; margin-bottom: 3rem; }
+.org-hierarchy-title h2 { color: var(--brand-green, #478427); font-size: 2.1rem; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 0.5rem; text-transform: uppercase; }
+.org-hierarchy-title .org-hierarchy-sub { display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--dark, #111827); font-weight: 700; letter-spacing: 0.3em; font-size: 0.9rem; }
+html.dark .org-hierarchy-title .org-hierarchy-sub { color: #fff; }
+.org-hierarchy-title .org-hierarchy-sub::before, .org-hierarchy-title .org-hierarchy-sub::after { content: ""; width: 44px; height: 2px; background: var(--brand-green, #478427); }
+.org-node { background: #fff; border-radius: 10px; padding: 0.75rem 1rem; box-shadow: 0 1px 6px rgba(0,0,0,0.06); text-align: center; border: 1px solid rgba(71,132,39,0.18); border-left: 3px solid var(--brand-green, #478427); transition: border-color .2s, transform .2s, box-shadow .2s; cursor: pointer; position: relative; overflow: visible; padding-top: 1.1rem; }
+html.dark .org-node { background: var(--card-bg, #16221a); }
+.org-node:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(71,132,39,0.18); }
+.org-node .org-name { font-weight: 700; font-size: 0.88rem; color: var(--dark, #111827); margin: 0 0 0.15rem; position: relative; z-index: 1; }
+html.dark .org-node .org-name { color: #fff; }
+.org-node .org-role { font-size: 0.72rem; color: var(--muted, #6b7280); margin: 0; line-height: 1.4; position: relative; z-index: 1; }
+.org-node::after { content: ""; position: absolute; top: 0.55rem; left: 50%; transform: translateX(-26px); width: 40px; height: 40px; background: linear-gradient(135deg, #478427, #69a83b); border-radius: 10px 10px 10px 0; z-index: 0; }
+.org-root { max-width: 420px; margin: 0 auto 0; }
+.org-root .org-node { border: 2px solid var(--brand-green, #478427); border-left: 2px solid var(--brand-green, #478427); padding: 2rem 2.2rem; border-radius: 18px; box-shadow: 0 6px 26px rgba(71,132,39,0.24); }
+.org-root .org-name { font-size: 1.5rem; }
+.org-root .org-role { font-size: 1rem; }
+.org-root .org-node::after { width: 66px; height: 66px; transform: translateX(-40px); border-radius: 16px 16px 16px 0; }
+.org-connector { width: 3px; height: 36px; background: var(--brand-green, #478427); margin: 0 auto; opacity: 0.55; position: relative; }
+.org-tier { display: flex; flex-direction: column; gap: 2.2rem; }
+.org-tier-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.9rem; position: relative; padding-top: 28px; }
+.org-tier-row::before { content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 3px; background: var(--brand-green, #478427); opacity: 0.35; border-radius: 2px; }
+.org-tier-row .org-node { position: relative; }
+.org-tier-row .org-node::before { content: ""; position: absolute; width: 3px; height: 28px; background: var(--brand-green, #478427); opacity: 0.55; top: -28px; left: 50%; transform: translateX(-1.5px); }
+.org-tier-row + .org-tier-row::after { content: ""; position: absolute; top: -2.2rem; left: 50%; width: 3px; height: 2.2rem; background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px); }
+.org-dept-groups { margin-top: 0; border: 1px dashed rgba(71,132,39,0.35); border-top: none; padding: 2.2rem 1.2rem 0.4rem; display: flex; flex-direction: column; gap: 1.9rem; position: relative; }
+.org-dept-groups::before { content: ""; position: absolute; top: -22px; left: 50%; width: 3px; height: 22px; background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px); }
+.org-dept-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; position: relative; padding-top: 22px; }
+.org-dept-row::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 3px; background: var(--brand-green, #478427); opacity: 0.4; border-radius: 2px; }
+.org-dept-row:first-child { padding-top: 0; }
+.org-dept-row:first-child::before { display: none; }
+.org-dept-row + .org-dept-row::after { content: ""; position: absolute; top: -1.9rem; left: 50%; width: 3px; height: 1.9rem; background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px); }
+.org-dept-row:last-of-type { display: flex; flex-wrap: wrap; justify-content: center; }
+.org-dept-row:last-of-type .org-node { flex: 0 1 calc(25% - 0.825rem); max-width: calc(25% - 0.825rem); }
+@media (max-width: 820px) { .org-dept-row { grid-template-columns: repeat(2, 1fr); } .org-dept-row:last-of-type .org-node { flex-basis: calc(50% - 0.55rem); max-width: calc(50% - 0.55rem); } }
+@media (max-width: 480px) { .org-dept-row { grid-template-columns: 1fr; } .org-dept-row:last-of-type .org-node { flex-basis: 100%; max-width: 100%; } }
+.org-avatar { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; object-position: center 20%; image-orientation: from-image; display: block; margin: 0 auto 0.6rem; border: 3px solid #fff; position: relative; z-index: 1; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+.org-avatar-initials { width: 88px; height: 88px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; background: linear-gradient(135deg, #478427, #69a83b); color: #fff; font-weight: 700; font-size: 1.3rem; border: 3px solid #fff; position: relative; z-index: 1; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
+.org-root .org-avatar, .org-root .org-avatar-initials { width: 168px; height: 168px; font-size: 2rem; }
+@media (max-width: 640px) {
+  .org-root { max-width: 320px; }
+  .org-avatar, .org-avatar-initials { width: 68px; height: 68px; }
+  .org-root .org-avatar, .org-root .org-avatar-initials { width: 120px; height: 120px; }
+  .org-root .org-name { font-size: 1.2rem; }
+}
+.org-dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--brand-green, #478427); left: 50%; transform: translateX(-4.5px); box-shadow: 0 0 0 3px #fff; }
+.org-stat-bar { margin-top: 3rem; background: linear-gradient(135deg, var(--forest, #0b3d13), #146338); border-radius: 16px; padding: 1.4rem 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.2rem; }
+.org-stat-item { display: flex; align-items: center; gap: 10px; color: #fff; }
+.org-stat-item svg { width: 26px; height: 26px; stroke: #a8d98d; fill: none; stroke-width: 1.7; flex-shrink: 0; }
+.org-stat-item .org-stat-num { font-size: 1.15rem; font-weight: 800; line-height: 1.1; display: block; }
+.org-stat-item .org-stat-label { font-size: 0.68rem; color: #cfe8bd; text-transform: uppercase; letter-spacing: 0.05em; }
+.org-stat-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.2); }
+@media (max-width: 640px) { .org-stat-divider { display: none; } }
 </style>
 
-<!-- TIER I — CEO -->
 <section class="content-section">
-  <div class="container">
-    <div class="tier-header" data-reveal>
-      <span class="eyebrow">TIER I — EXECUTIVE LEADERSHIP</span>
-      <h2>Founder &amp; Group CEO</h2>
-    </div>
-    <div class="ceo-featured" data-reveal onclick="openModal('Dr. John Yesudhas', 'Founder &amp; Group CEO', 'Visionary leader who founded IGO Group in 2016 with a mission to build a world-class sustainable farming conglomerate. Drives group strategy, investor relations, and long-term vision across all 27 brands and 18 departments — transforming Indian farming through innovation, investment, and enterprise.', [&quot;Experience: 10+ years in agri-enterprise, technology-driven farming, and sustainable development across India.&quot;,&quot;Education: Electronics &amp; Communication Engineer; CEO Masters Program — IIM Visakhapatnam&quot;,&quot;Recognition: TEDx Speaker; Author of &#39;Polyhouse Farming&#39;; Best CEO Award, MSME Excellence Award, Governor&#39;s Award for Large-Scale Agri Projects — 100+ Awards &amp; Recognitions overall across 50+ national &amp; international platforms.&quot;,&quot;Flagship Initiative: Mission 2036 — building 1 Million Farmpreneurs across India, with the potential to create 1.5+ Crore direct &amp; indirect employment opportunities.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-      <img class="ceo-avatar-lg" src="assets/img/ceo-john-yesudhas.webp" alt="Dr. John Yesudhas" style="object-fit:cover;" loading="lazy">
-      <div class="ceo-featured-info">
-        <span class="ceo-title">Founder &amp; Group CEO</span>
-        <h2>Dr. John Yesudhas</h2>
-        <p class="ceo-bio">Visionary leader who founded IGO Group in 2016 with a mission to build a world-class sustainable farming conglomerate. Drives group strategy, investor relations, and long-term vision across all 27 brands and 18 departments — transforming Indian farming through innovation, investment, and enterprise.</p>
-        <div class="ceo-tags">
-          <span class="ceo-tag">10+ Years in Agri-Enterprise</span>
-          <span class="ceo-tag">Electronics &amp; Communication Engineer</span>
-          <span class="ceo-tag">CEO Masters Program — IIM Visakhapatnam</span>
-          <span class="ceo-tag">TEDx Speaker</span>
-          <span class="ceo-tag">Author — Polyhouse Farming</span>
-        </div>
-        <div style="margin-top:18px;">
-          <a href="index.html#ceo-video" class="card-link">Watch: CEO Chronicles Interview →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="container org-wrap">
 
-<!-- TIER II — L3 DIRECTORS & L2 MANAGERS -->
-<section class="content-section alt">
-  <div class="container">
-    <div class="tier-header" data-reveal>
-      <span class="eyebrow">TIER II — SENIOR LEADERSHIP</span>
-      <h2>L3 Directors</h2>
-      <p>Senior directors overseeing group-level strategy &amp; operations</p>
+    <div class="org-hierarchy-title" data-reveal>
+      <h2>IGO Group of Companies</h2>
+      <div class="org-hierarchy-sub">Hierarchy Chart</div>
     </div>
-    <div class="grid three-grid">
-      <div class="pro-card" data-reveal onclick="openModal('Mr. Jagan', 'Chief Financial Officer', 'Chief Financial Officer at IGO Group, overseeing group-level financial strategy, planning, and fiscal governance across all 27 brands and 18 departments as the group scales.', [&quot;Role: Chief Financial Officer, IGO Group&quot;,&quot;Focus: Group-level financial strategy, planning, and fiscal governance across all brands and departments.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-        <div class="pro-card-strip"></div>
-        <div class="pro-card-top">
-          <div class="pro-avatar">JA</div>
-          <div class="pro-card-head">
-            <p class="pro-card-name">Mr. Jagan</p>
-            <p class="pro-card-designation">Chief Financial Officer</p>
-          </div>
-        </div>
-        <div class="pro-card-mid">
-          <span class="pro-dept-tag">Finance &amp; Strategy</span>
-          <p class="pro-card-focus">Group-level financial strategy, planning, and fiscal governance across all 27 brands and 18 departments.</p>
-        </div>
-        <div class="pro-card-footer">View Profile <span>→</span></div>
+
+    <p class="org-tier-label">Tier 1 &mdash; Founder &amp; Group CEO</p>
+    <div class="org-root" data-reveal>
+      <div class="org-node" onclick="openModal('Dr. John Yesudhas', 'Founder &amp; Group CEO', 'Visionary leader who founded IGO Group in 2016 with a mission to build a world-class sustainable farming conglomerate. Drives group strategy, investor relations, and long-term vision across all 27 brands and 18 departments — transforming Indian farming through innovation, investment, and enterprise.', [&quot;Experience: 10+ years in agri-enterprise, technology-driven farming, and sustainable development across India.&quot;,&quot;Education: Electronics &amp; Communication Engineer; CEO Masters Program — IIM Visakhapatnam&quot;,&quot;Recognition: TEDx Speaker; Author of &#39;Polyhouse Farming&#39;; Best CEO Award, MSME Excellence Award, Governor&#39;s Award for Large-Scale Agri Projects — 100+ Awards &amp; Recognitions overall across 50+ national &amp; international platforms.&quot;,&quot;Flagship Initiative: Mission 2036 — building 1 Million Farmpreneurs across India, with the potential to create 1.5+ Crore direct &amp; indirect employment opportunities.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+        <img class="org-avatar" src="assets/img/ceo-john-yesudhas.webp" alt="Dr. John Yesudhas" loading="lazy">
+        <p class="org-name">Dr. John Yesudhas</p>
+        <p class="org-role">Founder &amp; Group CEO</p>
       </div>
-      <div class="pro-card" data-reveal onclick="openModal('Mrs. Reega Merlin Esther Newton', 'Director', 'Director at IGO Group, overseeing group-level strategy and operations as part of the senior leadership team driving the organization\'s long-term direction.', [&quot;Role: Director, IGO Group&quot;,&quot;Focus: Group-level strategy and operations.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-        <div class="pro-card-strip"></div>
-        <div class="pro-card-top">
-          <img class="pro-avatar" src="assets/img/leadership/IMG_6841.JPG" alt="Mrs. Reega Merlin Esther Newton" style="object-fit:cover;" loading="lazy">
-          <div class="pro-card-head">
-            <p class="pro-card-name">Mrs. Reega Merlin Esther Newton</p>
-            <p class="pro-card-designation">Director</p>
-          </div>
+    </div>
+    <div class="org-connector"><span class="org-dot" style="bottom:-4px;"></span></div>
+    <p class="org-tier-label">Tier 2 &mdash; Directors</p>
+
+    <div class="org-tier" data-reveal>
+      <div class="org-tier-row" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <span class="org-dot" style="top:-1px;"></span>
+        <div class="org-node" onclick="openModal('Mrs. Reega Merlin Esther Newton', 'Director', 'Director at IGO Group, overseeing group-level strategy and operations as part of the senior leadership team driving the organization\'s long-term direction.', [&quot;Role: Director, IGO Group&quot;,&quot;Focus: Group-level strategy and operations.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/IMG_6841.JPG" alt="Mrs. Reega Merlin Esther Newton" loading="lazy">
+          <p class="org-name">Mrs. Reega Merlin Esther Newton</p>
+          <p class="org-role">Director, IGO Group</p>
         </div>
-        <div class="pro-card-mid">
-          <span class="pro-dept-tag">Senior Leadership</span>
-          <p class="pro-card-focus">Group-level strategy and operations as part of the senior leadership team.</p>
+        <div class="org-node" onclick="openModal('Mr. Newton Varghese', 'Director', 'Director at IGO Group, overseeing group-level strategy and operations as part of the senior leadership team driving the organization\'s long-term direction.', [&quot;Role: Director, IGO Group&quot;,&quot;Focus: Group-level strategy and operations.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/newton.jpeg" alt="Mr. Newton Varghese" loading="lazy">
+          <p class="org-name">Mr. Newton Varghese</p>
+          <p class="org-role">Director, IGO Group</p>
         </div>
-        <div class="pro-card-footer">View Profile <span>→</span></div>
-      </div>
-      <div class="pro-card" data-reveal onclick="openModal('Mr. Newton Varghese', 'Director', 'Director at IGO Group, overseeing group-level strategy and operations as part of the senior leadership team driving the organization\'s long-term direction.', [&quot;Role: Director, IGO Group&quot;,&quot;Focus: Group-level strategy and operations.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-        <div class="pro-card-strip"></div>
-        <div class="pro-card-top">
-          <img class="pro-avatar" src="assets/img/leadership/newton.jpeg" alt="Mr. Newton Varghese" style="object-fit:cover;" loading="lazy">
-          <div class="pro-card-head">
-            <p class="pro-card-name">Mr. Newton Varghese</p>
-            <p class="pro-card-designation">Director</p>
-          </div>
-        </div>
-        <div class="pro-card-mid">
-          <span class="pro-dept-tag">Senior Leadership</span>
-          <p class="pro-card-focus">Group-level strategy and operations as part of the senior leadership team.</p>
-        </div>
-        <div class="pro-card-footer">View Profile <span>→</span></div>
       </div>
     </div>
 
-    <div class="tier-header" data-reveal style="margin-top: 3.5rem;">
-      <h2>L2 Managers</h2>
-      <p>Cross-functional leaders bridging group strategy and daily execution</p>
-    </div>
-    <div class="grid two-grid">
-      <div class="pro-card" data-reveal onclick="openModal('Mr. Vignesh Sridharan', 'General Manager — Management Ops &amp; BD', 'General Manager on the Management Operations Team and the operational backbone of IGO Group\'s day-to-day management. Acts as the primary bridge between department heads and the CEO office, ensuring daily operations reviews, escalation resolution, and cross-functional performance discipline are maintained consistently across all 18 departments. Plays a pivotal role in translating CEO-level directives into on-ground execution.', [&quot;Role: General Manager — Management Operations Team, IGO Group&quot;,&quot;Focus: Operational governance, escalation management, and cross-functional coordination across all 18 departments.&quot;,&quot;Key Responsibilities: Daily operations review and performance reporting, multi-level escalation handling and resolution, inter-department coordination and alignment, performance monitoring and KPI tracking, and management reporting directly to the CEO.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-        <div class="pro-card-strip"></div>
-        <div class="pro-card-top">
-          <img class="pro-avatar" src="assets/img/leadership/Vignesh srithatran.jpeg" alt="Mr. Vignesh Sridharan" style="object-fit:cover;" loading="lazy">
-          <div class="pro-card-head">
-            <p class="pro-card-name">Mr. Vignesh Sridharan</p>
-            <p class="pro-card-designation">General Manager — Management Ops</p>
-          </div>
-        </div>
-        <div class="pro-card-mid">
-          <span class="pro-dept-tag">Management Ops &amp; BD</span>
-          <p class="pro-card-focus">Operational governance, escalation management, and cross-functional coordination across all 18 departments.</p>
-        </div>
-        <div class="pro-card-footer">View Profile <span>→</span></div>
-      </div>
-      <div class="pro-card" data-reveal onclick="openModal('Mr. Venkat', 'Head — Business Development (NSM) &amp; BD', 'Head of Business Development and National Sales Manager (NSM) on the Management Operations Team. Leads growth strategy, client acquisition, and revenue expansion across IGO Group business verticals. Works directly with the CEO office on strategic partnerships, key accounts, and expansion into new markets and territories.', [&quot;Role: Head — Business Development (NSM) &amp; BD, Management Operations Team&quot;,&quot;Focus: Growth strategy, partnerships, sales leadership, and new market expansion across the group.&quot;,&quot;Key Responsibilities: Sales target setting and review, key account management, partnership development, market expansion planning, and BD team leadership.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-        <div class="pro-card-strip"></div>
-        <div class="pro-card-top">
-          <img class="pro-avatar" src="assets/img/leadership/IMG_6783.JPG" alt="Mr. Venkat" style="object-fit:cover;" loading="lazy">
-          <div class="pro-card-head">
-            <p class="pro-card-name">Mr. Venkat</p>
-            <p class="pro-card-designation">Head — Business Development (NSM) &amp; BD</p>
-          </div>
-        </div>
-        <div class="pro-card-mid">
-          <span class="pro-dept-tag">Management Ops &amp; BD</span>
-          <p class="pro-card-focus">Growth strategy, partnerships, sales leadership, and new market expansion across the group.</p>
-        </div>
-        <div class="pro-card-footer">View Profile <span>→</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="org-connector" style="margin-top:1.5rem;"><span class="org-dot" style="bottom:-4px;"></span></div>
+    <p class="org-tier-label">Tier 3 &mdash; General Manager, National Sales Head &amp; National Heads</p>
 
-<!-- TIER III — L2 MANAGERS -->
-<section class="content-section">
-  <div class="container">
-    <div class="tier-header" data-reveal>
-      <span class="eyebrow">TIER III — OPERATIONS MANAGEMENT</span>
-      <h2>L1 Core Management Team</h2>
-      <p>CEO Office — executive support, strategic tracking &amp; cross-department coordination</p>
-    </div>
-    <div class="grid three-grid">
-      <div class="l1-card" data-reveal onclick="openModal('Mr. Deepak Adithiya', 'L1 Manager — CEO Office', 'L1 Manager (BOI) in the CEO Office at IGO Group, providing executive support, strategic tracking, and special initiative management directly for the Group CEO. Works at the intersection of strategy and execution — tracking key priorities, preparing reports, and supporting the CEO office\'s special projects and cross-group initiatives.', [&quot;Role: L1 Manager (BOI) — CEO Office, IGO Group&quot;,&quot;Focus: Executive support, strategic tracking, CEO office special projects, and cross-department initiative management.&quot;,&quot;Key Responsibilities: CEO office support and executive assistance, strategic priority tracking and reporting, special project management, cross-department coordination on CEO-level initiatives, and accountability follow-up.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-        <img class="l1-avatar" src="assets/img/leadership/deepak.jpeg" alt="Mr. Deepak Adithiya" style="object-fit:cover;" loading="lazy">
-        <div class="l1-info">
-          <p class="l1-name">Mr. Deepak Adithiya</p>
-          <p class="l1-role">L1 Manager (BOI)</p>
-          <p class="l1-dept">CEO Office — Strategic Tracking</p>
+    <div class="org-tier" data-reveal>
+      <div class="org-tier-row" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <span class="org-dot" style="top:-1px;"></span>
+        <div class="org-node" onclick="openModal('Mr. Vignesh Sridharan', 'General Manager — Management Ops &amp; BD', 'General Manager on the Management Operations Team and the operational backbone of IGO Group\'s day-to-day management. Acts as the primary bridge between department heads and the CEO office, ensuring daily operations reviews, escalation resolution, and cross-functional performance discipline are maintained consistently across all 18 departments. Plays a pivotal role in translating CEO-level directives into on-ground execution.', [&quot;Role: General Manager — Management Operations Team, IGO Group&quot;,&quot;Focus: Operational governance, escalation management, and cross-functional coordination across all 18 departments.&quot;,&quot;Key Responsibilities: Daily operations review and performance reporting, multi-level escalation handling and resolution, inter-department coordination and alignment, performance monitoring and KPI tracking, and management reporting directly to the CEO.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/Vignesh srithatran.jpeg" alt="Mr. Vignesh Sridharan" loading="lazy">
+          <p class="org-name">Mr. Vignesh Sridharan</p>
+          <p class="org-role">General Manager, IGO Group</p>
+        </div>
+        <div class="org-node" onclick="openModal('Mr. Venkatnarayanan', 'National Sales Head, IGO Group', 'National Sales Head at IGO Group, leading growth strategy, client acquisition, and revenue expansion across IGO Group business verticals. Works directly with the CEO office on strategic partnerships, key accounts, and expansion into new markets and territories.', [&quot;Role: National Sales Head, IGO Group&quot;,&quot;Focus: Growth strategy, partnerships, sales leadership, and new market expansion across the group.&quot;,&quot;Key Responsibilities: Sales target setting and review, key account management, partnership development, market expansion planning, and sales team leadership.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/IMG_6783.JPG" alt="Mr. Venkatnarayanan" loading="lazy">
+          <p class="org-name">Mr. Venkatnarayanan</p>
+          <p class="org-role">National Sales Head, IGO Group</p>
         </div>
       </div>
-      <div class="l1-card" data-reveal onclick="openModal('Mr. Mohammed Ali I', 'L1 Manager — Multiple Brands &amp; Departments', 'L1 Manager (BOI) in the CEO Office at IGO Group, handling executive reporting, follow-ups, and cross-department coordination for the Group CEO across multiple brands and departments. Ensures the CEO office has timely, accurate information on all group activities — consolidating departmental reports and coordinating actions across the organization on behalf of the CEO.', [&quot;Role: L1 Manager (BOI) — CEO Office, IGO Group&quot;,&quot;Focus: Executive reporting, departmental follow-ups, and cross-functional coordination across multiple brands and departments.&quot;,&quot;Key Responsibilities: Executive reporting and briefing preparation, departmental follow-up and accountability tracking, cross-department coordination on CEO directives, meeting preparation, and CEO office communication management.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-        <img class="l1-avatar" src="assets/img/leadership/mohammed.jpeg" alt="Mr. Mohammed Ali I" style="object-fit:cover;" loading="lazy">
-        <div class="l1-info">
-          <p class="l1-name">Mr. Mohammed Ali I</p>
-          <p class="l1-role">L1 Manager (BOI)</p>
-          <p class="l1-dept">CEO Office — Multiple Brands &amp; Departments</p>
+      <div class="org-tier-row">
+        <span class="org-dot" style="top:-1px;"></span>
+        <div class="org-node" onclick="openModal('Mr. Am Basha', 'National Head, L1 Officer — IGO Agri Estate &amp; Vendor Dpt', 'National Sales Manager (NSM) and National Head, L1 Officer of Agri Estate &amp; Vendor Sourcing at IGO Group, joining the core management team in March 2026. Leads nationwide agri estate acquisition and vendor sourcing strategy — overseeing land identification, farmer onboarding, vendor onboarding, and procurement partnerships that expand IGO Group\'s agri footprint and supply chain. Works directly under the CEO office to build and scale both verticals at a national level.', [&quot;Role: National Head, L1 Officer — Agri Estate &amp; Vendor Dpt, IGO Group (Joined: Mar 09, 2026)&quot;,&quot;Focus: National agri estate acquisition, vendor sourcing, and procurement partnership strategy.&quot;,&quot;Key Responsibilities: Agri estate identification and acquisition across territories, landowner onboarding and relationship management, vendor and supplier onboarding and relationship management, sourcing and acquisition strategy design and execution, procurement pipeline development, team leadership across both verticals, and performance reporting to the CEO office.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/IMG_6814.JPG" alt="Mr. Am Basha" loading="lazy">
+          <p class="org-name">Mr. Basha</p>
+          <p class="org-role">National Head, L1 Officer — IGO Agri Estate &amp; Vendor Dpt</p>
+        </div>
+        <div class="org-node" onclick="openModal('Mr. Shiva', 'National Head, L1 Officer — IGO Buyback, Farmers Factory, Valluvam, Farm Gate Mandi', 'National Head overseeing IGO Buyback, Farmers Factory, Valluvam, and Farm Gate Mandi operations. Manages buy-back operations, produce quality inspection, and farmer relationship management across these verticals. Ensures every buy-back collection meets IGO\'s quality standards, that farmers are engaged fairly and transparently, and that department operations are tracked, documented, and reported accurately to support operational excellence and farmer trust.', [&quot;Role: National Head, L1 Officer — Buyback, Farmers Factory, Valluvam, Farm Gate Mandi, IGO Group&quot;,&quot;Focus: Buy-back operations management, produce quality inspection, and farmer relationship development across multiple verticals.&quot;,&quot;Key Responsibilities: Buy-back operations oversight and daily management, produce quality inspection and grading at collection points, farmer relationship management and grievance resolution, collection logistics coordination, and operational performance tracking and reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/IMG_6806.JPG" alt="Mr. Shiva" loading="lazy">
+          <p class="org-name">Mr. Shiva</p>
+          <p class="org-role">National Head, L1 Officer — IGO Buyback, Farmers Factory, Valluvam, Farm Gate Mandi</p>
+        </div>
+        <div class="org-node" onclick="openModal('Mr. Deepak Adithiya', 'National Head, L1 Officer — IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental, Polyhouse', 'National Head overseeing IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental and Polyhouse verticals, while also providing executive support and strategic tracking directly for the Group CEO. Works at the intersection of strategy and execution — tracking key priorities, preparing reports, and driving performance across this wide portfolio of departments.', [&quot;Role: National Head, L1 Officer — IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental, Polyhouse, IGO Group&quot;,&quot;Focus: Executive support, strategic tracking, and cross-department performance across eight departments.&quot;,&quot;Key Responsibilities: Cross-department coordination and performance oversight, strategic priority tracking and reporting, CEO office special project support, and accountability follow-up across all assigned verticals.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/deepak.jpeg" alt="Mr. Deepak Adithiya" loading="lazy">
+          <p class="org-name">Mr. Deepak</p>
+          <p class="org-role">National Head, L1 Officer — IFIN, IGO Academy, Marketing, Engineering, Site Visit, CRM, Rental, Polyhouse</p>
+        </div>
+        <div class="org-node" onclick="openModal('Mr. Saravanan', 'National Head, L1 Officer — IGO Purchase, Agri Mart', 'National Head of Purchase and Agri Mart at IGO Group, responsible for end-to-end procurement strategy, vendor management, and cost optimization across all group operations and departments. Manages IGO\'s vendor ecosystem — identifying and qualifying suppliers, negotiating contracts, controlling procurement costs, and ensuring timely material availability to support uninterrupted operations across all 18 departments and 27 brands.', [&quot;Role: National Head, L1 Officer — Purchase, Agri Mart, IGO Group&quot;,&quot;Focus: Procurement strategy, vendor management, contract negotiations, and purchase cost control across all operations.&quot;,&quot;Key Responsibilities: Group-wide procurement planning and execution, vendor identification, qualification, and relationship management, contract negotiation and terms management, purchase cost optimization, cross-department material planning and supply coordination, and procurement performance reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+          <img class="org-avatar" src="assets/img/leadership/IMG_6775.JPG" alt="Mr. Saravanan" loading="lazy">
+          <p class="org-name">Mr. Saravanan</p>
+          <p class="org-role">National Head, L1 Officer — IGO Purchase, Agri Mart</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- TIER IV — DEPARTMENT HEADS (one department per group, A→Z) -->
-<section class="content-section alt">
-  <div class="container">
-    <div class="tier-header" data-reveal>
-      <span class="eyebrow">TIER IV — DEPARTMENT HEAD</span>
-      <h2>Department Heads</h2>
-      <p>Every department, its own section, A to Z</p>
     </div>
 
-    <!-- Administration -->
-    <div class="dept-group">
-      <h4 class="dept-label">Administration</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Tharun Kumar A', 'Head: Admin — Core Manager', 'Head of Administration in the CEO Office at IGO Group, managing all administrative functions, documentation control, facilities coordination, and internal compliance support across the group. Ensures the CEO office and broader administrative ecosystem functions seamlessly — from document management and facilities oversight to compliance coordination and cross-department administrative support that keeps IGO Group running efficiently.', [&quot;Role: Head — Administration, CEO Office, IGO Group&quot;,&quot;Focus: Administrative operations, documentation control, facilities management, and internal compliance support.&quot;,&quot;Key Responsibilities: Day-to-day administrative operations management, documentation and records control, facilities coordination and maintenance oversight, internal compliance process support, and cross-department administrative coordination on behalf of the CEO office.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/WhatsApp Image 2026-08-15 at 5.26.38 PM.jpeg" alt="Mr. Tharun Kumar A" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Tharun Kumar A</p>
-              <p class="pro-card-designation">Head — Admin, CEO Office</p>
+    <p class="org-tier-label" style="margin-top:2.5rem;">Tier 4 &mdash; Core Managers &amp; Department Heads</p>
+    <div class="org-connector" style="margin-bottom:1.5rem;"><span class="org-dot" style="bottom:-4px;"></span></div>
+      <div style="background:#fff;border-radius:14px;padding:1.6rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+        <div class="org-dept-groups">
+          <div class="org-dept-row">
+          <div class="org-node" onclick="openModal('Mr. Amirthalingam S', 'Farmers Factory — Core Manager', 'Core Manager in the Farmers Factory unit at IGO Group, supporting the fresh-produce supply chain from farm-level procurement through collection hub operations and last-mile delivery. Manages the day-to-day procurement pipeline, hub operations, and logistics coordination that ensures fresh produce moves efficiently and reliably from partner farmers to IGO\'s distribution and retail network.', [&quot;Role: Core Manager — Farmers Factory, IGO Group&quot;,&quot;Focus: Farm produce procurement, collection hub operations, and fresh-produce supply chain execution.&quot;,&quot;Key Responsibilities: Produce procurement and farmer sourcing, collection hub management and daily operations, supply chain logistics coordination, produce quality inspection at procurement stage, and supply chain performance tracking and reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6815.JPG" alt="Mr. Amirthalingam S" loading="lazy">
+              <p class="org-name">Mr. Amirthalingam</p>
+              <p class="org-role">Head, Farmers Factory</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Velladurai', 'Data Analytics &amp; Legal — Core Manager', 'Data Team Core Manager in the Data Analytics &amp; Legal department at IGO Group, responsible for managing group-wide data systems, MIS analytics reporting, and legal documentation support. Maintains the data infrastructure that drives informed decision-making across all departments, while supporting the legal team with documentation management, compliance records, and accurate data provisioning for audits and regulatory requirements.', [&quot;Role: Data Team Manager — Data Analytics &amp; Legal, IGO Group&quot;,&quot;Focus: Data system management, MIS and analytics reporting, and legal documentation support.&quot;,&quot;Key Responsibilities: Data system management and data integrity oversight, MIS and performance analytics reporting, dashboard and KPI tracking for leadership, legal document management and archiving, and cross-department data provisioning and reporting coordination.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/velladhurai.jpeg" alt="Mr. Velladurai" loading="lazy">
+              <p class="org-name">Mr. Velladurai</p>
+              <p class="org-role">Head, Legal and Data Management</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Ram Prasath', 'Agri Operations — Core Manager', 'Senior Management Officer (SMO) in Agri Operations at IGO Group, coordinating agri project execution, field teams, and harvest operations across assigned farm projects. Works through full farming cycles — sowing, crop maintenance, and harvest — managing field team performance, enforcing quality standards, and driving timely produce delivery to IGO\'s supply chain and off-take partners.', [&quot;Role: SMO — Agri Operations, IGO Group&quot;,&quot;Focus: Agri project execution, field team coordination, harvest planning, and produce quality monitoring.&quot;,&quot;Key Responsibilities: Agri project execution planning and oversight, field team deployment and performance management, harvest scheduling and logistics, produce quality monitoring and grading, and progress reporting to the Agri Operations Head.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6805.JPG" alt="Mr. Ram Prasath" loading="lazy">
+              <p class="org-name">Mr. Ramprasath</p>
+              <p class="org-role">SMO, Agri Dpt</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Karthikeyan', 'Agri Operations — Core Manager', 'Senior Management Officer (SMO) in Agri Operations at IGO Group, responsible for managing field operations, crop planning, and farm execution across assigned IGO agri projects. Supervises on-ground farm teams through every phase of the farming cycle — from soil preparation and agronomic input planning through crop maintenance and yield harvesting — ensuring operations stay on schedule, on quality, and on budget season after season.', [&quot;Role: SMO — Agri Operations, IGO Group&quot;,&quot;Focus: Field operations management, crop scheduling, farm team supervision, and yield performance tracking.&quot;,&quot;Key Responsibilities: Daily field operation scheduling and task allocation, crop planning and agronomic input management, farm team supervision and performance monitoring, yield tracking and quality checks, and operational reporting to the Agri Operations Head.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6794.JPG" alt="Mr. Karthikeyan" loading="lazy">
+              <p class="org-name">Mr. Karthikeyan</p>
+              <p class="org-role">SMO, Agri Dpt</p>
             </div>
           </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Administration</span>
-            <p class="pro-card-focus">Administration, documentation, facilities management, and internal compliance support.</p>
+          <div class="org-dept-row">
+            <div class="org-node" onclick="openModal('Mr. Lokesh', 'Agri Operations — Core Manager', 'Senior Management Officer (SMO) in Agri Operations at IGO Group, managing assigned farm sites end-to-end to deliver consistent farming outcomes. Oversees every operational layer of his sites — from input procurement planning and field data collection through task compliance monitoring and daily reporting — ensuring each site meets IGO\'s production standards and operational protocols.', [&quot;Role: SMO — Agri Operations, IGO Group&quot;,&quot;Focus: End-to-end farm site management, input planning, field data collection, and operational compliance.&quot;,&quot;Key Responsibilities: Farm site management and oversight, input procurement planning and coordination, field data collection and analysis, task compliance monitoring, and daily operational reports to the Agri Head.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6842.JPG" alt="Mr. Lokesh" loading="lazy">
+              <p class="org-name">Mr. Lokesh</p>
+              <p class="org-role">SMO, Agri Dpt</p>
+            </div>
+          <div class="org-node" onclick="openModal('Mr. Mohammed Ali', 'Head: Palm Cafe — Core Manager', 'Head of Palm Cafe at IGO Group, overseeing day-to-day operations, quality standards, and customer experience at IGO\'s Palm Cafe outlet, while also supporting cross-department coordination within the CEO office ecosystem.', [&quot;Role: Head — Palm Cafe, IGO Group&quot;,&quot;Focus: Palm Cafe operations, quality and service standards, and outlet performance.&quot;,&quot;Key Responsibilities: Day-to-day outlet operations management, quality and hygiene standards oversight, staff coordination, and performance reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/mohammed.jpeg" alt="Mr. Mohammed Ali" loading="lazy">
+              <p class="org-name">Mr. Mohammed Ali</p>
+              <p class="org-role">Head, Palm Cafe</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Rahul', 'SMO — Engineering', 'Senior Management Officer (SMO) in the Engineering department at IGO Group, supporting project engineering, site execution, and technical operations across IGO\'s construction and infrastructure projects alongside the Engineering core team.', [&quot;Role: SMO — Engineering, IGO Group&quot;,&quot;Focus: Engineering project support, site execution, and technical coordination.&quot;,&quot;Key Responsibilities: On-site execution support, technical coordination with contractors and vendors, and progress reporting to the Engineering GMO.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <div class="org-avatar-initials">RA</div>
+              <p class="org-name">Mr. Rahul</p>
+              <p class="org-role">SMO, Engineering Dpt</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Prasath Rajeswaran', 'Engineering — Core Manager', 'General Management Officer (GMO) in the Engineering department at IGO Group, overseeing engineering projects, site execution, and technical operations across IGO\'s construction and infrastructure verticals. Manages the full project lifecycle — from planning and material procurement through on-site supervision, quality control, and final handover — ensuring every project meets IGO\'s technical standards, safety requirements, and delivery timelines.', [&quot;Role: GMO — Engineering, IGO Group&quot;,&quot;Focus: Project engineering, site execution management, quality and safety control, and vendor coordination.&quot;,&quot;Key Responsibilities: Engineering project planning and scheduling, on-site execution monitoring and supervision, quality and safety compliance management, vendor and material procurement coordination, contractor management, and project progress reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6779.JPG" alt="Mr. Prasath Rajeswaran" loading="lazy">
+              <p class="org-name">Mr. Prasath</p>
+              <p class="org-role">SMO, Engineering Dpt</p>
+            </div>
           </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
+          <div class="org-dept-row">
+            <div class="org-node" onclick="openModal('Mr. Mowli', 'SMO — FF Field Business Development', 'Senior Management Officer (SMO) supporting Farmers Factory field business development at IGO Group, coordinating on-ground farmer engagement and business growth initiatives for the Farmers Factory vertical.', [&quot;Role: SMO — FF Field Business Development, IGO Group&quot;,&quot;Focus: On-ground farmer engagement and field business development for Farmers Factory.&quot;,&quot;Key Responsibilities: Farmer engagement and outreach, field business development activities, and coordination with the Farmers Factory core team.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <div class="org-avatar-initials">MO</div>
+              <p class="org-name">Mr. Mowli</p>
+              <p class="org-role">SMO, FF Field Business Development</p>
+            </div>
+          <div class="org-node" onclick="openModal('Mr. Vignesh A', 'Head: IT &amp; AI — Core Manager', 'Head of IT &amp; AI at IGO Group, leading all technology systems, AI initiatives, ERP development, and digital infrastructure across the organization. Responsible for the group\'s entire technology stack — from ERP platforms and web systems through AI automation tools and internal IT infrastructure — driving digital transformation and operational efficiency across all 18 departments and 27 brands.', [&quot;Role: Head — IT &amp; AI, IGO Group&quot;,&quot;Focus: ERP platforms, web and app systems, AI and automation initiatives, and group IT infrastructure management.&quot;,&quot;Key Responsibilities: ERP system development and ongoing management, web and digital platform development and maintenance, AI and automation system design and implementation, IT infrastructure management and cybersecurity, technology support for all departments, and digital transformation roadmap execution.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6796.JPG" alt="Mr. Vignesh A" loading="lazy">
+              <p class="org-name">Mr. Vignesh</p>
+              <p class="org-role">Head, IT &amp; CEO Office Admin</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Tharun Kumar A', 'Head: Admin — Core Manager', 'Head of Administration in the CEO Office at IGO Group, managing all administrative functions, documentation control, facilities coordination, and internal compliance support across the group. Ensures the CEO office and broader administrative ecosystem functions seamlessly — from document management and facilities oversight to compliance coordination and cross-department administrative support that keeps IGO Group running efficiently.', [&quot;Role: Head — Administration, CEO Office, IGO Group&quot;,&quot;Focus: Administrative operations, documentation control, facilities management, and internal compliance support.&quot;,&quot;Key Responsibilities: Day-to-day administrative operations management, documentation and records control, facilities coordination and maintenance oversight, internal compliance process support, and cross-department administrative coordination on behalf of the CEO office.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/WhatsApp Image 2026-08-15 at 5.26.38 PM.jpeg" alt="Mr. Tharun Kumar A" loading="lazy">
+              <p class="org-name">Mr. Tharun</p>
+              <p class="org-role">Head, CEO Office Admin</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Yuthish Priyan', 'Head: R&amp;D — Core Manager', 'Head of Research &amp; Development at IGO Group, driving the research agenda, product innovation, and new project development that keeps IGO at the forefront of farming-tech. Leads R&amp;D initiatives from concept through prototyping and pilot — exploring new crop varieties, farming technologies, product solutions, and scalable business models that can transform and expand across IGO\'s operations.', [&quot;Role: Head — Research &amp; Development, IGO Group&quot;,&quot;Focus: Research initiatives, product innovation, prototype development, and new project ideation.&quot;,&quot;Key Responsibilities: R&amp;D program planning and management, farming and product technology research, prototype development and field pilot execution, innovation pipeline management and prioritization, research partnership development, and findings reporting to leadership.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6791.JPG" alt="Mr. Yuthish Priyan" loading="lazy">
+              <p class="org-name">Mr. Yuthish</p>
+              <p class="org-role">Head, IGO R&amp;D &amp; New Projects</p>
+            </div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-node" onclick="openModal('Mr. Rajesh', 'Civil — Core Manager', 'Core Manager in the Civil department at IGO Group, overseeing civil construction, site infrastructure, and building works across IGO\'s project sites. Manages civil project execution from planning through completion — coordinating contractors, monitoring construction quality, and ensuring civil works meet IGO\'s engineering and safety standards.', [&quot;Role: Core Manager — Civil, IGO Group&quot;,&quot;Focus: Civil construction, site infrastructure, and building works across IGO project sites.&quot;,&quot;Key Responsibilities: Civil project planning and execution, contractor and site coordination, construction quality monitoring, safety compliance, and progress reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6777.JPG" alt="Mr. Rajesh" loading="lazy">
+              <p class="org-name">Mr. Rajesh</p>
+              <p class="org-role">SMO, IGO Engineering Dpt</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Udaykiran', 'Business Development — Core Manager', 'Business Development Manager driving lead generation, client relationships, and deal closures for IGO Group business verticals. Manages the complete sales pipeline from first contact through proposal, negotiation, and closure — building long-term institutional client relationships and consistently supporting group revenue targets under the direction of the NSM and CEO office.', [&quot;Role: BD Manager — Business Development, IGO Group&quot;,&quot;Focus: Lead generation, client engagement, proposal management, and revenue pipeline growth across IGO Group verticals.&quot;,&quot;Key Responsibilities: Lead generation and qualification, client meetings and presentations, proposal and quotation preparation, negotiation and deal closure, CRM data management and updates, and pipeline reporting to the Head of BD.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6787.JPG" alt="Mr. Udaykiran" loading="lazy">
+              <p class="org-name">Mr. Udaykiran</p>
+              <p class="org-role">SMO, IGO Business Development</p>
+            </div>
+          <div class="org-node" onclick="openModal('Ms. Aarthi', 'Head: Marketing — Core Manager', 'Head of Marketing at IGO Group, responsible for building and sustaining the group\'s brand identity, digital presence, and market visibility across all 27 brands. Owns the complete marketing calendar — from campaign ideation and budget planning through digital execution and performance review — while supporting every business vertical with demand generation and compelling brand storytelling that drives institutional and retail engagement.', [&quot;Role: Head — Marketing, IGO Group&quot;,&quot;Focus: Brand strategy, digital campaigns, content leadership, and market visibility across all 27 IGO Group brands.&quot;,&quot;Key Responsibilities: Marketing strategy and annual budget ownership, campaign planning and end-to-end execution, brand guidelines and identity management, digital and social media channel oversight, creative production supervision, and lead-generation support for the BD and sales teams.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6823.JPG" alt="Ms. Aarthi" loading="lazy">
+              <p class="org-name">Ms. Aarthi</p>
+              <p class="org-role">Head, IGO Marketing</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Sharuk', 'Marketing — Core Manager', 'Core Manager in IGO Group\'s Marketing department, responsible for the day-to-day execution of campaigns, creatives, and promotional activities across brands. Translates marketing strategy into tangible content, social media posts, event promotions, and performance reports — ensuring every brand campaign goes live on schedule and reaches the right audience with maximum impact.', [&quot;Role: Core Manager — Marketing, IGO Group&quot;,&quot;Focus: Campaign execution, creative production, social media management, and on-ground promotional activities.&quot;,&quot;Key Responsibilities: Campaign planning and on-time rollout, creative and content production, social media content calendar management, event and on-ground promotion support, campaign performance tracking and reporting to the Head of Marketing.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6861.JPG" alt="Mr. Sharuk" loading="lazy">
+              <p class="org-name">Mr. Sharu</p>
+              <p class="org-role">Head, IGO Marketing</p>
+            </div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-node" onclick="openModal('Ms. Shanmathi Sekar', 'Head: IGO Academy — Core Manager', 'Head of IGO Academy at IGO Group, responsible for leading the Academy\'s overall strategy, training operations, course development, skill development initiatives, and learning ecosystem. Drives the development and delivery of practical, industry-oriented training programs for students, farmers, professionals, entrepreneurs, institutions, and the IGO Group workforce — combining practical agricultural training, technology-driven farming, certification, internships, placement support, and agri-entrepreneurship to prepare learners for the future of agriculture.', [&quot;Role: Head — IGO Academy, IGO Group&quot;,&quot;Core Focus: Agricultural skill development, practical and farm-based training, technology-driven farming training, course and curriculum development, certification and assessments, career and placement support, agri-entrepreneurship and Farmpreneur development, and academic, government and industry partnerships.&quot;,&quot;Key Responsibilities: Strategic planning and overall management of IGO Academy; design, development and delivery of agriculture and skill-development programs; development of practical, industry-oriented curricula and training materials; management of online, offline, hybrid and farm-based training programs; internship, placement and career-development initiatives; certification, assessment and learning-outcome management; agri-entrepreneurship and Farmpreneur development programs; academic, institutional and industry partnerships; monitoring learner engagement, course completion, satisfaction and outcomes; and continuous improvement of training quality and learner experience.&quot;,&quot;Career &amp; Placement: 25,000+ career and job opportunities — connecting skilled learners with career pathways and employment across Agriculture, Agri-Tech, Horticulture, Food, Agri-Business and Allied Sectors through placement assistance, industry and employer connections, internships, resume and interview preparation, soft-skills training, job-readiness programs, career counselling, and entrepreneurship pathways for aspiring Farmpreneurs.&quot;,&quot;Technology-Driven Farming Training: Precision farming, IoT and smart agriculture, AI and automation, sensors and data-driven farming, hydroponics, vertical farming, polyhouse and protected cultivation, drone and remote-sensing applications, smart irrigation and fertigation, and sustainable, climate-smart agriculture.&quot;,&quot;Partnerships &amp; Collaborations: Academic institutions, government bodies, industry partners, FPOs and farmer groups, agri-tech companies, and skill development missions — building a strong ecosystem for learning, innovation and sustainable agriculture.&quot;,&quot;Strategic Objective: Learn → Practice → Certify → Earn → Build — creating job-ready and business-ready professionals by combining structured education, practical farm exposure, technology-based learning, industry knowledge, certification, career support, placement opportunities and entrepreneurship development.&quot;,&quot;Four Strategic Pillars: (1) Technology — preparing learners for technology-driven agriculture; (2) Practical Skills — transforming knowledge into hands-on capability through live-farm and industry exposure; (3) Career &amp; Placement — connecting trained learners with internships, employment and career pathways; (4) Entrepreneurship — enabling learners to build, manage and scale sustainable agri-businesses.&quot;,&quot;Key Outcome: Building skilled professionals, job-ready talent, successful Farmpreneurs, and a future-ready agricultural workforce.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6809.JPG" alt="Ms. Shanmathi Sekar" loading="lazy">
+              <p class="org-name">Ms. Shanmathi</p>
+              <p class="org-role">Head, IGO Academy</p>
+            </div>
+            <div class="org-node" onclick="openModal('Ms. Maheshwari', 'Head: IGO Accounts — Core Manager', 'Head of Accounts at IGO Group, overseeing financial record-keeping, accounts management, and fiscal reporting to support the group\'s financial governance across all departments and brands.', [&quot;Role: Head — IGO Accounts, IGO Group&quot;,&quot;Focus: Accounts management, financial record-keeping, and fiscal reporting.&quot;,&quot;Key Responsibilities: Day-to-day accounts management, financial record-keeping and reconciliation, fiscal reporting, and coordination with the finance and CFO office on group-level reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <div class="org-avatar-initials">MH</div>
+              <p class="org-name">Ms. Maheshwari</p>
+              <p class="org-role">Head, IGO Accounts</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Hari Haran K', 'New Projects &amp; R&amp;D — Core Manager', 'Core Manager for New Projects &amp; R&amp;D at IGO Group, leading and overseeing the planning and execution of all new projects from concept through delivery. Develops project plans, timelines, resource allocation, and execution strategies, providing technical and engineering leadership across design and decision-making. Manages material selection, procurement, and vendor coordination while monitoring project budgets, costs, and overall financial performance — ensuring timely execution, quality standards, and site coordination across every new initiative. Identifies project challenges, implements effective technical solutions, and coordinates closely with internal departments, clients, vendors, and contractors to verify progress, quality, and deliverables against approved plans and standards.', [&quot;Role: Core Manager — New Projects &amp; R&amp;D, IGO Group&quot;,&quot;Focus: New Project Development and Strategy; Innovation; Engineering Management; Project Cost Management; Execution Excellence; Project Risk and Quality Management.&quot;,&quot;Key Responsibilities: Lead and drive New Project planning and execution, develop strategic project plans and timelines, provide technical and engineering leadership, manage team performance and responsibilities, oversee material selection and vendor coordination, optimize project costs and resources, ensure quality and timely delivery, resolve technical challenges, strengthen stakeholder coordination, and verify overall project performance and deliverables.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6820.JPG" alt="Mr. Hari Haran K" loading="lazy">
+              <p class="org-name">Mr. Hariharan</p>
+              <p class="org-role">SMO, IGO R&amp;D &amp; New Projects</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Surya', 'SMO: IGO Cocopeat Factory — Core Manager', 'Senior Management Officer (SMO) at IGO Cocopeat Factory, overseeing production operations, quality control, and day-to-day plant management for IGO\'s cocopeat manufacturing unit.', [&quot;Role: SMO — IGO Cocopeat Factory, IGO Group&quot;,&quot;Focus: Production operations, quality control, and plant management for the cocopeat factory.&quot;,&quot;Key Responsibilities: Daily production operations management, quality control checks, plant maintenance coordination, and output and performance reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <div class="org-avatar-initials">SU</div>
+              <p class="org-name">Mr. Surya</p>
+              <p class="org-role">SMO, IGO Cocopeat Factory</p>
+            </div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-node" onclick="openModal('Mr. Punith', 'Site Visit — Core Manager', 'Core Manager in the Site Visit team at IGO Group, coordinating on-ground site visits, inspections, and field verification across IGO\'s agri estates and project locations. Ensures every site visit is documented accurately and findings are reported back to the relevant department for follow-up action.', [&quot;Role: Core Manager — Site Visit, IGO Group&quot;,&quot;Focus: On-ground site visits, inspections, and field verification across IGO locations.&quot;,&quot;Key Responsibilities: Site visit scheduling and coordination, on-ground inspection and documentation, field verification reporting, and cross-department follow-up coordination.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6827.JPG" alt="Mr. Punith" loading="lazy">
+              <p class="org-name">Mr. Punith</p>
+              <p class="org-role">SMO, IGO Site Visits</p>
+            </div>
+            <div class="org-node" onclick="openModal('Ms. Amritha', 'Head: Valluvam Products — Core Manager', 'Head of Valluvam Products at IGO Group, overseeing product operations, quality standards, and business growth for the Valluvam product line.', [&quot;Role: Head — Valluvam Products, IGO Group&quot;,&quot;Focus: Product operations, quality standards, and business growth for Valluvam.&quot;,&quot;Key Responsibilities: Product operations management, quality standards oversight, and business growth planning for the Valluvam product line.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <div class="org-avatar-initials">AM</div>
+              <p class="org-name">Ms. Amritha</p>
+              <p class="org-role">Head, Valluvam Products</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Douglas', 'SMO: Legal &amp; IGO Hostel — Core Manager', 'Senior Management Officer (SMO) supporting Legal and IGO Hostel operations at IGO Group, coordinating compliance documentation and hostel facility management.', [&quot;Role: SMO — Legal &amp; IGO Hostel, IGO Group&quot;,&quot;Focus: Legal documentation support and IGO Hostel facility operations.&quot;,&quot;Key Responsibilities: Legal document management and compliance support, IGO Hostel facility oversight, and coordination with the Data Analytics &amp; Legal team on documentation matters.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <div class="org-avatar-initials">DO</div>
+              <p class="org-name">Mr. Douglas</p>
+              <p class="org-role">SMO, Legal &amp; IGO Hostel</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Sathish', 'HR Manager', 'Human Resources Manager at IGO Group, supporting the full employee lifecycle across the organization — from recruitment and onboarding through attendance management, payroll coordination, and employee engagement. Works alongside the HR team to maintain disciplined, compliant, and engaged workforce practices across IGO Group\'s departments and brands.', [&quot;Role: HR Manager — Human Resources, IGO Group&quot;,&quot;Focus: Recruitment, onboarding, attendance and LOP management, payroll coordination, and employee engagement.&quot;,&quot;Key Responsibilities: Talent acquisition and recruitment support, employee onboarding and documentation, attendance and leave management, payroll processing coordination, grievance handling, and employee engagement initiatives.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/sathish.jpeg" alt="Mr. Sathish" loading="lazy">
+              <p class="org-name">Mr. Sathish</p>
+              <p class="org-role">HR, IGO Group</p>
+            </div>
+          </div>
+          <div class="org-dept-row">
+            <div class="org-node" onclick="openModal('Mr. Sanjay Karan Ravi', 'HR — Core Manager', 'Human Resources Manager at IGO Group, responsible for the full employee lifecycle across the organization — from recruitment and onboarding through attendance management, payroll coordination, and employee engagement. Builds and maintains the HR systems and processes that support IGO Group\'s growing workforce across all 18 departments and 27 brands, ensuring a disciplined, compliant, and engaged organizational culture.', [&quot;Role: HR Manager — Human Resources, IGO Group&quot;,&quot;Focus: Recruitment, onboarding, attendance and LOP management, payroll coordination, and employee engagement.&quot;,&quot;Key Responsibilities: Talent acquisition and recruitment across all departments, employee onboarding and documentation, attendance and leave management, payroll processing coordination, grievance handling, performance review support, and employee engagement initiatives.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/IMG_6831.JPG" alt="Mr. Sanjay Karan Ravi" loading="lazy">
+              <p class="org-name">Mr. Sanjay Karan Ravi</p>
+              <p class="org-role">HR Manager, IGO Group</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Jagan', 'Chief Financial Officer', 'Chief Financial Officer at IGO Group, overseeing group-level financial strategy, planning, and fiscal governance across all 27 brands and 18 departments as the group scales.', [&quot;Role: Chief Financial Officer, IGO Group&quot;,&quot;Focus: Group-level financial strategy, planning, and fiscal governance across all brands and departments.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <div class="org-avatar-initials">JA</div>
+              <p class="org-name">Mr. Jagan</p>
+              <p class="org-role">Chief Financial Officer</p>
+            </div>
+            <div class="org-node" onclick="openModal('Mr. Raagul Raj R', 'Head: JV Engineering — Core Manager', 'Head of JV Engineering (SMO) at IGO Group, leading joint-venture engineering projects and construction operations from inception through delivery. Manages JV project delivery end to end — handling site planning, contractor and subcontractor management, client coordination, and execution quality assurance — ensuring every JV project is completed on time, within budget, and to the highest engineering and safety standards.', [&quot;Role: Head — JV Engineering (SMO), IGO Group&quot;,&quot;Focus: JV project delivery, site planning and scheduling, contractor management, and execution quality assurance.&quot;,&quot;Key Responsibilities: JV project delivery and milestone management, site planning and construction scheduling, contractor and subcontractor oversight, client liaison and progress communications, quality assurance inspections, and project handover coordination.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+              <img class="org-avatar" src="assets/img/leadership/rahgul.jpeg" alt="Mr. Raagul Raj R" loading="lazy">
+              <p class="org-name">Mr. Raagul Raj R</p>
+              <p class="org-role">Head, JV Engineering</p>
+            </div>
+          </div>
         </div>
+      </div>
+
+    <div class="org-connector"><span class="org-dot" style="bottom:-4px;"></span></div>
+    <p class="org-tier-label">Tier 5 &mdash; Area Managers, Agri Dpt</p>
+    <div class="org-tier-row" data-reveal>
+      <span class="org-dot" style="top:-1px;"></span>
+      <div class="org-node" onclick="openModal('Mr. Sanjay Vasanthakumar', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, overseeing regional farm operations, field team coordination, and agri project execution within the assigned area.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: Regional farm operations, field team coordination, and agri project execution.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+        <div class="org-avatar-initials">SV</div>
+        <p class="org-name">Mr. Sanjay Vasanthakumar</p>
+        <p class="org-role">Area Manager, Agri Dpt</p>
+      </div>
+      <div class="org-node" onclick="openModal('Mr. Ranjeet Kumar', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, overseeing regional farm operations, field team coordination, and agri project execution within the assigned area.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: Regional farm operations, field team coordination, and agri project execution.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+        <div class="org-avatar-initials">RK</div>
+        <p class="org-name">Mr. Ranjeet Kumar</p>
+        <p class="org-role">Area Manager, Agri Dpt</p>
+      </div>
+      <div class="org-node" onclick="openModal('Mr. Jitendra Kumar', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, overseeing regional farm operations, field team coordination, and agri project execution within the assigned area.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: Regional farm operations, field team coordination, and agri project execution.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+        <div class="org-avatar-initials">JK</div>
+        <p class="org-name">Mr. Jitendra Kumar</p>
+        <p class="org-role">Area Manager, Agri Dpt</p>
+      </div>
+      <div class="org-node" onclick="openModal('Mr. Keerthieeswaran', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, overseeing regional farm operations, field team coordination, and agri project execution within the assigned area.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: Regional farm operations, field team coordination, and agri project execution.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
+        <div class="org-avatar-initials">KE</div>
+        <p class="org-name">Mr. Keerthieeswaran</p>
+        <p class="org-role">Area Manager, Agri Dpt</p>
       </div>
     </div>
 
-    <!-- Agri Estate & Vendor Sourcing -->
-    <div class="dept-group">
-      <h4 class="dept-label">Agri Estate &amp; Vendor Sourcing</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Am Basha', 'Head: Agri Estate &amp; Vendor Sourcing — Core Manager (NSM)', 'National Sales Manager (NSM) and Head of Agri Estate &amp; Vendor Sourcing at IGO Group, joining the core management team in March 2026. Leads nationwide agri estate acquisition and vendor sourcing strategy — overseeing land identification, farmer onboarding, vendor onboarding, and procurement partnerships that expand IGO Group\'s agri footprint and supply chain. Works directly under the CEO office to build and scale both verticals at a national level.', [&quot;Role: NSM &amp; Head — Agri Estate &amp; Vendor Sourcing, IGO Group (Joined: Mar 09, 2026)&quot;,&quot;Focus: National agri estate acquisition, vendor sourcing, and procurement partnership strategy.&quot;,&quot;Key Responsibilities: Agri estate identification and acquisition across territories, landowner onboarding and relationship management, vendor and supplier onboarding and relationship management, sourcing and acquisition strategy design and execution, procurement pipeline development, team leadership across both verticals, and performance reporting to the CEO office.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6814.JPG" alt="Mr. Am Basha" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Am Basha</p>
-              <p class="pro-card-designation">Head — Agri Estate &amp; Vendor Sourcing (NSM)</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Agri Estate &amp; Vendor Sourcing</span>
-            <p class="pro-card-focus">National agri estate acquisition, vendor sourcing, and procurement pipeline development across India.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
+    <div class="org-stat-bar" data-reveal>
+      <div class="org-stat-item"><svg><use href="#icon-leaf2"/></svg><span><span class="org-stat-num">26+</span><span class="org-stat-label">Brands</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-grad"/></svg><span><span class="org-stat-num">18+</span><span class="org-stat-label">Divisions</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-handshake"/></svg><span><span class="org-stat-num">2000+</span><span class="org-stat-label">Team Strength</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-globe"/></svg><span><span class="org-stat-num">28</span><span class="org-stat-label">States</span></span></div>
+      <div class="org-stat-divider"></div>
+      <div class="org-stat-item"><svg><use href="#icon-compass"/></svg><span><span class="org-stat-num">700+</span><span class="org-stat-label">Districts</span></span></div>
     </div>
-
-    <!-- Agri Operations -->
-    <div class="dept-group">
-      <h4 class="dept-label">Agri Operations</h4>
-      <div class="grid three-grid">
-        <div class="pro-card" data-reveal onclick="openModal('Mr. Karthikeyan', 'Agri Operations — Core Manager', 'Senior Management Officer (SMO) in Agri Operations at IGO Group, responsible for managing field operations, crop planning, and farm execution across assigned IGO agri projects. Supervises on-ground farm teams through every phase of the farming cycle — from soil preparation and agronomic input planning through crop maintenance and yield harvesting — ensuring operations stay on schedule, on quality, and on budget season after season.', [&quot;Role: SMO — Agri Operations, IGO Group&quot;,&quot;Focus: Field operations management, crop scheduling, farm team supervision, and yield performance tracking.&quot;,&quot;Key Responsibilities: Daily field operation scheduling and task allocation, crop planning and agronomic input management, farm team supervision and performance monitoring, yield tracking and quality checks, and operational reporting to the Agri Operations Head.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6794.JPG" alt="Mr. Karthikeyan" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Karthikeyan</p>
-              <p class="pro-card-designation">SMO — Agri Operations</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Agri Operations</span>
-            <p class="pro-card-focus">Field operations, crop scheduling, farm supervision, and yield performance management.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-        <div class="pro-card" data-reveal onclick="openModal('Mr. Lokesh', 'Agri Operations — Core Manager', 'Senior Management Officer (SMO) in Agri Operations at IGO Group, managing assigned farm sites end-to-end to deliver consistent farming outcomes. Oversees every operational layer of his sites — from input procurement planning and field data collection through task compliance monitoring and daily reporting — ensuring each site meets IGO\'s production standards and operational protocols.', [&quot;Role: SMO — Agri Operations, IGO Group&quot;,&quot;Focus: End-to-end farm site management, input planning, field data collection, and operational compliance.&quot;,&quot;Key Responsibilities: Farm site management and oversight, input procurement planning and coordination, field data collection and analysis, task compliance monitoring, and daily operational reports to the Agri Head.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6842.JPG" alt="Mr. Lokesh" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Lokesh</p>
-              <p class="pro-card-designation">SMO — Agri Operations</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Agri Operations</span>
-            <p class="pro-card-focus">Farm site management, input planning, field data collection, and daily operational reporting.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-        <div class="pro-card" data-reveal onclick="openModal('Mr. Ram Prasath', 'Agri Operations — Core Manager', 'Senior Management Officer (SMO) in Agri Operations at IGO Group, coordinating agri project execution, field teams, and harvest operations across assigned farm projects. Works through full farming cycles — sowing, crop maintenance, and harvest — managing field team performance, enforcing quality standards, and driving timely produce delivery to IGO\'s supply chain and off-take partners.', [&quot;Role: SMO — Agri Operations, IGO Group&quot;,&quot;Focus: Agri project execution, field team coordination, harvest planning, and produce quality monitoring.&quot;,&quot;Key Responsibilities: Agri project execution planning and oversight, field team deployment and performance management, harvest scheduling and logistics, produce quality monitoring and grading, and progress reporting to the Agri Operations Head.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6805.JPG" alt="Mr. Ram Prasath" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Ram Prasath</p>
-              <p class="pro-card-designation">SMO — Agri Operations</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Agri Operations</span>
-            <p class="pro-card-focus">Agri project execution, field team coordination, harvest planning, and quality monitoring.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Business Development -->
-    <div class="dept-group">
-      <h4 class="dept-label">Business Development</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Udaykiran', 'Business Development — Core Manager', 'Business Development Manager driving lead generation, client relationships, and deal closures for IGO Group business verticals. Manages the complete sales pipeline from first contact through proposal, negotiation, and closure — building long-term institutional client relationships and consistently supporting group revenue targets under the direction of the NSM and CEO office.', [&quot;Role: BD Manager — Business Development, IGO Group&quot;,&quot;Focus: Lead generation, client engagement, proposal management, and revenue pipeline growth across IGO Group verticals.&quot;,&quot;Key Responsibilities: Lead generation and qualification, client meetings and presentations, proposal and quotation preparation, negotiation and deal closure, CRM data management and updates, and pipeline reporting to the Head of BD.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6787.JPG" alt="Mr. Udaykiran" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Udaykiran</p>
-              <p class="pro-card-designation">BD Manager</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Business Development</span>
-            <p class="pro-card-focus">Lead generation, client engagement, proposals, and revenue pipeline growth.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Buy-Back -->
-    <div class="dept-group">
-      <h4 class="dept-label">Buy-Back</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Shiva', 'Buy-Back — Core Manager', 'Core Manager in the Buy-Back department at IGO Group, overseeing buy-back operations, produce quality inspection, and farmer relationship management. Ensures every buy-back collection meets IGO\'s quality standards, that farmers are engaged fairly and transparently, and that department operations are tracked, documented, and reported accurately to support operational excellence and farmer trust.', [&quot;Role: Core Manager — Buy-Back, IGO Group&quot;,&quot;Focus: Buy-back operations management, produce quality inspection, and farmer relationship development.&quot;,&quot;Key Responsibilities: Buy-back operations oversight and daily management, produce quality inspection and grading at collection points, farmer relationship management and grievance resolution, collection logistics coordination, and operational performance tracking and reporting.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6806.JPG" alt="Mr. Shiva" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Shiva</p>
-              <p class="pro-card-designation">Core Manager — Buy-Back</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Buy-Back</span>
-            <p class="pro-card-focus">Buy-back operations, quality checks, and farmer relationship management.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Civil -->
-    <div class="dept-group">
-      <h4 class="dept-label">Civil</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Rajesh', 'Civil — Core Manager', 'Core Manager in the Civil department at IGO Group, overseeing civil construction, site infrastructure, and building works across IGO\'s project sites. Manages civil project execution from planning through completion — coordinating contractors, monitoring construction quality, and ensuring civil works meet IGO\'s engineering and safety standards.', [&quot;Role: Core Manager — Civil, IGO Group&quot;,&quot;Focus: Civil construction, site infrastructure, and building works across IGO project sites.&quot;,&quot;Key Responsibilities: Civil project planning and execution, contractor and site coordination, construction quality monitoring, safety compliance, and progress reporting.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6777.JPG" alt="Mr. Rajesh" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Rajesh</p>
-              <p class="pro-card-designation">Core Manager — Civil</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Civil</span>
-            <p class="pro-card-focus">Civil construction, site infrastructure, and building works across IGO project sites.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Data Analytics & Legal -->
-    <div class="dept-group">
-      <h4 class="dept-label">Data Analytics &amp; Legal</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Velladurai', 'Data Analytics &amp; Legal — Core Manager', 'Data Team Core Manager in the Data Analytics &amp; Legal department at IGO Group, responsible for managing group-wide data systems, MIS analytics reporting, and legal documentation support. Maintains the data infrastructure that drives informed decision-making across all departments, while supporting the legal team with documentation management, compliance records, and accurate data provisioning for audits and regulatory requirements.', [&quot;Role: Data Team Manager — Data Analytics &amp; Legal, IGO Group&quot;,&quot;Focus: Data system management, MIS and analytics reporting, and legal documentation support.&quot;,&quot;Key Responsibilities: Data system management and data integrity oversight, MIS and performance analytics reporting, dashboard and KPI tracking for leadership, legal document management and archiving, and cross-department data provisioning and reporting coordination.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/velladhurai.jpeg" alt="Mr. Velladurai" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Velladurai</p>
-              <p class="pro-card-designation">Data Team Manager</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Data Analytics &amp; Legal</span>
-            <p class="pro-card-focus">Data management, reporting and analytics, and legal documentation support for the group.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Engineering -->
-    <div class="dept-group">
-      <h4 class="dept-label">Engineering</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Prasath Rajeswaran', 'Engineering — Core Manager', 'General Management Officer (GMO) in the Engineering department at IGO Group, overseeing engineering projects, site execution, and technical operations across IGO\'s construction and infrastructure verticals. Manages the full project lifecycle — from planning and material procurement through on-site supervision, quality control, and final handover — ensuring every project meets IGO\'s technical standards, safety requirements, and delivery timelines.', [&quot;Role: GMO — Engineering, IGO Group&quot;,&quot;Focus: Project engineering, site execution management, quality and safety control, and vendor coordination.&quot;,&quot;Key Responsibilities: Engineering project planning and scheduling, on-site execution monitoring and supervision, quality and safety compliance management, vendor and material procurement coordination, contractor management, and project progress reporting.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6779.JPG" alt="Mr. Prasath Rajeswaran" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Prasath Rajeswaran</p>
-              <p class="pro-card-designation">GMO — Engineering</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Engineering</span>
-            <p class="pro-card-focus">Project engineering, site execution, quality &amp; safety control, and vendor coordination.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Farmers Factory -->
-    <div class="dept-group">
-      <h4 class="dept-label">Farmers Factory</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Amirthalingam S', 'Farmers Factory — Core Manager', 'Core Manager in the Farmers Factory unit at IGO Group, supporting the fresh-produce supply chain from farm-level procurement through collection hub operations and last-mile delivery. Manages the day-to-day procurement pipeline, hub operations, and logistics coordination that ensures fresh produce moves efficiently and reliably from partner farmers to IGO\'s distribution and retail network.', [&quot;Role: Core Manager — Farmers Factory, IGO Group&quot;,&quot;Focus: Farm produce procurement, collection hub operations, and fresh-produce supply chain execution.&quot;,&quot;Key Responsibilities: Produce procurement and farmer sourcing, collection hub management and daily operations, supply chain logistics coordination, produce quality inspection at procurement stage, and supply chain performance tracking and reporting.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6815.JPG" alt="Mr. Amirthalingam S" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Amirthalingam S</p>
-              <p class="pro-card-designation">Core Manager — Farmers Factory</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Farmers Factory</span>
-            <p class="pro-card-focus">Procurement, hub operations, and fresh-produce supply chain execution.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Human Resources -->
-    <div class="dept-group">
-      <h4 class="dept-label">Human Resources</h4>
-      <div class="grid two-grid">
-        <div class="pro-card" data-reveal onclick="openModal('Mr. Sanjay Karan Ravi', 'HR — Core Manager', 'Human Resources Manager at IGO Group, responsible for the full employee lifecycle across the organization — from recruitment and onboarding through attendance management, payroll coordination, and employee engagement. Builds and maintains the HR systems and processes that support IGO Group\'s growing workforce across all 18 departments and 27 brands, ensuring a disciplined, compliant, and engaged organizational culture.', [&quot;Role: HR Manager — Human Resources, IGO Group&quot;,&quot;Focus: Recruitment, onboarding, attendance and LOP management, payroll coordination, and employee engagement.&quot;,&quot;Key Responsibilities: Talent acquisition and recruitment across all departments, employee onboarding and documentation, attendance and leave management, payroll processing coordination, grievance handling, performance review support, and employee engagement initiatives.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6831.JPG" alt="Mr. Sanjay Karan Ravi" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Sanjay Karan Ravi</p>
-              <p class="pro-card-designation">HR Manager</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Human Resources</span>
-            <p class="pro-card-focus">Recruitment, attendance management, payroll coordination, and employee lifecycle management.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-        <div class="pro-card" data-reveal onclick="openModal('Mr. Sathish', 'HR Manager', 'Human Resources Manager at IGO Group, supporting the full employee lifecycle across the organization — from recruitment and onboarding through attendance management, payroll coordination, and employee engagement. Works alongside the HR team to maintain disciplined, compliant, and engaged workforce practices across IGO Group\'s departments and brands.', [&quot;Role: HR Manager — Human Resources, IGO Group&quot;,&quot;Focus: Recruitment, onboarding, attendance and LOP management, payroll coordination, and employee engagement.&quot;,&quot;Key Responsibilities: Talent acquisition and recruitment support, employee onboarding and documentation, attendance and leave management, payroll processing coordination, grievance handling, and employee engagement initiatives.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/sathish.jpeg" alt="Mr. Sathish" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Sathish</p>
-              <p class="pro-card-designation">HR Manager</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Human Resources</span>
-            <p class="pro-card-focus">Recruitment, attendance management, payroll coordination, and employee lifecycle management.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- IGO Academy -->
-    <div class="dept-group">
-      <h4 class="dept-label">IGO Academy</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Ms. Shanmathi Sekar', 'Head: IGO Academy — Core Manager', 'Head of IGO Academy at IGO Group, responsible for designing, delivering, and managing all training programs, skill development initiatives, and learning activities across the organization. Drives the continuous upskilling of IGO\'s workforce through structured training calendars, internal programs, and external academic partnerships — building the human capital and institutional knowledge that powers IGO Group\'s long-term growth.', [&quot;Role: Head — IGO Academy, IGO Group&quot;,&quot;Focus: Training program design and delivery, skill development, learning calendar management, and academic partnerships.&quot;,&quot;Key Responsibilities: Training program planning, design, and delivery, internal skill development and certification programs, academic partnership development and management, training calendar coordination across departments, and learning outcome tracking and reporting.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6809.JPG" alt="Ms. Shanmathi Sekar" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Ms. Shanmathi Sekar</p>
-              <p class="pro-card-designation">Head — IGO Academy</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">IGO Academy</span>
-            <p class="pro-card-focus">Training design, skill development programs, and academic partnerships for IGO Group.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- IT & AI -->
-    <div class="dept-group">
-      <h4 class="dept-label">IT &amp; AI</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Vignesh A', 'Head: IT &amp; AI — Core Manager', 'Head of IT &amp; AI at IGO Group, leading all technology systems, AI initiatives, ERP development, and digital infrastructure across the organization. Responsible for the group\'s entire technology stack — from ERP platforms and web systems through AI automation tools and internal IT infrastructure — driving digital transformation and operational efficiency across all 18 departments and 27 brands.', [&quot;Role: Head — IT &amp; AI, IGO Group&quot;,&quot;Focus: ERP platforms, web and app systems, AI and automation initiatives, and group IT infrastructure management.&quot;,&quot;Key Responsibilities: ERP system development and ongoing management, web and digital platform development and maintenance, AI and automation system design and implementation, IT infrastructure management and cybersecurity, technology support for all departments, and digital transformation roadmap execution.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6796.JPG" alt="Mr. Vignesh A" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Vignesh A</p>
-              <p class="pro-card-designation">Head — IT &amp; AI</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">IT &amp; AI</span>
-            <p class="pro-card-focus">ERP and web platforms, AI and automation systems, and group IT infrastructure.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- JV Engineering -->
-    <div class="dept-group">
-      <h4 class="dept-label">JV Engineering</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Raagul Raj R', 'Head: JV Engineering — Core Manager', 'Head of JV Engineering (SMO) at IGO Group, leading joint-venture engineering projects and construction operations from inception through delivery. Manages JV project delivery end to end — handling site planning, contractor and subcontractor management, client coordination, and execution quality assurance — ensuring every JV project is completed on time, within budget, and to the highest engineering and safety standards.', [&quot;Role: Head — JV Engineering (SMO), IGO Group&quot;,&quot;Focus: JV project delivery, site planning and scheduling, contractor management, and execution quality assurance.&quot;,&quot;Key Responsibilities: JV project delivery and milestone management, site planning and construction scheduling, contractor and subcontractor oversight, client liaison and progress communications, quality assurance inspections, and project handover coordination.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/rahgul.jpeg" alt="Mr. Raagul Raj R" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Raagul Raj R</p>
-              <p class="pro-card-designation">Head — JV Engineering (SMO)</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">JV Engineering</span>
-            <p class="pro-card-focus">JV project delivery, site planning, contractor management, and execution quality assurance.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Marketing -->
-    <div class="dept-group">
-      <h4 class="dept-label">Marketing</h4>
-      <div class="grid three-grid">
-        <div class="pro-card" data-reveal onclick="openModal('Ms. Aarthi', 'Head: Marketing — Core Manager', 'Head of Marketing at IGO Group, responsible for building and sustaining the group\'s brand identity, digital presence, and market visibility across all 27 brands. Owns the complete marketing calendar — from campaign ideation and budget planning through digital execution and performance review — while supporting every business vertical with demand generation and compelling brand storytelling that drives institutional and retail engagement.', [&quot;Role: Head — Marketing, IGO Group&quot;,&quot;Focus: Brand strategy, digital campaigns, content leadership, and market visibility across all 27 IGO Group brands.&quot;,&quot;Key Responsibilities: Marketing strategy and annual budget ownership, campaign planning and end-to-end execution, brand guidelines and identity management, digital and social media channel oversight, creative production supervision, and lead-generation support for the BD and sales teams.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6823.JPG" alt="Ms. Aarthi" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Ms. Aarthi</p>
-              <p class="pro-card-designation">Head — Marketing</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Marketing</span>
-            <p class="pro-card-focus">Brand strategy, digital campaigns, content, and market visibility across all group brands.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-        <div class="pro-card" data-reveal onclick="openModal('Mr. Sharuk', 'Marketing — Core Manager', 'Core Manager in IGO Group\'s Marketing department, responsible for the day-to-day execution of campaigns, creatives, and promotional activities across brands. Translates marketing strategy into tangible content, social media posts, event promotions, and performance reports — ensuring every brand campaign goes live on schedule and reaches the right audience with maximum impact.', [&quot;Role: Core Manager — Marketing, IGO Group&quot;,&quot;Focus: Campaign execution, creative production, social media management, and on-ground promotional activities.&quot;,&quot;Key Responsibilities: Campaign planning and on-time rollout, creative and content production, social media content calendar management, event and on-ground promotion support, campaign performance tracking and reporting to the Head of Marketing.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6861.JPG" alt="Mr. Sharuk" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Sharuk</p>
-              <p class="pro-card-designation">Marketing Manager</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Marketing</span>
-            <p class="pro-card-focus">Campaign execution, creatives, social media, and on-ground promotional activities.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- New Projects & R&D -->
-    <div class="dept-group">
-      <h4 class="dept-label">New Projects &amp; R&amp;D</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Hari Haran K', 'New Projects &amp; R&amp;D — Core Manager', 'Core Manager for New Projects &amp; R&amp;D at IGO Group, leading and overseeing the planning and execution of all new projects from concept through delivery. Develops project plans, timelines, resource allocation, and execution strategies, providing technical and engineering leadership across design and decision-making. Manages material selection, procurement, and vendor coordination while monitoring project budgets, costs, and overall financial performance — ensuring timely execution, quality standards, and site coordination across every new initiative. Identifies project challenges, implements effective technical solutions, and coordinates closely with internal departments, clients, vendors, and contractors to verify progress, quality, and deliverables against approved plans and standards.', [&quot;Role: Core Manager — New Projects &amp; R&amp;D, IGO Group&quot;,&quot;Focus: New Project Development and Strategy; Innovation; Engineering Management; Project Cost Management; Execution Excellence; Project Risk and Quality Management.&quot;,&quot;Key Responsibilities: Lead and drive New Project planning and execution, develop strategic project plans and timelines, provide technical and engineering leadership, manage team performance and responsibilities, oversee material selection and vendor coordination, optimize project costs and resources, ensure quality and timely delivery, resolve technical challenges, strengthen stakeholder coordination, and verify overall project performance and deliverables.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6820.JPG" alt="Mr. Hari Haran K" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Hari Haran K</p>
-              <p class="pro-card-designation">Core Manager — New Projects &amp; R&amp;D</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">New Projects &amp; R&amp;D</span>
-            <p class="pro-card-focus">New project development &amp; strategy, engineering management, cost control, and execution excellence.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Purchase -->
-    <div class="dept-group">
-      <h4 class="dept-label">Purchase</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Saravanan', 'Head: Purchase — Core Manager', 'Head of Purchase at IGO Group, responsible for end-to-end procurement strategy, vendor management, and cost optimization across all group operations and departments. Manages IGO\'s vendor ecosystem — identifying and qualifying suppliers, negotiating contracts, controlling procurement costs, and ensuring timely material availability to support uninterrupted operations across all 18 departments and 27 brands.', [&quot;Role: Head — Purchase, IGO Group&quot;,&quot;Focus: Procurement strategy, vendor management, contract negotiations, and purchase cost control across all operations.&quot;,&quot;Key Responsibilities: Group-wide procurement planning and execution, vendor identification, qualification, and relationship management, contract negotiation and terms management, purchase cost optimization, cross-department material planning and supply coordination, and procurement performance reporting.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6775.JPG" alt="Mr. Saravanan" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Saravanan</p>
-              <p class="pro-card-designation">Head — Purchase</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Purchase</span>
-            <p class="pro-card-focus">Procurement strategy, vendor negotiations, and purchase cost optimization for the group.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Research & Development -->
-    <div class="dept-group">
-      <h4 class="dept-label">Research &amp; Development</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Yuthish Priyan', 'Head: R&amp;D — Core Manager', 'Head of Research &amp; Development at IGO Group, driving the research agenda, product innovation, and new project development that keeps IGO at the forefront of farming-tech. Leads R&amp;D initiatives from concept through prototyping and pilot — exploring new crop varieties, farming technologies, product solutions, and scalable business models that can transform and expand across IGO\'s operations.', [&quot;Role: Head — Research &amp; Development, IGO Group&quot;,&quot;Focus: Research initiatives, product innovation, prototype development, and new project ideation.&quot;,&quot;Key Responsibilities: R&amp;D program planning and management, farming and product technology research, prototype development and field pilot execution, innovation pipeline management and prioritization, research partnership development, and findings reporting to leadership.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6791.JPG" alt="Mr. Yuthish Priyan" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Yuthish Priyan</p>
-              <p class="pro-card-designation">Head — R&amp;D</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Research &amp; Development</span>
-            <p class="pro-card-focus">Research initiatives, product prototyping, and innovation pipelines for IGO Group.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Site Visit -->
-    <div class="dept-group">
-      <h4 class="dept-label">Site Visit</h4>
-      <div style="display:flex;justify-content:center;">
-        <div class="pro-card" data-reveal style="max-width:360px;width:100%;" onclick="openModal('Mr. Punith', 'Site Visit — Core Manager', 'Core Manager in the Site Visit team at IGO Group, coordinating on-ground site visits, inspections, and field verification across IGO\'s agri estates and project locations. Ensures every site visit is documented accurately and findings are reported back to the relevant department for follow-up action.', [&quot;Role: Core Manager — Site Visit, IGO Group&quot;,&quot;Focus: On-ground site visits, inspections, and field verification across IGO locations.&quot;,&quot;Key Responsibilities: Site visit scheduling and coordination, on-ground inspection and documentation, field verification reporting, and cross-department follow-up coordination.&quot;], null, null, (this.querySelector('img.pro-avatar')||this.querySelector('img.l1-avatar')||this.querySelector('img.ceo-avatar-lg')||{}).src)">
-          <div class="pro-card-strip"></div>
-          <div class="pro-card-top">
-            <img class="pro-avatar" src="assets/img/leadership/IMG_6827.JPG" alt="Mr. Punith" style="object-fit:cover;" loading="lazy">
-            <div class="pro-card-head">
-              <p class="pro-card-name">Mr. Punith</p>
-              <p class="pro-card-designation">Core Manager — Site Visit</p>
-            </div>
-          </div>
-          <div class="pro-card-mid">
-            <span class="pro-dept-tag">Site Visit</span>
-            <p class="pro-card-focus">On-ground site visits, inspections, and field verification across IGO locations.</p>
-          </div>
-          <div class="pro-card-footer">View Profile <span>→</span></div>
-        </div>
-      </div>
-    </div>
-
-
 
   </div>
 </section>
-
-
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -885,7 +597,6 @@
       <a href="brands.html">Our Brands</a>
       <a href="departments.html">Departments</a>
       <a href="leadership.html">Leadership</a>
-      <a href="org-chart.html">Org Chart</a>
       <a href="facilities.html">Office Facilities</a>
         <a href="awards.html">Awards</a>
       <a href="gallery.html">Gallery</a>
