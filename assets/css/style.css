@@ -177,16 +177,30 @@ html.dark .nav-links a:hover, html.dark .nav-links a.active { color: var(--green
   display: none; position: relative; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: 11px 7px;
 }
 .nav-toggle span, .nav-toggle::before, .nav-toggle::after {
-  content: ''; position: absolute; left: 0; width: 100%; height: 2px; background: var(--forest); border-radius: 2px;
+  /* Bars centered and narrower than the 44px tap target (instead of edge-
+     to-edge) so the icon reads as a tidy glyph rather than a stretched bar,
+     matching the visual weight of the circular icons beside it. */
+  content: ''; position: absolute; left: 9px; width: 26px; height: 2px; background: var(--forest); border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.25s ease, top 0.25s ease;
 }
 html.dark .nav-toggle span, html.dark .nav-toggle::before, html.dark .nav-toggle::after { background: var(--green-light); }
-.nav-toggle::before { top: 0; }
-.nav-toggle span { top: 10px; }
-.nav-toggle::after { top: 20px; }
-.nav-toggle.active::before { top: 10px; transform: rotate(45deg); }
+/* Absolutely-positioned bars ignore the button's own padding, so top:0/10/20
+   packed the 3-bar glyph into the TOP half of the 44px button instead of its
+   center — that's what made the icon sit noticeably higher than the
+   perfectly-centered circular button beside it, throwing the row out of
+   line. Shifting every value down by 11px (half of the unused 22px) centers
+   the glyph in its box so both icons sit on the same visual middle line. */
+.nav-toggle::before { top: 11px; }
+.nav-toggle span { top: 21px; }
+.nav-toggle::after { top: 31px; }
+.nav-toggle.active::before { top: 21px; transform: rotate(45deg); }
 .nav-toggle.active span { opacity: 0; }
-.nav-toggle.active::after { top: 10px; transform: rotate(-45deg); }
+.nav-toggle.active::after { top: 21px; transform: rotate(-45deg); }
+/* The site-wide :focus-visible ring (green outline) is meant for keyboard
+   navigation, but touch/emulated taps on this button were triggering it too,
+   drawing a boxed outline around the hamburger icon. Keep the ring for real
+   keyboard users elsewhere; suppress it on this one button only. */
+.nav-toggle:focus-visible { outline: none; }
 
 .theme-toggle {
   position: relative; background: var(--soft-gray); border: 1px solid var(--border); border-radius: 50%;
@@ -726,6 +740,15 @@ html.dark .proj-cat { color: var(--green-light); }
   .nav-toggle { display: block; }
   .nav-cta { display: none; }
 }
+/* The site-wide "prevent overflow" rule further down (@media max-width:640px)
+   sets .container { overflow-x: hidden }, which per the CSS spec forces the
+   OTHER axis (overflow-y) to also become non-visible ("auto") on that same
+   element. Since .nav-links (the mobile dropdown) is positioned absolutely
+   INSIDE the navbar's .container and extends below its normal box, that
+   auto-clipping was hiding the entire open dropdown even though every class/
+   style on it was otherwise correct. Exempt the navbar's own container so
+   the dropdown can render below it as intended. */
+.navbar .container { overflow: visible; }
 @media (max-width: 600px) {
   .hero-text h1 { font-size: 2.1rem; }
   .page-hero h1 { font-size: 1.9rem; }
@@ -1128,6 +1151,14 @@ html.dark .ambient-glow {
   background: linear-gradient(var(--muted-light), var(--green));
   border-radius: 8px; border: 3px solid var(--cream);
 }
+/* This 11px branded scrollbar reads fine on desktop, but on narrow phone
+   screens (Android Chrome renders it persistently, unlike a normal thin
+   overlay scrollbar) it becomes a thick green bar that looks out of place.
+   Slim it down on mobile so it stays subtle. */
+@media (max-width: 860px) {
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-thumb { border: none; border-radius: 4px; }
+}
 
 /* Typography refinement — controlled hierarchy, tighter tracking */
 h2 { font-size: clamp(1.8rem, 2.6vw, 2.35rem); letter-spacing: -0.02em; }
@@ -1283,4 +1314,20 @@ h2 { font-size: clamp(1.8rem, 2.6vw, 2.35rem); letter-spacing: -0.02em; }
   }
 }
 
-@media (max-w
+/* --- Extra small phones (≤380px): tighten hero + nav further --- */
+@media (max-width: 380px) {
+  .hero-text h1 { font-size: 1.8rem; }
+  .page-hero h1 { font-size: 1.6rem; }
+  .logo { font-size: 1.1rem; }
+  .btn { padding: 12px 20px; font-size: 0.88rem; }
+  .container { padding: 0 16px; }
+}
+
+/* --- Universal overflow guard: stop any element from forcing horizontal scroll on mobile --- */
+@media (max-width: 860px) {
+  img, video, iframe, table, pre, canvas, svg {
+    max-width: 100%;
+  }
+  .nav-inner { flex-wrap: nowrap; }
+  h1, h2, h3 { overflow-wrap: break-word; word-break: break-word; }
+}

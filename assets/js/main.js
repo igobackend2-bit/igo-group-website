@@ -1,14 +1,26 @@
 // IGO Groups — site interactions: nav, theme, counters, filters, scroll-reveal, particle network
-document.addEventListener('DOMContentLoaded', function () {
-  // Mobile nav toggle
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  if (toggle && links) {
-    toggle.addEventListener('click', function () {
-      links.classList.toggle('open');
-      toggle.classList.toggle('active');
-    });
+// Defensive ready() wrapper: if this script finishes loading/executing AFTER
+// DOMContentLoaded has already fired (slow network, script placement, cached
+// reloads, etc.), a plain addEventListener('DOMContentLoaded', ...) would
+// silently never run and none of the click handlers below (nav toggle
+// included) would ever get wired up. Running immediately when the document
+// is already past 'loading' guarantees the handlers always attach.
+function ready(fn) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fn);
+  } else {
+    fn();
   }
+}
+ready(function () {
+  // Mobile nav toggle: wired via an inline onclick attribute directly on the
+  // button in the HTML (see index.html), not here. That guarantees it works
+  // even if this external script is slow to load, blocked, or served from a
+  // stale cache — all of which would otherwise leave the button dead with no
+  // visible error. Do NOT also attach a click listener here: with the inline
+  // onclick already toggling the same two classes, a second listener would
+  // toggle them a second time on every click and cancel itself out (icon
+  // flips to the "open" look but the menu never visibly opens).
 
   // Sticky nav: add elevated/blurred style once scrolled
   var navbar = document.querySelector('.navbar');
@@ -399,7 +411,7 @@ document.addEventListener('keydown', function (e) {
    Scroll progress, 3D card tilt, ambient cursor light, hero depth.
    All transform/opacity only; gated behind hover + reduced-motion.
 ══════════════════════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', function () {
+ready(function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
 
