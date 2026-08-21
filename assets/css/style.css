@@ -739,6 +739,10 @@ html.dark .proj-cat { color: var(--green-light); }
   @keyframes navDrop { from { opacity: 0; transform: translateY(-8px); } }
   .nav-toggle { display: block; }
   .nav-cta { display: none; }
+  /* Swap visual order (DOM/markup untouched): put the theme circle before
+     the hamburger so the menu button sits in the far corner. */
+  .nav-right { order: 1; margin-left: 34px; }
+  .nav-toggle { order: 2; }
 }
 /* The site-wide "prevent overflow" rule further down (@media max-width:640px)
    sets .container { overflow-x: hidden }, which per the CSS spec forces the

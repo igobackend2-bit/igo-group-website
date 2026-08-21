@@ -278,6 +278,8 @@ from{opacity:0;transform:translateY(-8px)}
 }
 .nav-toggle{display:block}
 .nav-cta{display:none}
+.nav-right{order:1;margin-left:34px}
+.nav-toggle{order:2}
 }
 .navbar .container{overflow:visible}
 @media (max-width:600px){
