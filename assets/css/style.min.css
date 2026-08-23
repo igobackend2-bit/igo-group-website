@@ -40,14 +40,15 @@ html.dark .nav-links a.active,html.dark .nav-links a:hover{color:var(--green-lig
 .nav-right{display:flex;align-items:center;gap:14px}
 .nav-cta{padding:11px 22px!important;white-space:nowrap}
 .nav-toggle{display:none;position:relative;width:44px;height:44px;background:0 0;border:none;cursor:pointer;padding:11px 7px}
-.nav-toggle span,.nav-toggle::after,.nav-toggle::before{content:'';position:absolute;left:0;width:100%;height:2px;background:var(--forest);border-radius:2px;transition:transform .25s,opacity .25s,top .25s}
+.nav-toggle span,.nav-toggle::after,.nav-toggle::before{content:'';position:absolute;left:9px;width:26px;height:2px;background:var(--forest);border-radius:2px;transition:transform .25s,opacity .25s,top .25s}
 html.dark .nav-toggle span,html.dark .nav-toggle::after,html.dark .nav-toggle::before{background:var(--green-light)}
-.nav-toggle::before{top:0}
-.nav-toggle span{top:10px}
-.nav-toggle::after{top:20px}
-.nav-toggle.active::before{top:10px;transform:rotate(45deg)}
+.nav-toggle::before{top:11px}
+.nav-toggle span{top:21px}
+.nav-toggle::after{top:31px}
+.nav-toggle.active::before{top:21px;transform:rotate(45deg)}
 .nav-toggle.active span{opacity:0}
-.nav-toggle.active::after{top:10px;transform:rotate(-45deg)}
+.nav-toggle.active::after{top:21px;transform:rotate(-45deg)}
+.nav-toggle:focus-visible{outline:none}
 .theme-toggle{position:relative;background:var(--soft-gray);border:1px solid var(--border);border-radius:50%;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .theme-toggle svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.8}
 .theme-toggle .icon-moon{display:none;stroke:var(--green-light)}
@@ -277,7 +278,10 @@ from{opacity:0;transform:translateY(-8px)}
 }
 .nav-toggle{display:block}
 .nav-cta{display:none}
+.nav-right{order:1;margin-left:34px}
+.nav-toggle{order:2}
 }
+.navbar .container{overflow:visible}
 @media (max-width:600px){
 .hero-text h1{font-size:2.1rem}
 .page-hero h1{font-size:1.9rem}
@@ -398,6 +402,10 @@ to{opacity:1;transform:none}
 ::-webkit-scrollbar{width:11px}
 ::-webkit-scrollbar-track{background:var(--cream)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--muted-light),var(--green));border-radius:8px;border:3px solid var(--cream)}
+@media (max-width:860px){
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{border:none;border-radius:4px}
+}
 .tilting{will-change:transform}
 .dept-team-photo:hover{opacity:.92}
 .img-lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;z-index:9999;padding:24px;opacity:0;visibility:hidden;transition:opacity .25s}
@@ -438,4 +446,16 @@ div[style*="repeat(3, 1fr)"]{grid-template-columns:1fr 1fr!important;gap:3px}
 .whatsapp-float{width:50px;height:50px;bottom:20px;right:20px}
 .whatsapp-float svg{width:26px;height:26px}
 .whatsapp-tooltip{display:none}
+}
+@media (max-width:380px){
+.hero-text h1{font-size:1.8rem}
+.page-hero h1{font-size:1.6rem}
+.logo{font-size:1.1rem}
+.btn{padding:12px 20px;font-size:.88rem}
+.container{padding:0 16px}
+}
+@media (max-width:860px){
+img,video,iframe,table,pre,canvas,svg{max-width:100%}
+.nav-inner{flex-wrap:nowrap}
+h1,h2,h3{overflow-wrap:break-word;word-break:break-word}
 }

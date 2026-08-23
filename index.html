@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.min.css" />
+<link rel="stylesheet" href="assets/css/style.min.css?v=4" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
@@ -1397,6 +1397,7 @@ a.hero-stat-chip { cursor: pointer; }
   .testi-grid-new { grid-template-columns: 1fr; }
   .vm-pair { grid-template-columns: 1fr; }
   .hero-stats-row { gap: 8px; }
+  .scroll-cue { display: none; }
   .intro-section .grid { grid-template-columns: 1fr !important; }
   .ceo-inner { grid-template-columns: 1fr; gap: 36px; }
   .offer-grid { grid-template-columns: 1fr; }
@@ -1914,7 +1915,7 @@ a.qc-value:hover { color: var(--green); }
     <a href="index.html" class="logo">
     <img src="assets/img/igo-logo.webp" alt="IGO Group" class="logo-img" style="height:52px; width:auto; object-fit:contain; display:block;">
   </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" onclick="document.getElementById('navLinks').classList.toggle('open');this.classList.toggle('active')"><span></span></button>
     <nav class="nav-links" id="navLinks">
       <a href="index.html" class="active">Home</a>
       <div class="dropdown" tabindex="0">
@@ -3067,7 +3068,7 @@ html.dark .flow-step h4 { color: var(--green-light); }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="assets/js/main.min.js"></script>
-<script src="assets/js/cinematic.min.js"></script>
+<script src="assets/js/main.min.js?v=5"></script>
+<script src="assets/js/cinematic.min.js?v=2"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.min.css" />
+<link rel="stylesheet" href="assets/css/style.min.css?v=3" />
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png">
@@ -21,6 +21,13 @@
   .nf-sub { color: var(--muted); max-width: 460px; margin: 0 auto 30px; }
   .nf-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   html.dark .nf-code { color: var(--green-light); }
+  /* This page has no hamburger/nav-links (just logo + CTA), so the shared
+     mobile nav rule that hides .nav-cta at <=860px (to make room for the
+     hamburger menu) would leave the header with nothing but a logo here.
+     Keep the "Back to Home" button visible on mobile for this page only. */
+  @media (max-width: 860px) {
+    .navbar .nav-cta { display: inline-block; }
+  }
 </style>
 </head>
 <body>
