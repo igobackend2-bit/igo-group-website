@@ -1,0 +1,57 @@
+# ============================================================
+# IGO Groups — igogroups.in
+# Canonical URL enforcement + performance headers
+# Canonical form: https://igogroups.in (HTTPS, non-www, no trailing slash
+# on file paths) — matches the <link rel="canonical"> tags and
+# robots.txt / sitemap.xml already in use across the site.
+# ============================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Force HTTPS (covers both plain HTTP and any proxy/load-balancer
+  #    that reports the original scheme via X-Forwarded-Proto)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2) Force non-www (www.igogroups.in -> igogroups.in), preserving
+  #    whatever host/path/query was requested
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]
+
+  # 3) Strip a trailing slash from real file requests (e.g.
+  #    /leadership.html/ -> /leadership.html), but leave directory-style
+  #    requests (e.g. the site root "/") alone.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} ^(.+)/$
+  RewriteRule ^ %1 [L,R=301]
+</IfModule>
+
+# ============================================================
+# Custom 404 page (already built at /404.html — this just makes sure
+# the server always hands it out for any unmatched URL)
+# ============================================================
+ErrorDocument 404 /404.html
+
+# ============================================================
+# Page-speed helpers: gzip/deflate text assets + long-lived cache
+# headers for static assets (images/fonts/CSS/JS), so repeat visits
+# don't re-download unchanged files.
+# ============================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 year"
+</IfModule>
