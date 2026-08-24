@@ -146,14 +146,47 @@
 </header>
 
 
-<section class="page-hero dept-hero-photo" style="background-image:none; padding:0; min-height:0;">
-  <img src="assets/img/office/igo-leadership-team-awards.webp" alt="IGO Group Leadership Team" style="width:100%; height:auto; display:block;">
-  <div class="container" style="position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-    <span class="eyebrow">OUR LEADERSHIP</span>
-    <h1>The Minds Behind IGO</h1>
-    <p>Meet the leaders driving India's fastest-growing farming ecosystem — from executive vision to department excellence.</p>
+<section class="leadership-hero">
+  <img src="assets/img/office/leadership-core-managers.webp" alt="IGO Group Leadership Team" class="leadership-hero-img">
+  <div class="leadership-hero-textwrap">
+    <div class="container leadership-hero-content">
+      <span class="eyebrow">OUR LEADERSHIP</span>
+      <h1>The Minds Behind IGO</h1>
+      <p>Meet the leaders driving India's fastest-growing farming ecosystem — from executive vision to department excellence.</p>
+    </div>
   </div>
 </section>
+
+<style>
+/* Team-photo hero — the dark backing hugs the text block's own height
+   (auto, not a fixed % of the image) so however many lines the headline
+   wraps to at any screen width, it always stays fully inside its scrim
+   instead of spilling out onto the photo and over people's faces.
+   The photo is shown at its full natural size (no object-fit:cover crop) —
+   everyone in the group photo stays visible, nobody gets cut off at the
+   edges or the bottom. */
+.leadership-hero { position: relative; overflow: hidden; }
+.leadership-hero-img { width: 100%; height: auto; display: block; }
+.leadership-hero-textwrap {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+  background: linear-gradient(180deg, rgba(4,20,10,0.94) 0%, rgba(4,20,10,0.9) 82%, rgba(4,20,10,0) 100%);
+  padding-bottom: 64px;
+}
+.leadership-hero-content {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding-top: clamp(24px, 5vw, 56px);
+}
+.leadership-hero-content h1 {
+  color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 4px 26px rgba(0,0,0,0.4);
+}
+.leadership-hero-content p {
+  color: rgba(255,255,255,0.92); text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+}
+@media (max-width: 640px) {
+  .leadership-hero-content h1 { font-size: 1.7rem; }
+  .leadership-hero-content p { font-size: 0.92rem; }
+}
+</style>
 
 <style>
 /* ── LEADERSHIP PAGE ── */
@@ -241,71 +274,238 @@
   .modal-avatar { width: 120px; height: 120px; }
 }
 
-/* Full-page profile modal (this page only) */
+/* Full-page profile modal (this page only) — a centered, readable column on
+   a full-bleed canvas, the way a corporate "leadership profile" page reads,
+   instead of text stretched edge-to-edge across the whole monitor. */
 #igo-global-modal.modal-overlay { padding: 0; }
-#igo-global-modal .modal-content { max-width: 100vw; width: 100vw; max-height: 100vh; height: 100vh; border-radius: 0; }
+#igo-global-modal .modal-content {
+  max-width: 100vw; width: 100vw; max-height: 100vh; height: 100vh; border-radius: 0;
+  background: var(--card-bg);
+}
+#igo-global-modal .modal-content::before {
+  content: ""; position: sticky; top: 0; display: block; height: 4px; z-index: 6;
+  background: linear-gradient(90deg, var(--forest), var(--green), var(--green-light));
+}
+#igo-global-modal .modal-header,
+#igo-global-modal .modal-body,
+#igo-global-modal .modal-actions {
+  max-width: 980px; margin-left: auto; margin-right: auto; width: 100%; box-sizing: border-box;
+}
+#igo-global-modal .modal-header {
+  position: sticky; top: 4px; z-index: 5;
+  background: var(--card-bg);
+  padding: 36px 40px 30px;
+  border-radius: 0;
+}
+#igo-global-modal .modal-body { padding: 40px 40px 8px; }
+#igo-global-modal .modal-actions { padding: 20px 40px 44px; border-top: none; justify-content: flex-start; }
+#igo-global-modal .modal-title { font-size: 1.9rem; }
+#igo-global-modal .modal-subtitle {
+  display: inline-block; margin-top: 6px; padding: 5px 14px; border-radius: 99px;
+  background: rgba(71,132,39,0.1); color: var(--green); font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+html.dark #igo-global-modal .modal-subtitle { background: rgba(105,168,59,0.16); color: var(--green-light); }
+#igo-global-modal .modal-body h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
+#igo-global-modal .modal-body > p { font-size: 1.02rem; line-height: 1.8; }
+#igo-global-modal .modal-avatar { box-shadow: 0 10px 30px rgba(11,61,19,0.22); border-color: var(--card-bg); }
 
 /* Highlight cards: split title vs. description so they're visually distinct */
-#igo-global-modal .modal-feature-item { display: flex; flex-direction: column; gap: 0.4rem; }
+#igo-global-modal .modal-features { gap: 18px; }
+#igo-global-modal .modal-feature-item {
+  display: flex; flex-direction: column; gap: 0.4rem;
+  border-left: 3px solid var(--green); border-radius: 10px;
+  background: var(--soft-gray); transition: transform 0.2s, box-shadow 0.2s;
+}
+#igo-global-modal .modal-feature-item:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(11,61,19,0.1); }
 #igo-global-modal .modal-feature-title { font-weight: 700; font-size: 0.92rem; color: var(--brand-green, #478427); line-height: 1.3; letter-spacing: 0.01em; }
 #igo-global-modal .modal-feature-desc { font-weight: 400; font-size: 0.85rem; color: var(--muted, #6b7280); line-height: 1.55; }
 html.dark #igo-global-modal .modal-feature-desc { color: #b7c4b0; }
+@media (max-width: 700px) {
+  #igo-global-modal .modal-header,
+  #igo-global-modal .modal-body,
+  #igo-global-modal .modal-actions { padding-left: 24px; padding-right: 24px; }
+  #igo-global-modal .modal-title { font-size: 1.4rem; }
+}
 
-/* ── Hierarchy chart layout (matches org-chart.html) ── */
-.org-wrap { max-width: 1100px; margin: 0 auto; }
-.org-tier-label { text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-green, #478427); margin: 0 0 14px; opacity: 0.85; }
-.org-hierarchy-title { text-align: center; margin-bottom: 3rem; }
-.org-hierarchy-title h2 { color: var(--brand-green, #478427); font-size: 2.1rem; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 0.5rem; text-transform: uppercase; }
-.org-hierarchy-title .org-hierarchy-sub { display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--dark, #111827); font-weight: 700; letter-spacing: 0.3em; font-size: 0.9rem; }
-html.dark .org-hierarchy-title .org-hierarchy-sub { color: #fff; }
-.org-hierarchy-title .org-hierarchy-sub::before, .org-hierarchy-title .org-hierarchy-sub::after { content: ""; width: 44px; height: 2px; background: var(--brand-green, #478427); }
-.org-node { background: #fff; border-radius: 10px; padding: 0.75rem 1rem; box-shadow: 0 1px 6px rgba(0,0,0,0.06); text-align: center; border: 1px solid rgba(71,132,39,0.18); border-left: 3px solid var(--brand-green, #478427); transition: border-color .2s, transform .2s, box-shadow .2s; cursor: pointer; position: relative; overflow: visible; padding-top: 1.1rem; }
-html.dark .org-node { background: var(--card-bg, #16221a); }
-.org-node:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(71,132,39,0.18); }
-.org-node .org-name { font-weight: 700; font-size: 0.88rem; color: var(--dark, #111827); margin: 0 0 0.15rem; position: relative; z-index: 1; }
-html.dark .org-node .org-name { color: #fff; }
-.org-node .org-role { font-size: 0.72rem; color: var(--muted, #6b7280); margin: 0; line-height: 1.4; position: relative; z-index: 1; }
-.org-node::after { content: ""; position: absolute; top: 0.55rem; left: 50%; transform: translateX(-26px); width: 40px; height: 40px; background: linear-gradient(135deg, #478427, #69a83b); border-radius: 10px 10px 10px 0; z-index: 0; }
-.org-root { max-width: 420px; margin: 0 auto 0; }
-.org-root .org-node { border: 2px solid var(--brand-green, #478427); border-left: 2px solid var(--brand-green, #478427); padding: 2rem 2.2rem; border-radius: 18px; box-shadow: 0 6px 26px rgba(71,132,39,0.24); }
-.org-root .org-name { font-size: 1.5rem; }
-.org-root .org-role { font-size: 1rem; }
-.org-root .org-node::after { width: 66px; height: 66px; transform: translateX(-40px); border-radius: 16px 16px 16px 0; }
-.org-connector { width: 3px; height: 36px; background: var(--brand-green, #478427); margin: 0 auto; opacity: 0.55; position: relative; }
+/* ── Hierarchy chart layout ── */
+.org-wrap { max-width: 1320px; margin: 0 auto; --tier-accent: var(--green, #478427); }
+@media (min-width: 1500px) { .org-wrap { max-width: 1520px; } }
+.org-tier-label {
+  text-align: center; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--tier-accent); margin: 0 0 16px; display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.org-tier-label::before, .org-tier-label::after { content: ""; width: 26px; height: 1px; background: currentColor; opacity: 0.4; }
+.org-hierarchy-title { text-align: center; margin-bottom: 3.2rem; }
+.org-hierarchy-title h2 { color: var(--forest); font-family: var(--font-head); font-size: 2.15rem; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 0.6rem; }
+html.dark .org-hierarchy-title h2 { color: #eef5f0; }
+.org-hierarchy-title .org-hierarchy-sub { display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--green, #478427); font-weight: 700; letter-spacing: 0.32em; font-size: 0.78rem; text-transform: uppercase; }
+html.dark .org-hierarchy-title .org-hierarchy-sub { color: var(--green-light); }
+.org-hierarchy-title .org-hierarchy-sub::before, .org-hierarchy-title .org-hierarchy-sub::after { content: ""; width: 44px; height: 2px; background: currentColor; opacity: 0.6; }
+
+/* Node card — accent driven by --tier-accent set on each tier's wrapper */
+.org-node {
+  background: var(--card-bg); border-radius: 12px; padding: 1.35rem 1.1rem 1.1rem; text-align: center;
+  border: 1px solid var(--border); border-left: 3px solid var(--tier-accent);
+  box-shadow: 0 2px 10px rgba(11,61,19,0.05);
+  transition: border-color .25s, transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+  cursor: pointer; position: relative; overflow: visible;
+}
+.org-node:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(11,61,19,0.14); border-left-color: var(--forest); }
+html.dark .org-node:hover { box-shadow: 0 10px 26px rgba(0,0,0,0.4); }
+.org-node .org-name { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; color: var(--heading); margin: 0 0 0.2rem; position: relative; z-index: 1; letter-spacing: -0.005em; }
+.org-node .org-role { font-size: 0.72rem; color: var(--muted); margin: 0; line-height: 1.45; position: relative; z-index: 1; }
+
+/* soft radial glow behind the avatar, scaled to the tier */
+.org-node::after {
+  content: ""; position: absolute; top: 0.5rem; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 100px; border-radius: 50%; z-index: 0;
+  background: radial-gradient(circle, color-mix(in srgb, var(--tier-accent) 30%, transparent), transparent 72%);
+}
+
+.org-avatar, .org-avatar-initials {
+  width: 88px; height: 88px; border-radius: 50%; display: block; margin: 0 auto 0.7rem;
+  position: relative; z-index: 1; border: 3px solid var(--card-bg);
+  box-shadow: 0 0 0 2px var(--tier-accent), 0 4px 14px rgba(11,61,19,0.2);
+}
+.org-avatar { object-fit: cover; object-position: center 20%; image-orientation: from-image; }
+.org-avatar-initials { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--tier-accent), var(--forest)); color: #fff; font-family: var(--font-head); font-weight: 700; font-size: 1.3rem; }
+
+/* Tier 1 — Founder & Group CEO: the one card that earns extra weight */
+.org-root { max-width: 420px; margin: 0 auto 0; --tier-accent: var(--forest); }
+.org-root .org-node { border: 1px solid var(--border); border-left: 3px solid var(--tier-accent); padding: 2.2rem 2.2rem 1.8rem; border-radius: 20px; box-shadow: 0 16px 44px rgba(11,61,19,0.18); background: linear-gradient(180deg, color-mix(in srgb, var(--tier-accent) 6%, var(--card-bg)), var(--card-bg) 55%); }
+.org-root .org-node:hover { transform: translateY(-4px); }
+.org-root .org-name { font-size: 1.55rem; }
+.org-root .org-role { font-size: 1rem; color: var(--green); font-weight: 600; }
+html.dark .org-root .org-role { color: var(--green-light); }
+.org-root .org-node::after { width: 190px; height: 190px; }
+.org-root .org-avatar, .org-root .org-avatar-initials { width: 168px; height: 168px; font-size: 2rem; box-shadow: 0 0 0 3px var(--tier-accent), 0 8px 24px rgba(11,61,19,0.28); }
+
+/* Tier 2 — Directors: elevated, quieter than the root but distinct from the ranks below */
+.tier-2-wrap { --tier-accent: var(--forest); }
+.tier-2-wrap .org-node { border-left-width: 4px; }
+
+/* Tier 3 — GM / National heads: default accent, standard weight */
+.tier-3-wrap { --tier-accent: var(--green); }
+
+/* Tier 4 — Core managers: the widest bench, so cards go quiet and compact */
+.tier-4-wrap { --tier-accent: var(--green-light); }
+.tier-4-wrap .org-node { padding: 1.8rem 1.3rem 1.4rem; box-shadow: 0 1px 5px rgba(11,61,19,0.05); }
+.tier-4-wrap .org-node:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(11,61,19,0.16); }
+.tier-4-wrap .org-avatar, .tier-4-wrap .org-avatar-initials {
+  width: 128px; height: 128px; margin-bottom: 0.9rem;
+  transition: transform 0.3s var(--spring, ease), box-shadow 0.3s;
+}
+.tier-4-wrap .org-node:hover .org-avatar,
+.tier-4-wrap .org-node:hover .org-avatar-initials { transform: scale(1.05); }
+.tier-4-wrap .org-node::after { width: 168px; height: 168px; }
+.tier-4-wrap .org-name { font-size: 1.05rem; }
+.tier-4-wrap .org-role { font-size: 0.8rem; }
+
+/* Tier 5 — Area managers: flat, individual-contributor rows, not cards.
+   Names here vary a lot in length, so this uses a softly-rounded chip
+   (not a full 999px pill) that can wrap onto two lines without text
+   spilling into the next card — a true pill shape can't do that safely. */
+.tier-5-wrap { --tier-accent: var(--green-light); padding-top: 40px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.tier-5-wrap .org-node {
+  display: flex; align-items: center; gap: 1.4rem; text-align: left;
+  padding: 1.3rem 1.7rem; border-radius: 22px; border-left-width: 3px;
+  transition: transform 0.3s var(--spring, ease), box-shadow 0.3s;
+}
+.tier-5-wrap .org-node:hover { transform: translateY(-3px); }
+.tier-5-wrap .org-node::after { display: none; }
+.tier-5-wrap .org-node::before { top: -40px; height: 40px; }
+.tier-5-wrap .org-avatar, .tier-5-wrap .org-avatar-initials {
+  width: 104px; height: 104px; margin: 0; flex-shrink: 0;
+  transition: transform 0.3s var(--spring, ease);
+}
+.tier-5-wrap .org-node:hover .org-avatar,
+.tier-5-wrap .org-node:hover .org-avatar-initials { transform: scale(1.05); }
+.org-node-info { display: flex; flex-direction: column; min-width: 0; }
+.tier-5-wrap .org-name { font-size: 1.1rem; margin-bottom: 0.25rem; line-height: 1.3; }
+.tier-5-wrap .org-role { font-size: 0.86rem; line-height: 1.3; }
+@media (max-width: 640px) {
+  .tier-5-wrap.org-tier-row { grid-template-columns: 1fr; }
+}
+
+/* Connectors */
+.org-connector { width: 2px; height: 36px; margin: 0 auto; position: relative; background: linear-gradient(var(--tier-accent), transparent); opacity: 0.7; }
 .org-tier { display: flex; flex-direction: column; gap: 2.2rem; }
-.org-tier-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.9rem; position: relative; padding-top: 28px; }
-.org-tier-row::before { content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 3px; background: var(--brand-green, #478427); opacity: 0.35; border-radius: 2px; }
+.org-tier-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.9rem; position: relative; padding-top: 28px; justify-items: center; }
+/* On a wide container a 2-card row would otherwise stretch each card to
+   half the full width (auto-fit + 1fr with few items) — cap it so cards
+   stay a sane, readable size instead of ballooning into mostly-empty boxes. */
+.org-tier-row .org-node { width: 100%; max-width: 400px; }
+.tier-5-wrap.org-tier-row { justify-items: stretch; }
+.tier-5-wrap .org-node { max-width: none; }
+.org-tier-row::before { content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 2px; background: var(--tier-accent); opacity: 0.3; border-radius: 2px; }
 .org-tier-row .org-node { position: relative; }
-.org-tier-row .org-node::before { content: ""; position: absolute; width: 3px; height: 28px; background: var(--brand-green, #478427); opacity: 0.55; top: -28px; left: 50%; transform: translateX(-1.5px); }
-.org-tier-row + .org-tier-row::after { content: ""; position: absolute; top: -2.2rem; left: 50%; width: 3px; height: 2.2rem; background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px); }
-.org-dept-groups { margin-top: 0; border: 1px dashed rgba(71,132,39,0.35); border-top: none; padding: 2.2rem 1.2rem 0.4rem; display: flex; flex-direction: column; gap: 1.9rem; position: relative; }
-.org-dept-groups::before { content: ""; position: absolute; top: -22px; left: 50%; width: 3px; height: 22px; background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px); }
+.org-tier-row .org-node::before { content: ""; position: absolute; width: 2px; height: 28px; background: var(--tier-accent); opacity: 0.5; top: -28px; left: 50%; transform: translateX(-1px); }
+.org-tier-row + .org-tier-row::after { content: ""; position: absolute; top: -2.2rem; left: 50%; width: 2px; height: 2.2rem; background: var(--tier-accent); opacity: 0.5; transform: translateX(-1px); }
+.org-dept-groups { margin-top: 0; border: 1px dashed color-mix(in srgb, var(--tier-accent) 40%, transparent); border-top: none; padding: 2.2rem 1.2rem 0.4rem; display: flex; flex-direction: column; gap: 1.9rem; position: relative; }
+.org-dept-groups::before { content: ""; position: absolute; top: -22px; left: 50%; width: 2px; height: 22px; background: var(--tier-accent); opacity: 0.5; transform: translateX(-1px); }
 .org-dept-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; position: relative; padding-top: 22px; }
-.org-dept-row::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 3px; background: var(--brand-green, #478427); opacity: 0.4; border-radius: 2px; }
+.org-dept-row::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 2px; background: var(--tier-accent); opacity: 0.35; border-radius: 2px; }
 .org-dept-row:first-child { padding-top: 0; }
 .org-dept-row:first-child::before { display: none; }
-.org-dept-row + .org-dept-row::after { content: ""; position: absolute; top: -1.9rem; left: 50%; width: 3px; height: 1.9rem; background: var(--brand-green, #478427); opacity: 0.55; transform: translateX(-1.5px); }
+.org-dept-row + .org-dept-row::after { content: ""; position: absolute; top: -1.9rem; left: 50%; width: 2px; height: 1.9rem; background: var(--tier-accent); opacity: 0.5; transform: translateX(-1px); }
 .org-dept-row:last-of-type { display: flex; flex-wrap: wrap; justify-content: center; }
 .org-dept-row:last-of-type .org-node { flex: 0 1 calc(25% - 0.825rem); max-width: calc(25% - 0.825rem); }
 @media (max-width: 820px) { .org-dept-row { grid-template-columns: repeat(2, 1fr); } .org-dept-row:last-of-type .org-node { flex-basis: calc(50% - 0.55rem); max-width: calc(50% - 0.55rem); } }
 @media (max-width: 480px) { .org-dept-row { grid-template-columns: 1fr; } .org-dept-row:last-of-type .org-node { flex-basis: 100%; max-width: 100%; } }
-.org-avatar { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; object-position: center 20%; image-orientation: from-image; display: block; margin: 0 auto 0.6rem; border: 3px solid #fff; position: relative; z-index: 1; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
-.org-avatar-initials { width: 88px; height: 88px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; background: linear-gradient(135deg, #478427, #69a83b); color: #fff; font-weight: 700; font-size: 1.3rem; border: 3px solid #fff; position: relative; z-index: 1; box-shadow: 0 3px 10px rgba(0,0,0,0.18); }
-.org-root .org-avatar, .org-root .org-avatar-initials { width: 168px; height: 168px; font-size: 2rem; }
+
+/* Tier 4 panel — was a hardcoded white box that ignored dark mode.
+   A thin top rule + inset shadow give it a distinct "bench" identity
+   instead of reading as a generic bordered box. */
+.tier-4-panel {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+  padding: 2.2rem 1.8rem 1.8rem; position: relative; overflow: hidden;
+  box-shadow: 0 2px 14px rgba(11,61,19,0.05), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.tier-4-panel::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--forest), var(--green), var(--green-light));
+}
+
 @media (max-width: 640px) {
   .org-root { max-width: 320px; }
   .org-avatar, .org-avatar-initials { width: 68px; height: 68px; }
   .org-root .org-avatar, .org-root .org-avatar-initials { width: 120px; height: 120px; }
   .org-root .org-name { font-size: 1.2rem; }
 }
-.org-dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--brand-green, #478427); left: 50%; transform: translateX(-4.5px); box-shadow: 0 0 0 3px #fff; }
-.org-stat-bar { margin-top: 3rem; background: linear-gradient(135deg, var(--forest, #0b3d13), #146338); border-radius: 16px; padding: 1.4rem 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.2rem; }
-.org-stat-item { display: flex; align-items: center; gap: 10px; color: #fff; }
-.org-stat-item svg { width: 26px; height: 26px; stroke: #a8d98d; fill: none; stroke-width: 1.7; flex-shrink: 0; }
-.org-stat-item .org-stat-num { font-size: 1.15rem; font-weight: 800; line-height: 1.1; display: block; }
-.org-stat-item .org-stat-label { font-size: 0.68rem; color: #cfe8bd; text-transform: uppercase; letter-spacing: 0.05em; }
-.org-stat-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.2); }
-@media (max-width: 640px) { .org-stat-divider { display: none; } }
+.org-dot { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--tier-accent); left: 50%; transform: translateX(-4.5px); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tier-accent) 18%, transparent), 0 0 0 2px var(--card-bg); }
+
+/* Impact strip — each figure gets its own quiet card and a glowing icon
+   badge, instead of a flat solid-color bar with bare inline icons. */
+.org-stat-bar {
+  margin-top: 3.5rem; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--forest, #0b3d13) 0%, #124a1c 55%, #146338 100%);
+  border-radius: 18px; padding: 2.2rem 1.6rem;
+  display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 0.9rem;
+  box-shadow: 0 20px 44px rgba(11,61,19,0.28);
+}
+.org-stat-bar::before, .org-stat-bar::after {
+  content: ""; position: absolute; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(105,168,59,0.35), transparent 70%);
+}
+.org-stat-bar::before { width: 260px; height: 260px; top: -120px; left: -60px; }
+.org-stat-bar::after { width: 220px; height: 220px; bottom: -110px; right: -40px; background: radial-gradient(circle, rgba(240,180,41,0.18), transparent 70%); }
+.org-stat-item {
+  position: relative; z-index: 1; display: flex; align-items: center; gap: 14px; color: #fff;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px; padding: 14px 22px; transition: transform 0.25s var(--spring, ease), background 0.25s;
+}
+.org-stat-item:hover { transform: translateY(-3px); background: rgba(255,255,255,0.1); }
+.org-stat-item .org-stat-icon-wrap {
+  width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(240,180,41,0.22), rgba(105,168,59,0.28));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+}
+.org-stat-item svg { width: 22px; height: 22px; stroke: #ffd76b; fill: none; stroke-width: 1.7; flex-shrink: 0; }
+.org-stat-item .org-stat-num { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; line-height: 1.1; display: block; }
+.org-stat-item .org-stat-label { font-size: 0.66rem; color: #cfe8bd; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+@media (max-width: 640px) { .org-stat-item { flex: 1 1 calc(50% - 0.9rem); } }
 </style>
 
 <section class="content-section">
@@ -327,7 +527,7 @@ html.dark .org-node .org-name { color: #fff; }
     <div class="org-connector"><span class="org-dot" style="bottom:-4px;"></span></div>
     <p class="org-tier-label">Tier 2 &mdash; Directors</p>
 
-    <div class="org-tier" data-reveal>
+    <div class="org-tier tier-2-wrap" data-reveal>
       <div class="org-tier-row" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
         <span class="org-dot" style="top:-1px;"></span>
         <div class="org-node" onclick="openModal('Mrs. Reega Merlin Esther Newton', 'Director', 'Director at IGO Group, part of the senior leadership team guiding organizational governance and long-term strategic direction. Works closely with the Founder &amp; CEO office on high-level decision-making and strategic reviews that shape the group\'s growth across its farming, technology, and retail verticals.', [&quot;Role: Director, IGO Group&quot;,&quot;Focus: Strategic governance, long-term direction, and senior-level decision support for the Founder &amp; CEO office.&quot;,&quot;Strategic Planning &amp; Governance: Participating in strategic planning and governance reviews for the group.&quot;,&quot;Policy &amp; Direction-Setting: Supporting group-level policy development and long-term direction-setting.&quot;,&quot;Executive Decision Support: Contributing to major decisions alongside the Founder &amp; Group CEO.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
@@ -346,7 +546,7 @@ html.dark .org-node .org-name { color: #fff; }
     <div class="org-connector" style="margin-top:1.5rem;"><span class="org-dot" style="bottom:-4px;"></span></div>
     <p class="org-tier-label">Tier 3 &mdash; General Manager, National Sales Head &amp; National Heads</p>
 
-    <div class="org-tier" data-reveal>
+    <div class="org-tier tier-3-wrap" data-reveal>
       <div class="org-tier-row" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
         <span class="org-dot" style="top:-1px;"></span>
         <div class="org-node" onclick="openModal('Mr. Vignesh Sridharan', 'General Manager — Management Ops &amp; BD', 'General Manager on the Management Operations Team and the operational backbone of IGO Group\'s day-to-day management. Acts as the primary bridge between department heads and the CEO office, ensuring daily operations reviews, escalation resolution, and cross-functional performance discipline are maintained consistently across all 18 departments. Plays a pivotal role in translating CEO-level directives into on-ground execution.', [&quot;Role: General Manager — Management Operations Team, IGO Group&quot;,&quot;Focus: Operational governance, escalation management, and cross-functional coordination across all 18 departments.&quot;,&quot;Daily Operations Review: Reviewing daily operations and preparing performance reports across departments.&quot;,&quot;Escalation Handling: Managing multi-level escalation handling and resolution across the organization.&quot;,&quot;Inter-Department Coordination: Driving coordination and alignment between department heads and the CEO office.&quot;,&quot;KPI Tracking: Monitoring performance and tracking KPIs across all 18 departments.&quot;,&quot;CEO Reporting: Reporting directly to the CEO on management performance and priorities.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
@@ -386,8 +586,8 @@ html.dark .org-node .org-name { color: #fff; }
     </div>
 
     <p class="org-tier-label" style="margin-top:2.5rem;">Tier 4 &mdash; Core Managers &amp; Department Heads</p>
-    <div class="org-connector" style="margin-bottom:1.5rem;"><span class="org-dot" style="bottom:-4px;"></span></div>
-      <div style="background:#fff;border-radius:14px;padding:1.6rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <div class="org-connector tier-4-wrap" style="margin-bottom:1.5rem;"><span class="org-dot" style="bottom:-4px;"></span></div>
+      <div class="tier-4-wrap tier-4-panel">
         <div class="org-dept-groups">
           <div class="org-dept-row">
           <div class="org-node" onclick="openModal('Mr. Amirthalingam S', 'Farmers Factory — Core Manager', 'Core Manager in the Farmers Factory unit at IGO Group, supporting the fresh-produce supply chain from farm-level procurement through collection hub operations and last-mile delivery. Manages the day-to-day procurement pipeline, hub operations, and logistics coordination that ensures fresh produce moves efficiently and reliably from partner farmers to IGO\'s distribution and retail network.', [&quot;Role: Core Manager — Farmers Factory, IGO Group&quot;,&quot;Focus: Farm produce procurement, collection hub operations, and fresh-produce supply chain execution.&quot;,&quot;Produce Procurement: Sourcing fresh produce directly from partner farmers.&quot;,&quot;Hub Operations: Managing day-to-day collection hub operations.&quot;,&quot;Logistics Coordination: Coordinating supply chain logistics for fresh-produce delivery.&quot;,&quot;Quality Inspection: Inspecting produce quality at the procurement stage.&quot;,&quot;Performance Reporting: Tracking and reporting supply chain performance.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
@@ -422,27 +622,23 @@ html.dark .org-node .org-name { color: #fff; }
               <p class="org-name">Mr. Mohammed Ali</p>
               <p class="org-role">Head, Palm Cafe</p>
             </div>
-            <div class="org-node" onclick="openModal('Mr. Rahul', 'SMO — Engineering', 'Senior Management Officer (SMO) in the Engineering department at IGO Group, supporting project engineering, site execution, and technical operations across IGO\'s construction and infrastructure projects alongside the Engineering core team.', [&quot;Role: SMO — Engineering, IGO Group&quot;,&quot;Focus: Engineering project support, site execution, and technical coordination.&quot;,&quot;On-Site Execution: Supporting on-site engineering execution.&quot;,&quot;Technical Coordination: Coordinating technically with contractors and vendors.&quot;,&quot;Progress Reporting: Reporting progress to the Engineering GMO.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
-              <img class="org-avatar" src="assets/img/leadership/rahul.webp" alt="Mr. Rahul" loading="lazy">
-              <p class="org-name">Mr. Rahul</p>
-              <p class="org-role">SMO, Engineering Dpt</p>
-            </div>
+
             <div class="org-node" onclick="openModal('Mr. Prasath Rajeswaran', 'Engineering — Core Manager', 'General Management Officer (GMO) in the Engineering department at IGO Group, overseeing engineering projects, site execution, and technical operations across IGO\'s construction and infrastructure verticals. Manages the full project lifecycle — from planning and material procurement through on-site supervision, quality control, and final handover — ensuring every project meets IGO\'s technical standards, safety requirements, and delivery timelines.', [&quot;Role: GMO — Engineering, IGO Group&quot;,&quot;Focus: Project engineering, site execution management, quality and safety control, and vendor coordination.&quot;,&quot;Project Planning: Planning and scheduling engineering projects.&quot;,&quot;Site Supervision: Monitoring and supervising on-site execution.&quot;,&quot;Quality &amp; Safety: Managing quality and safety compliance.&quot;,&quot;Vendor &amp; Material Coordination: Coordinating vendor and material procurement.&quot;,&quot;Contractor Management: Managing contractors and project progress reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/prasath-rajeswaran.webp" alt="Mr. Prasath Rajeswaran" loading="lazy">
               <p class="org-name">Mr. Prasath</p>
               <p class="org-role">SMO, Engineering Dpt</p>
             </div>
-          </div>
-          <div class="org-dept-row">
             <div class="org-node" onclick="openModal('Mr. Mowli', 'SMO — FF Field Business Development', 'Senior Management Officer (SMO) supporting Farmers Factory field business development at IGO Group, coordinating on-ground farmer engagement and business growth initiatives for the Farmers Factory vertical.', [&quot;Role: SMO — FF Field Business Development, IGO Group&quot;,&quot;Focus: On-ground farmer engagement and field business development for Farmers Factory.&quot;,&quot;Farmer Engagement: Leading farmer engagement and outreach activities.&quot;,&quot;Field Business Development: Driving field business development for Farmers Factory.&quot;,&quot;Core Team Coordination: Coordinating with the Farmers Factory core team.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/mowli.webp" alt="Mr. Mowli" loading="lazy">
               <p class="org-name">Mr. Mowli</p>
               <p class="org-role">SMO, FF Field Business Development</p>
             </div>
+          </div>
+          <div class="org-dept-row">
           <div class="org-node" onclick="openModal('Mr. Vignesh A', 'Head: IT &amp; AI — Core Manager', 'Head of IT &amp; AI at IGO Group, leading all technology systems, AI initiatives, ERP development, and digital infrastructure across the organization. Responsible for the group\'s entire technology stack — from ERP platforms and web systems through AI automation tools and internal IT infrastructure — driving digital transformation and operational efficiency across all 18 departments and 27 brands.', [&quot;Role: Head — IT &amp; AI, IGO Group&quot;,&quot;Focus: ERP platforms, web and app systems, AI and automation initiatives, and group IT infrastructure management.&quot;,&quot;ERP Systems: Developing and managing ERP systems for the group.&quot;,&quot;Web &amp; Digital Platforms: Developing and maintaining web and digital platforms.&quot;,&quot;AI &amp; Automation: Designing and implementing AI and automation systems.&quot;,&quot;IT Infrastructure: Managing IT infrastructure and cybersecurity.&quot;,&quot;Digital Transformation: Executing the group&#39;s digital transformation roadmap.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/vignesh-a.webp" alt="Mr. Vignesh A" loading="lazy">
               <p class="org-name">Mr. Vignesh</p>
-              <p class="org-role">Head, IT &amp; CEO Office Admin</p>
+              <p class="org-role">Head, IT &amp; AI</p>
             </div>
             <div class="org-node" onclick="openModal('Mr. Tharun Kumar A', 'Head: Admin — Core Manager', 'Head of Administration in the CEO Office at IGO Group, managing all administrative functions, documentation control, facilities coordination, and internal compliance support across the group. Ensures the CEO office and broader administrative ecosystem functions seamlessly — from document management and facilities oversight to compliance coordination and cross-department administrative support that keeps IGO Group running efficiently.', [&quot;Role: Head — Administration, CEO Office, IGO Group&quot;,&quot;Focus: Administrative operations, documentation control, facilities management, and internal compliance support.&quot;,&quot;Administrative Operations: Managing day-to-day administrative operations.&quot;,&quot;Documentation Control: Controlling documentation and records.&quot;,&quot;Facilities Coordination: Coordinating facilities and maintenance oversight.&quot;,&quot;Compliance Support: Supporting internal compliance processes.&quot;,&quot;CEO Office Coordination: Coordinating administrative matters on behalf of the CEO office.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/tharun-kumar-a.webp" alt="Mr. Tharun Kumar A" loading="lazy">
@@ -454,13 +650,13 @@ html.dark .org-node .org-name { color: #fff; }
               <p class="org-name">Mr. Yuthish</p>
               <p class="org-role">Head, IGO R&amp;D &amp; New Projects</p>
             </div>
-          </div>
-          <div class="org-dept-row">
             <div class="org-node" onclick="openModal('Mr. Rajesh', 'Civil — Core Manager', 'Core Manager in the Civil department at IGO Group, overseeing civil construction, site infrastructure, and building works across IGO\'s project sites. Manages civil project execution from planning through completion — coordinating contractors, monitoring construction quality, and ensuring civil works meet IGO\'s engineering and safety standards.', [&quot;Role: Core Manager — Civil, IGO Group&quot;,&quot;Focus: Civil construction, site infrastructure, and building works across IGO project sites.&quot;,&quot;Project Planning: Planning and executing civil projects.&quot;,&quot;Contractor Coordination: Coordinating contractors and site activities.&quot;,&quot;Quality Monitoring: Monitoring construction quality standards.&quot;,&quot;Safety Compliance: Ensuring safety compliance on site.&quot;,&quot;Progress Reporting: Reporting project progress to leadership.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/rajesh.webp" alt="Mr. Rajesh" loading="lazy">
               <p class="org-name">Mr. Rajesh</p>
               <p class="org-role">SMO, IGO Engineering Dpt</p>
             </div>
+          </div>
+          <div class="org-dept-row">
             <div class="org-node" onclick="openModal('Mr. Udaykiran', 'Business Development — Core Manager', 'Business Development Manager driving lead generation, client relationships, and deal closures for IGO Group business verticals. Manages the complete sales pipeline from first contact through proposal, negotiation, and closure — building long-term institutional client relationships and consistently supporting group revenue targets under the direction of the NSM and CEO office.', [&quot;Role: BD Manager — Business Development, IGO Group&quot;,&quot;Focus: Lead generation, client engagement, proposal management, and revenue pipeline growth across IGO Group verticals.&quot;,&quot;Lead Generation: Generating and qualifying new leads.&quot;,&quot;Client Engagement: Conducting client meetings and presentations.&quot;,&quot;Proposal Preparation: Preparing proposals and quotations.&quot;,&quot;Deal Closure: Negotiating and closing deals.&quot;,&quot;CRM &amp; Pipeline Reporting: Managing CRM data and reporting the pipeline to the Head of BD.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/udaykiran.webp" alt="Mr. Udaykiran" loading="lazy">
               <p class="org-name">Mr. Udaykiran</p>
@@ -476,13 +672,13 @@ html.dark .org-node .org-name { color: #fff; }
               <p class="org-name">Mr. Sharu</p>
               <p class="org-role">Head, IGO Marketing</p>
             </div>
-          </div>
-          <div class="org-dept-row">
             <div class="org-node" onclick="openModal('Mrs. Shanmathi Vignesh', 'Head — IGO Academy, IGO Group', 'Leading Skills. Building Careers. Creating Farmpreneurs. Shanmathi serves as the Head of IGO Academy, leading the Academy\'s training strategy, academic operations, course development, learner experience, practical education, career initiatives and institutional growth. With a strong focus on practical agricultural education, technology-driven farming and career-oriented skill development, she works towards transforming IGO Academy into a future-ready learning ecosystem that connects knowledge, practical skills, employment and entrepreneurship.', [&quot;800+ Students Trained &amp; Supported: Leading and overseeing the learning journey, engagement and training experience of 800+ students across IGO Academy initiatives.&quot;,&quot;50+ Students Placed in IGO GROUP: Contributing to the successful transition of 50+ trained students into employment opportunities within IGO GROUP.&quot;,&quot;Academy Leadership: Leading the overall strategy, training, career pathways and growth of IGO Academy — driving operational excellence and continuous development.&quot;,&quot;Curriculum &amp; Technology-Driven Training: Developing practical, industry-relevant training programs and promoting modern agricultural technologies including Precision Farming, IoT, Smart Agriculture, Hydroponics, Vertical Farming and Protected Cultivation.&quot;,&quot;Practical Education &amp; Student Development: Strengthening live-farm, demonstration and hands-on learning experiences while building a learner-focused environment that develops technical, professional and entrepreneurial capabilities.&quot;,&quot;Career, Placement &amp; Partnerships: Strengthening the pathway from Training → Skills → Internship → Placement → Career, and building relationships with educational institutions, government organizations and industry partners.&quot;,&quot;Agri-Entrepreneurship &amp; Academy Excellence: Supporting learners moving from employment towards Farmpreneurship and sustainable agri-business creation, while continuously improving training quality, satisfaction and outcomes.&quot;,&quot;Her Leadership Impact — From Learning to Livelihood: Learn (acquire knowledge) → Practice (develop hands-on skills) → Certify (validate capabilities) → Get Placed (access career opportunities) → Build (create a career or agri-business).&quot;,&quot;Future Focus: Expanding training in Precision Farming, IoT, AI, Automation and Smart Agriculture; increasing live-farm exposure and hands-on learning; strengthening career and placement pathways; helping learners build sustainable agri-businesses; and growing the Academy&#39;s reach through standardized curricula, institutional partnerships and digital learning.&quot;,&quot;IGO Academy — Four Strategic Pillars: (1) Technology-Driven — training in modern agricultural technologies for a future-ready workforce; (2) Practical Skills — hands-on learning and real farm exposure to build real skills; (3) Career &amp; Placement — connecting learners with internships, placement and careers; (4) Entrepreneurship — empowering learners to become successful Farmpreneurs.&quot;,&quot;Her Vision: &#39;To build IGO Academy into a leading platform for practical, technology-driven and career-oriented agricultural education — empowering every learner to become job-ready, industry-ready or business-ready.&#39;&quot;,&quot;Shanmathi&#39;s Leadership Philosophy: Lead (lead the Academy) → Train (train with purpose) → Empower (empower learners) → Place (create career opportunities) → Build (build the next generation of Farmpreneurs).&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/shanmathi-vignesh.webp" alt="Mrs. Shanmathi Vignesh" loading="lazy">
               <p class="org-name">Mrs. Shanmathi</p>
               <p class="org-role">Head, IGO Academy</p>
             </div>
+          </div>
+          <div class="org-dept-row">
             <div class="org-node" onclick="openModal('Ms. Maheshwari', 'Head: IGO Accounts — Core Manager', 'Head of Accounts at IGO Group, overseeing financial record-keeping, accounts management, and fiscal reporting to support the group\'s financial governance across all departments and brands.', [&quot;Role: Head — IGO Accounts, IGO Group&quot;,&quot;Focus: Accounts management, financial record-keeping, and fiscal reporting.&quot;,&quot;Accounts Management: Managing day-to-day accounts.&quot;,&quot;Record-Keeping &amp; Reconciliation: Maintaining financial records and reconciliation.&quot;,&quot;Fiscal Reporting: Preparing fiscal reports.&quot;,&quot;CFO Office Coordination: Coordinating with finance and the CFO office on group-level reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/maheshwari.webp" alt="Ms. Maheshwari" loading="lazy">
               <p class="org-name">Ms. Maheshwari</p>
@@ -498,13 +694,13 @@ html.dark .org-node .org-name { color: #fff; }
               <p class="org-name">Mr. Surya</p>
               <p class="org-role">SMO, IGO Cocopeat Factory</p>
             </div>
-          </div>
-          <div class="org-dept-row">
             <div class="org-node" onclick="openModal('Mr. Punith', 'Site Visit — Core Manager', 'Core Manager in the Site Visit team at IGO Group, coordinating on-ground site visits, inspections, and field verification across IGO\'s agri estates and project locations. Ensures every site visit is documented accurately and findings are reported back to the relevant department for follow-up action.', [&quot;Role: Core Manager — Site Visit, IGO Group&quot;,&quot;Focus: On-ground site visits, inspections, and field verification across IGO locations.&quot;,&quot;Visit Scheduling: Scheduling and coordinating site visits.&quot;,&quot;On-Ground Inspection: Conducting on-ground inspection and documentation.&quot;,&quot;Field Verification: Reporting field verification findings.&quot;,&quot;Follow-Up Coordination: Coordinating cross-department follow-up action.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/punith.webp" alt="Mr. Punith" loading="lazy">
               <p class="org-name">Mr. Punith</p>
               <p class="org-role">SMO, IGO Site Visits</p>
             </div>
+          </div>
+          <div class="org-dept-row">
             <div class="org-node" onclick="openModal('Ms. Amritha', 'Head: Valluvam Products — Core Manager', 'Head of Valluvam Products at IGO Group, overseeing product operations, quality standards, and business growth for the Valluvam product line.', [&quot;Role: Head — Valluvam Products, IGO Group&quot;,&quot;Focus: Product operations, quality standards, and business growth for Valluvam.&quot;,&quot;Product Operations: Managing Valluvam product operations.&quot;,&quot;Quality Standards: Overseeing quality standards for Valluvam products.&quot;,&quot;Business Growth: Planning business growth for the Valluvam product line.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/amritha.webp" alt="Ms. Amritha" loading="lazy">
               <p class="org-name">Ms. Amritha</p>
@@ -520,18 +716,7 @@ html.dark .org-node .org-name { color: #fff; }
               <p class="org-name">Mr. Sathish</p>
               <p class="org-role">HR, IGO Group</p>
             </div>
-          </div>
-          <div class="org-dept-row">
-            <div class="org-node" onclick="openModal('Mr. Sanjay Karan Ravi', 'HR — Core Manager', 'Human Resources Manager at IGO Group, responsible for the full employee lifecycle across the organization — from recruitment and onboarding through attendance management, payroll coordination, and employee engagement. Builds and maintains the HR systems and processes that support IGO Group\'s growing workforce across all 18 departments and 27 brands, ensuring a disciplined, compliant, and engaged organizational culture.', [&quot;Role: HR Manager — Human Resources, IGO Group&quot;,&quot;Focus: Recruitment, onboarding, attendance and LOP management, payroll coordination, and employee engagement.&quot;,&quot;Talent Acquisition: Leading recruitment across all departments.&quot;,&quot;Onboarding: Managing employee onboarding and documentation.&quot;,&quot;Attendance &amp; Payroll: Managing attendance, leave, and payroll coordination.&quot;,&quot;Performance Review Support: Supporting performance review processes.&quot;,&quot;Employee Engagement: Handling grievances and engagement initiatives.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
-              <img class="org-avatar" src="assets/img/leadership/sanjay-karan-ravi.webp" alt="Mr. Sanjay Karan Ravi" loading="lazy">
-              <p class="org-name">Mr. Sanjay Karan Ravi</p>
-              <p class="org-role">HR Manager, IGO Group</p>
-            </div>
-            <div class="org-node" onclick="openModal('Mr. Jagan', 'Chief Financial Officer', 'Chief Financial Officer at IGO Group, overseeing group-level financial strategy, planning, and fiscal governance across all 27 brands and 18 departments as the group scales. Leads financial planning and analysis, budgeting, and capital allocation — working closely with the Founder &amp; CEO office and department heads to ensure strong fiscal discipline, accurate reporting, and sustainable growth across the organization.', [&quot;Role: Chief Financial Officer, IGO Group&quot;,&quot;Focus: Group-level financial strategy, planning, budgeting, and fiscal governance across all brands and departments.&quot;,&quot;Financial Planning: Leading financial planning and analysis.&quot;,&quot;Budgeting &amp; Capital Allocation: Managing budgeting and capital allocation.&quot;,&quot;Risk &amp; Compliance: Overseeing financial risk management and compliance.&quot;,&quot;Finance Team Coordination: Coordinating with accounts and finance teams across departments.&quot;,&quot;CEO Office Reporting: Reporting financial performance to the Founder &amp; CEO office.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
-              <div class="org-avatar-initials">JA</div>
-              <p class="org-name">Mr. Jagan</p>
-              <p class="org-role">Chief Financial Officer</p>
-            </div>
+
             <div class="org-node" onclick="openModal('Mr. Raagul Raj R', 'Head: JV Engineering — Core Manager', 'Head of JV Engineering (SMO) at IGO Group, leading joint-venture engineering projects and construction operations from inception through delivery. Manages JV project delivery end to end — handling site planning, contractor and subcontractor management, client coordination, and execution quality assurance — ensuring every JV project is completed on time, within budget, and to the highest engineering and safety standards.', [&quot;Role: Head — JV Engineering (SMO), IGO Group&quot;,&quot;Focus: JV project delivery, site planning and scheduling, contractor management, and execution quality assurance.&quot;,&quot;Project Delivery: Managing JV project delivery and milestones.&quot;,&quot;Site Planning: Planning sites and construction schedules.&quot;,&quot;Contractor Oversight: Overseeing contractors and subcontractors.&quot;,&quot;Client Liaison: Liaising with clients on progress communications.&quot;,&quot;Quality &amp; Handover: Conducting quality assurance and project handover coordination.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/raagul-raj-r.webp" alt="Mr. Raagul Raj R" loading="lazy">
               <p class="org-name">Mr. Raagul Raj R</p>
@@ -543,40 +728,44 @@ html.dark .org-node .org-name { color: #fff; }
 
     <div class="org-connector"><span class="org-dot" style="bottom:-4px;"></span></div>
     <p class="org-tier-label">Tier 5 &mdash; Area Managers, Agri Dpt</p>
-    <div class="org-tier-row" data-reveal>
+    <div class="org-tier-row tier-5-wrap" data-reveal>
       <span class="org-dot" style="top:-1px;"></span>
       <div class="org-node" onclick="openModal('Mr. Sanjay Vasanthakumar', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, responsible for regional farm operations across his assigned area — coordinating field teams, monitoring crop progress, and ensuring agri project execution stays aligned with IGO\'s operational standards and timelines.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: Regional farm operations, field team coordination, and agri project execution within the assigned area.&quot;,&quot;Field Team Supervision: Supervising field teams and allocating tasks.&quot;,&quot;Crop &amp; Harvest Monitoring: Monitoring crop and harvest progress.&quot;,&quot;Farmer &amp; Vendor Coordination: Coordinating with farmers and vendors in the region.&quot;,&quot;Operational Reporting: Reporting to the Agri Operations leadership.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
         <img class="org-avatar" src="assets/img/leadership/sanjay-vasanthakumar.webp" alt="Mr. Sanjay Vasanthakumar" loading="lazy">
+        <div class="org-node-info">
         <p class="org-name">Mr. Sanjay Vasanthakumar</p>
         <p class="org-role">Area Manager, Agri Dpt</p>
+        </div>
       </div>
       <div class="org-node" onclick="openModal('Mr. Ranjeet Kumar', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, overseeing day-to-day farm operations and field execution within his assigned region. Coordinates with local field teams and farmers to keep agri projects on schedule and aligned with IGO\'s quality and productivity standards.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: Day-to-day farm operations, field execution, and quality standards within the assigned region.&quot;,&quot;Farm Operations Oversight: Overseeing farm operations and field execution planning.&quot;,&quot;Local Coordination: Coordinating with local farmers and field staff.&quot;,&quot;Quality &amp; Productivity: Monitoring quality and productivity standards.&quot;,&quot;Progress Reporting: Reporting progress to Agri Operations leadership.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
         <img class="org-avatar" src="assets/img/leadership/ranjeet-kumar.webp" alt="Mr. Ranjeet Kumar" loading="lazy">
+        <div class="org-node-info">
         <p class="org-name">Mr. Ranjeet Kumar</p>
         <p class="org-role">Area Manager, Agri Dpt</p>
+        </div>
       </div>
       <div class="org-node" onclick="openModal('Mr. Jitendra Kumar', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, managing regional agri operations end-to-end — from field team coordination to on-ground project execution — within his assigned area. Works closely with the core Agri Operations team to maintain consistency across IGO\'s farm sites.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: End-to-end regional agri operations management and consistency across assigned farm sites.&quot;,&quot;Regional Operations: Managing regional agri operations.&quot;,&quot;Field Team Coordination: Coordinating field teams across the region.&quot;,&quot;Project Execution Oversight: Overseeing on-ground project execution.&quot;,&quot;Standards Alignment: Aligning with the core Agri Operations team on standards and reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
         <img class="org-avatar" src="assets/img/leadership/jitendra-kumar.webp" alt="Mr. Jitendra Kumar" loading="lazy">
+        <div class="org-node-info">
         <p class="org-name">Mr. Jitendra Kumar</p>
         <p class="org-role">Area Manager, Agri Dpt</p>
+        </div>
       </div>
       <div class="org-node" onclick="openModal('Mr. Keerthieeswaran', 'Area Manager — Agri Dpt', 'Area Manager for the Agri department at IGO Group, responsible for coordinating field operations and agri project execution across his assigned region. Supervises local teams and tracks farm-level progress to support IGO\'s broader agri operations goals.', [&quot;Role: Area Manager, Agri Dpt, IGO Group&quot;,&quot;Focus: Field operations coordination and agri project execution across the assigned region.&quot;,&quot;Team Supervision: Supervising local field teams.&quot;,&quot;Progress Tracking: Tracking farm-level progress.&quot;,&quot;Field Coordination: Coordinating field operations across the region.&quot;,&quot;Leadership Reporting: Reporting to the Agri Operations leadership.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
         <img class="org-avatar" src="assets/img/leadership/keerthieeswaran.webp" alt="Mr. Keerthieeswaran" loading="lazy">
+        <div class="org-node-info">
         <p class="org-name">Mr. Keerthieeswaran</p>
         <p class="org-role">Area Manager, Agri Dpt</p>
+        </div>
       </div>
     </div>
 
     <div class="org-stat-bar" data-reveal>
-      <div class="org-stat-item"><svg><use href="#icon-leaf2"/></svg><span><span class="org-stat-num">26+</span><span class="org-stat-label">Brands</span></span></div>
-      <div class="org-stat-divider"></div>
-      <div class="org-stat-item"><svg><use href="#icon-grad"/></svg><span><span class="org-stat-num">18+</span><span class="org-stat-label">Divisions</span></span></div>
-      <div class="org-stat-divider"></div>
-      <div class="org-stat-item"><svg><use href="#icon-handshake"/></svg><span><span class="org-stat-num">2000+</span><span class="org-stat-label">Team Strength</span></span></div>
-      <div class="org-stat-divider"></div>
-      <div class="org-stat-item"><svg><use href="#icon-globe"/></svg><span><span class="org-stat-num">28</span><span class="org-stat-label">States</span></span></div>
-      <div class="org-stat-divider"></div>
-      <div class="org-stat-item"><svg><use href="#icon-compass"/></svg><span><span class="org-stat-num">700+</span><span class="org-stat-label">Districts</span></span></div>
+      <div class="org-stat-item"><span class="org-stat-icon-wrap"><svg><use href="#icon-leaf2"/></svg></span><span><span class="org-stat-num">26+</span><span class="org-stat-label">Brands</span></span></div>
+      <div class="org-stat-item"><span class="org-stat-icon-wrap"><svg><use href="#icon-grad"/></svg></span><span><span class="org-stat-num">18+</span><span class="org-stat-label">Divisions</span></span></div>
+      <div class="org-stat-item"><span class="org-stat-icon-wrap"><svg><use href="#icon-handshake"/></svg></span><span><span class="org-stat-num">2000+</span><span class="org-stat-label">Team Strength</span></span></div>
+      <div class="org-stat-item"><span class="org-stat-icon-wrap"><svg><use href="#icon-globe"/></svg></span><span><span class="org-stat-num">28</span><span class="org-stat-label">States</span></span></div>
+      <div class="org-stat-item"><span class="org-stat-icon-wrap"><svg><use href="#icon-compass"/></svg></span><span><span class="org-stat-num">700+</span><span class="org-stat-label">Districts</span></span></div>
     </div>
 
   </div>
