@@ -1961,33 +1961,11 @@ a.qc-value:hover { color: var(--green); }
 
 <!-- ══════════════════ HERO ══════════════════ -->
 <section class="hero-premium">
-  <video class="hero-bg-video" id="heroBgVideo" muted loop playsinline preload="none" aria-hidden="true"
+  <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"
     poster="assets/img/office/hq-front-hero.webp">
-    <source data-src="assets/video/igo-hero-farm.mp4" type="video/mp4" />
-    <source data-src="https://videos.pexels.com/video-files/36236866/15367737_1280_720_30fps.mp4" type="video/mp4" />
+    <source src="assets/video/igo-hero-farm.mp4" type="video/mp4" />
+    <source src="https://videos.pexels.com/video-files/36236866/15367737_1280_720_30fps.mp4" type="video/mp4" />
   </video>
-  <script>
-  // Defer the hero background video's actual download until just after the page
-  // has painted, so it doesn't compete with critical resources for bandwidth on
-  // first load. The poster image (already preloaded above) is what's visible
-  // until this swaps the real video in a moment later.
-  (function () {
-    function loadHeroVideo() {
-      var v = document.getElementById('heroBgVideo');
-      if (!v || v.dataset.loaded) return;
-      v.dataset.loaded = '1';
-      var sources = v.querySelectorAll('source[data-src]');
-      for (var i = 0; i < sources.length; i++) { sources[i].src = sources[i].getAttribute('data-src'); }
-      v.load();
-      v.play().catch(function () {});
-    }
-    if (document.readyState === 'complete') {
-      setTimeout(loadHeroVideo, 50);
-    } else {
-      window.addEventListener('load', function () { setTimeout(loadHeroVideo, 50); });
-    }
-  })();
-  </script>
   <div class="hero-overlay"></div>
   <div class="hero-corner-mask" aria-hidden="true"></div>
   <div class="hero-mesh" aria-hidden="true">
