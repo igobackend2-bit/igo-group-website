@@ -7,6 +7,7 @@
 const http = require('http');
 const fs   = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
@@ -29,6 +30,35 @@ const MIME = {
   '.woff2': 'font/woff2',
   '.ttf'  : 'font/ttf',
 };
+
+// Text-based types worth gzip/brotli-compressing on the wire (images, video,
+// fonts and .webp/.ico are already compressed formats — recompressing them
+// wastes CPU for no size benefit, so they're deliberately left out).
+const COMPRESSIBLE = new Set(['.html', '.css', '.js', '.json', '.xml', '.txt', '.svg']);
+
+// .css/.js are always requested with a ?v=N cache-busting query string in
+// this codebase (see index.html), so it's safe to cache them for a full
+// year immutably — a version bump changes the URL. Other static assets
+// (images/video/fonts) are sometimes overwritten in place under the same
+// filename during optimization passes, so they get a shorter, still much
+// improved, 7-day cache instead of a full year to avoid stale copies.
+const LONG_CACHE  = 'public, max-age=31536000, immutable';
+const WEEK_CACHE  = 'public, max-age=604800';
+
+function pickEncoding(acceptEncoding) {
+  const ae = (acceptEncoding || '').toLowerCase();
+  if (ae.indexOf('br') !== -1) return 'br';
+  if (ae.indexOf('gzip') !== -1) return 'gzip';
+  if (ae.indexOf('deflate') !== -1) return 'deflate';
+  return null;
+}
+
+function compress(data, encoding, cb) {
+  if (encoding === 'br') return zlib.brotliCompress(data, cb);
+  if (encoding === 'gzip') return zlib.gzip(data, cb);
+  if (encoding === 'deflate') return zlib.deflate(data, cb);
+  cb(null, data);
+}
 
 const server = http.createServer(function(req, res) {
   // Canonicalize host (www -> non-www) and strip trailing slashes (except root) with a 301,
@@ -92,9 +122,43 @@ const server = http.createServer(function(req, res) {
     const ext  = path.extname(filePath).toLowerCase();
     const mime = MIME[ext] || 'application/octet-stream';
 
+    let cacheControl;
+    if (ext === '.html') {
+      cacheControl = 'no-cache';
+    } else if (ext === '.css' || ext === '.js') {
+      cacheControl = LONG_CACHE;
+    } else {
+      cacheControl = WEEK_CACHE;
+    }
+
+    if (COMPRESSIBLE.has(ext)) {
+      const encoding = pickEncoding(req.headers['accept-encoding']);
+      if (encoding) {
+        compress(data, encoding, function(cerr, compressed) {
+          if (cerr) {
+            // Compression failed — fall back to serving the original bytes uncompressed.
+            res.writeHead(200, { 'Content-Type': mime, 'Cache-Control': cacheControl, 'Vary': 'Accept-Encoding' });
+            res.end(data);
+            return;
+          }
+          res.writeHead(200, {
+            'Content-Type'     : mime,
+            'Cache-Control'    : cacheControl,
+            'Content-Encoding' : encoding,
+            'Vary'             : 'Accept-Encoding',
+          });
+          res.end(compressed);
+        });
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': mime, 'Cache-Control': cacheControl, 'Vary': 'Accept-Encoding' });
+      res.end(data);
+      return;
+    }
+
     res.writeHead(200, {
       'Content-Type'  : mime,
-      'Cache-Control' : ext === '.html' ? 'no-cache' : 'public, max-age=86400',
+      'Cache-Control' : cacheControl,
     });
     res.end(data);
   });
