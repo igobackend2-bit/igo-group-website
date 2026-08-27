@@ -453,6 +453,13 @@ html.dark .org-root .org-role { color: var(--green-light); }
 .org-dept-row:last-of-type .org-node { flex: 0 1 calc(25% - 0.825rem); max-width: calc(25% - 0.825rem); }
 @media (max-width: 820px) { .org-dept-row { grid-template-columns: repeat(2, 1fr); } .org-dept-row:last-of-type .org-node { flex-basis: calc(50% - 0.55rem); max-width: calc(50% - 0.55rem); } }
 @media (max-width: 480px) { .org-dept-row { grid-template-columns: 1fr; } .org-dept-row:last-of-type .org-node { flex-basis: 100%; max-width: 100%; } }
+/* A row left with fewer than 4 cards after removing an entry: center the
+   remaining cards at the same size as a full row's cards, instead of a
+   fixed 4-column grid leaving empty, uneven gaps. */
+.org-dept-row.partial-row { display: flex; flex-wrap: wrap; justify-content: center; }
+.org-dept-row.partial-row .org-node { flex: 0 1 calc(25% - 0.825rem); max-width: calc(25% - 0.825rem); }
+@media (max-width: 820px) { .org-dept-row.partial-row .org-node { flex-basis: calc(50% - 0.55rem); max-width: calc(50% - 0.55rem); } }
+@media (max-width: 480px) { .org-dept-row.partial-row .org-node { flex-basis: 100%; max-width: 100%; } }
 
 /* Tier 4 panel — was a hardcoded white box that ignored dark mode.
    A thin top rule + inset shadow give it a distinct "bench" identity
@@ -535,11 +542,6 @@ html.dark .org-root .org-role { color: var(--green-light); }
           <p class="org-name">Mrs. Reega Merlin Esther Newton</p>
           <p class="org-role">Director, IGO Group</p>
         </div>
-        <div class="org-node" onclick="openModal('Mr. Newton Varghese', 'Director', 'Director at IGO Group, contributing to the senior leadership team\'s oversight of organizational strategy, governance, and operational direction. Supports the Founder &amp; CEO office in evaluating growth opportunities and steering key initiatives across IGO Group\'s diversified business portfolio.', [&quot;Role: Director, IGO Group&quot;,&quot;Focus: Organizational governance, growth strategy, and senior leadership oversight across the group\'s diversified portfolio.&quot;,&quot;Strategic &amp; Governance Decisions: Contributing to strategic and governance decisions for the group.&quot;,&quot;Growth Opportunity Evaluation: Supporting the evaluation of new growth opportunities across the portfolio.&quot;,&quot;Group-Wide Direction: Working with the Founder &amp; CEO office on group-wide direction-setting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
-          <img class="org-avatar" src="assets/img/leadership/newton-varghese.webp" alt="Mr. Newton Varghese" loading="lazy">
-          <p class="org-name">Mr. Newton Varghese</p>
-          <p class="org-role">Director, IGO Group</p>
-        </div>
       </div>
     </div>
 
@@ -611,17 +613,7 @@ html.dark .org-root .org-role { color: var(--green-light); }
               <p class="org-role">SMO, Agri Dpt</p>
             </div>
           </div>
-          <div class="org-dept-row">
-            <div class="org-node" onclick="openModal('Mr. Lokesh', 'Agri Operations — Core Manager', 'Senior Management Officer (SMO) in Agri Operations at IGO Group, managing assigned farm sites end-to-end to deliver consistent farming outcomes. Oversees every operational layer of his sites — from input procurement planning and field data collection through task compliance monitoring and daily reporting — ensuring each site meets IGO\'s production standards and operational protocols.', [&quot;Role: SMO — Agri Operations, IGO Group&quot;,&quot;Focus: End-to-end farm site management, input planning, field data collection, and operational compliance.&quot;,&quot;Farm Site Management: Managing and overseeing assigned farm sites.&quot;,&quot;Input Procurement: Planning and coordinating input procurement.&quot;,&quot;Field Data Collection: Collecting and analyzing field data.&quot;,&quot;Compliance Monitoring: Monitoring task compliance across sites.&quot;,&quot;Daily Reporting: Preparing daily operational reports for the Agri Head.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
-              <img class="org-avatar" src="assets/img/leadership/lokesh.webp" alt="Mr. Lokesh" loading="lazy">
-              <p class="org-name">Mr. Lokesh</p>
-              <p class="org-role">SMO, Agri Dpt</p>
-            </div>
-          <div class="org-node" onclick="openModal('Mr. Mohammed Ali', 'Head: Palm Cafe — Core Manager', 'Head of Palm Cafe at IGO Group, overseeing day-to-day operations, quality standards, and customer experience at IGO\'s Palm Cafe outlet, while also supporting cross-department coordination within the CEO office ecosystem.', [&quot;Role: Head — Palm Cafe, IGO Group&quot;,&quot;Focus: Palm Cafe operations, quality and service standards, and outlet performance.&quot;,&quot;Outlet Operations: Managing day-to-day Palm Cafe outlet operations.&quot;,&quot;Quality &amp; Hygiene: Overseeing quality and hygiene standards.&quot;,&quot;Staff Coordination: Coordinating outlet staff and daily schedules.&quot;,&quot;Performance Reporting: Reporting outlet performance to leadership.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
-              <img class="org-avatar" src="assets/img/leadership/mohammed-ali.webp" alt="Mr. Mohammed Ali" loading="lazy">
-              <p class="org-name">Mr. Mohammed Ali</p>
-              <p class="org-role">Head, Palm Cafe</p>
-            </div>
+          <div class="org-dept-row partial-row">
 
             <div class="org-node" onclick="openModal('Mr. Prasath Rajeswaran', 'Engineering — Core Manager', 'General Management Officer (GMO) in the Engineering department at IGO Group, overseeing engineering projects, site execution, and technical operations across IGO\'s construction and infrastructure verticals. Manages the full project lifecycle — from planning and material procurement through on-site supervision, quality control, and final handover — ensuring every project meets IGO\'s technical standards, safety requirements, and delivery timelines.', [&quot;Role: GMO — Engineering, IGO Group&quot;,&quot;Focus: Project engineering, site execution management, quality and safety control, and vendor coordination.&quot;,&quot;Project Planning: Planning and scheduling engineering projects.&quot;,&quot;Site Supervision: Monitoring and supervising on-site execution.&quot;,&quot;Quality &amp; Safety: Managing quality and safety compliance.&quot;,&quot;Vendor &amp; Material Coordination: Coordinating vendor and material procurement.&quot;,&quot;Contractor Management: Managing contractors and project progress reporting.&quot;], null, null, (this.querySelector('img.org-avatar')||{}).src)">
               <img class="org-avatar" src="assets/img/leadership/prasath-rajeswaran.webp" alt="Mr. Prasath Rajeswaran" loading="lazy">
