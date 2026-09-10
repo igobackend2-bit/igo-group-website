@@ -90,6 +90,21 @@ const server = http.createServer(function(req, res) {
 
   // Strip query strings, then decode %20 etc. so filenames with spaces/special characters resolve correctly
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
+  const queryString = req.url.indexOf('?') === -1 ? '' : req.url.slice(req.url.indexOf('?'));
+
+  // Clean-URL migration: every page now links to its extension-less URL
+  // (e.g. /about instead of /about.html) and <link rel="canonical"> tags
+  // and sitemap.xml already use that form. Any request that still explicitly
+  // ends in .html/.htm — an old bookmark, an external backlink, a search
+  // result not yet re-crawled — gets a permanent redirect to the clean URL
+  // so search engines consolidate ranking signals onto one canonical URL
+  // per page instead of treating the two as duplicate content.
+  if (/\.html?$/i.test(urlPath)) {
+    const clean = urlPath === '/index.html' ? '/' : urlPath.replace(/\.html?$/i, '');
+    res.writeHead(301, { Location: clean + queryString });
+    res.end();
+    return;
+  }
 
   // Default to index.html
   if (urlPath === '/' || urlPath === '') {
@@ -98,7 +113,9 @@ const server = http.createServer(function(req, res) {
 
   let filePath = path.join(ROOT, urlPath);
 
-  // If no extension, try adding .html
+  // If no extension, try adding .html — this is what actually serves the
+  // clean URL (e.g. /about resolves to about.html on disk) without ever
+  // exposing the .html suffix in the address bar.
   if (!path.extname(filePath)) {
     filePath = filePath + '.html';
   }

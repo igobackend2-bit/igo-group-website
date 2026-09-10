@@ -26,6 +26,24 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_URI} ^(.+)/$
   RewriteRule ^ %1 [L,R=301]
+
+  # 4) Clean-URL migration: every page now links to its extension-less URL
+  #    (e.g. /about instead of /about.html) and the <link rel="canonical">
+  #    tags + sitemap.xml already use that form. Redirect any request that
+  #    still explicitly ends in .html (old bookmark/backlink/search result)
+  #    to the clean URL, except 404.html itself — ErrorDocument below hands
+  #    that file out directly and must not be redirected away.
+  RewriteCond %{REQUEST_URI} !^/404\.html$
+  RewriteCond %{THE_REQUEST} \s/+(.*)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # 5) Internally serve the matching .html file when a clean URL is
+  #    requested (e.g. /about -> about.html on disk), without ever showing
+  #    the .html suffix in the address bar.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
 </IfModule>
 
 # ============================================================
